@@ -1,5 +1,5 @@
 import {
-  ACESFilmicToneMapping, PerspectiveCamera, Vector3, WebGLRenderer, Scene, Mesh,
+  ACESFilmicToneMapping, PerspectiveCamera, SRGBColorSpace, Vector3, WebGLRenderer, Scene, Mesh,
 } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import type { SimulationSnapshot } from "../contract";
@@ -70,11 +70,20 @@ export class EarthScene {
 
   constructor(host: HTMLElement, assets: SceneAssets = REAL_EARTH_ASSETS) {
     const config = SCENE_CONFIG;
-    this.renderer = new WebGLRenderer({ antialias: true, alpha: true });
+    this.renderer = new WebGLRenderer({
+      antialias: true,
+      alpha: true,
+      powerPreference: "high-performance",
+      stencil: false,
+      depth: true,
+    });
     this.renderer.toneMapping = ACESFilmicToneMapping;
     this.renderer.toneMappingExposure = config.renderer.exposure;
+    this.renderer.outputColorSpace = SRGBColorSpace;
     this.renderer.domElement.setAttribute("aria-label", "3D Earth with satellite orbits. Drag to orbit, scroll to zoom.");
     this.renderer.domElement.setAttribute("role", "img");
+    this.renderer.setPixelRatio(Math.min(config.renderer.maxPixelRatio, window.devicePixelRatio));
+    this.renderer.setClearColor(0x080B14, 1);
     this.camera = new PerspectiveCamera(config.camera.fovDeg, 1, config.camera.near, config.camera.far);
     resetCamera(this.camera, new Vector3());
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
@@ -83,6 +92,8 @@ export class EarthScene {
     this.controls.enablePan = false;
     this.controls.minDistance = config.camera.minDistance;
     this.controls.maxDistance = config.camera.maxDistance;
+    this.controls.rotateSpeed = config.camera.rotateSpeed;
+    this.controls.zoomSpeed = config.camera.zoomSpeed;
     this.reset();
 
     let world;
@@ -108,11 +119,11 @@ export class EarthScene {
 
     host.appendChild(this.renderer.domElement);
     this.stopViewport = startViewport(host, {
-      resize: (width, height, pixelRatio) => {
+      resize: (width, height) => {
         this.camera.aspect = width / height;
         this.camera.updateProjectionMatrix();
-        this.renderer.setPixelRatio(pixelRatio);
         this.renderer.setSize(width, height);
+        this.renderer.setPixelRatio(Math.min(config.renderer.maxPixelRatio, window.devicePixelRatio));
       },
       render: (dt) => {
         this.frameStartedAt = performance.now();

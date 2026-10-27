@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { publicAssetUrl } from "../assetUrl";
 import type { SnapshotState } from "../App";
 import { getSatelliteColor } from "./orbit";
 import { SCENE_CONFIG } from "./config";
@@ -28,7 +29,7 @@ export function GroundTrackMap({
   // Preload tactical earth map texture
   useEffect(() => {
     const img = new Image();
-    img.src = "/earth-tactical-dark.png";
+    img.src = publicAssetUrl("earth-tactical-dark.png");
     img.onload = () => {
       bgImgRef.current = img;
     };

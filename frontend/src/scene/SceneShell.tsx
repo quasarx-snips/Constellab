@@ -1,4 +1,5 @@
 import { useEffect, useId, useMemo, useRef, useState } from "react";
+import { publicAssetUrl } from "../assetUrl";
 import type { SnapshotState } from "../App";
 import type { ConnectionInfo } from "../api/connection";
 import { connectionLabel, connectionMessage } from "../api/connection";
@@ -315,7 +316,7 @@ export function SceneShell({ snapshot, status, statusError, connection, snapshot
           title="Return to Startup Flight Deck"
           aria-label="Constellab Mission Hub"
         >
-          <img src="/constellab_symbol_white.svg" alt="Constellab" className="rail-logo-img" />
+          <img src={publicAssetUrl("constellab_symbol_white.svg")} alt="Constellab" className="rail-logo-img" />
         </button>
 
         {/* Tactical Modes */}

@@ -1,16 +1,19 @@
 import { CanvasTexture, RepeatWrapping, SRGBColorSpace, Texture, TextureLoader } from "three";
+import { publicAssetUrl } from "../assetUrl";
 import { SCENE_CONFIG } from "./config";
 
 // Tactical Dark Earth texture generated from Natural Earth vector boundaries,
 // styled with deep navy/void oceans (#080B14) and glowing anomaly coral outlines (#FF765F).
-export const REAL_EARTH_TEXTURE_URL = "/earth-tactical-dark.png";
+// Resolved against the page base so it also loads in the packaged file:// app.
+export const REAL_EARTH_TEXTURE_URL = publicAssetUrl("earth-tactical-dark.png");
 
 // Loaded on demand, never at module init, so importing this module stays safe in
 // Node.js (the scene tests) where there is no DOM.
 let realEarthTexture: Texture | undefined;
 
 export function getRealEarthTexture(): Texture {
-  if (!realEarthTexture) {    const loader = new TextureLoader();
+  if (!realEarthTexture) {
+    const loader = new TextureLoader();
     const tex = loader.load(REAL_EARTH_TEXTURE_URL);
     tex.colorSpace = SRGBColorSpace;
     tex.wrapS = RepeatWrapping;

@@ -65,6 +65,8 @@ export const SCENE_CONFIG = {
     maxDistance: 12,
     zoomFactor: 1.25,
     dampingFactor: 0.08,
+    rotateSpeed: 0.6,
+    zoomSpeed: 1.0,
   },
   lighting: {
     ambientColor: "#101827",

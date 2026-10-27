@@ -1,3 +1,5 @@
+import { publicAssetUrl } from "../assetUrl";
+
 interface StartupHeroProps {
   onEnterSimulator: () => void;
   onExploreScenarios?: () => void;
@@ -14,7 +16,7 @@ export function StartupHero({
       {/* Brand Lockup: Symbol on top of title, center aligned */}
       <div className="startup-hero__brand">
         <img
-          src="/constellab_symbol.svg"
+          src={publicAssetUrl("constellab_symbol.svg")}
           alt="constellab"
           className="startup-hero__symbol"
         />

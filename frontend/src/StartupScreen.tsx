@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { publicAssetUrl } from "./assetUrl";
 import { HudReticles } from "./startup/HudReticles";
 import { StartupHeader, HudNavMode } from "./startup/StartupHeader";
 import { StartupHero } from "./startup/StartupHero";
@@ -108,7 +109,7 @@ export function StartupScreen({ onLaunch }: StartupScreenProps) {
         aria-hidden={stage !== "splash"}
       >
         <div className="splash__brand">
-          <img className="splash__symbol" src="/constellab_symbol.svg" alt="constellab" />
+          <img className="splash__symbol" src={publicAssetUrl("constellab_symbol.svg")} alt="constellab" />
           <h1 className="splash__title">constellab</h1>
         </div>
       </div>

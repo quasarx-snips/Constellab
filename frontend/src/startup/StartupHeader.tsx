@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { publicAssetUrl } from "../assetUrl";
 
 export type HudNavMode = "OBSERVE" | "ANALYZE" | "UNDERSTAND";
 
@@ -24,7 +25,7 @@ export function StartupHeader({
       <div className="startup-header__left">
         <div className="startup-header__brand">
           <img
-            src="/constellab_symbol.svg"
+            src={publicAssetUrl("constellab_symbol.svg")}
             alt="constellab"
             className="startup-header__icon"
           />
