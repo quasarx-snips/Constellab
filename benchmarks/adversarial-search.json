@@ -1,0 +1,170 @@
+{
+  "version": "adversarial-search-suite-1",
+  "dataset": "runs/search/mixed",
+  "budget_per_campaign": 24,
+  "campaigns": [
+    {
+      "name": "faulted-fail",
+      "base_episode": "train-00013",
+      "base_family": "faulted",
+      "mode": "random",
+      "seed": 55,
+      "records": 24,
+      "failures": 23,
+      "class_balance": {
+        "failures": 23,
+        "non_failures": 1
+      },
+      "operators": {
+        "change-target": {
+          "evaluations": 3,
+          "failures": 2
+        },
+        "combine-faults": {
+          "evaluations": 7,
+          "failures": 7
+        },
+        "delay-delivery": {
+          "evaluations": 4,
+          "failures": 4
+        },
+        "extend-fault": {
+          "evaluations": 5,
+          "failures": 5
+        },
+        "shift-fault": {
+          "evaluations": 1,
+          "failures": 1
+        },
+        "trigger-at-transition": {
+          "evaluations": 4,
+          "failures": 4
+        }
+      }
+    },
+    {
+      "name": "faulted-pass",
+      "base_episode": "train-00013",
+      "base_family": "faulted",
+      "mode": "random",
+      "seed": 56,
+      "records": 24,
+      "failures": 0,
+      "class_balance": {
+        "failures": 0,
+        "non_failures": 24
+      },
+      "operators": {
+        "change-target": {
+          "evaluations": 1,
+          "failures": 0
+        },
+        "combine-faults": {
+          "evaluations": 3,
+          "failures": 0
+        },
+        "delay-delivery": {
+          "evaluations": 5,
+          "failures": 0
+        },
+        "extend-fault": {
+          "evaluations": 4,
+          "failures": 0
+        },
+        "shift-fault": {
+          "evaluations": 4,
+          "failures": 0
+        },
+        "trigger-at-transition": {
+          "evaluations": 7,
+          "failures": 0
+        }
+      }
+    },
+    {
+      "name": "partitioned-fail",
+      "base_episode": "train-00000",
+      "base_family": "partitioned",
+      "mode": "random",
+      "seed": 53,
+      "records": 24,
+      "failures": 24,
+      "class_balance": {
+        "failures": 24,
+        "non_failures": 0
+      },
+      "operators": {
+        "change-target": {
+          "evaluations": 6,
+          "failures": 6
+        },
+        "combine-faults": {
+          "evaluations": 6,
+          "failures": 6
+        },
+        "delay-delivery": {
+          "evaluations": 5,
+          "failures": 5
+        },
+        "extend-fault": {
+          "evaluations": 1,
+          "failures": 1
+        },
+        "shift-fault": {
+          "evaluations": 3,
+          "failures": 3
+        },
+        "trigger-at-transition": {
+          "evaluations": 3,
+          "failures": 3
+        }
+      }
+    },
+    {
+      "name": "partitioned-pass",
+      "base_episode": "train-00002",
+      "base_family": "partitioned",
+      "mode": "random",
+      "seed": 54,
+      "records": 24,
+      "failures": 0,
+      "class_balance": {
+        "failures": 0,
+        "non_failures": 24
+      },
+      "operators": {
+        "change-target": {
+          "evaluations": 2,
+          "failures": 0
+        },
+        "combine-faults": {
+          "evaluations": 4,
+          "failures": 0
+        },
+        "delay-delivery": {
+          "evaluations": 6,
+          "failures": 0
+        },
+        "extend-fault": {
+          "evaluations": 5,
+          "failures": 0
+        },
+        "shift-fault": {
+          "evaluations": 2,
+          "failures": 0
+        },
+        "trigger-at-transition": {
+          "evaluations": 5,
+          "failures": 0
+        }
+      }
+    }
+  ],
+  "totals": {
+    "records": 96,
+    "failures": 47,
+    "non_failures": 49
+  },
+  "ranker_manifest": "runs/ranker/ranker-manifest.json",
+  "note": "mixed labelled dataset: failing/passing mutation campaigns on the same base families; non-failures retained"
+}

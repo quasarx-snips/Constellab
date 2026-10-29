@@ -1,0 +1,411 @@
+{
+  "version": "safety-shield-1",
+  "source": "episode test-00008",
+  "config": {
+    "version": "safety-shield-1",
+    "min_energy_fraction": 0.1,
+    "min_storage_fraction": 0.0,
+    "deadline_margin_s": 0.0,
+    "max_assignments_per_step": 8,
+    "require_energy_certified": true,
+    "fallback": "wait"
+  },
+  "cases": [
+    {
+      "name": "legal-assign",
+      "description": "a pair inside the mask with certified resources is accepted",
+      "expected": {
+        "accepted": 1,
+        "reason": null,
+        "fallback": false
+      },
+      "observed": {
+        "accepted": 1,
+        "reason_counts": {},
+        "fallback": []
+      },
+      "checks": {
+        "accepted": true,
+        "reason": true,
+        "fallback": true
+      },
+      "passed": true
+    },
+    {
+      "name": "not-in-mask",
+      "description": "a proposal outside the legal mask is rejected",
+      "expected": {
+        "accepted": 0,
+        "reason": "not-in-mask",
+        "fallback": true
+      },
+      "observed": {
+        "accepted": 0,
+        "reason_counts": {
+          "not-in-mask": 1
+        },
+        "fallback": [
+          "wait"
+        ]
+      },
+      "checks": {
+        "accepted": true,
+        "reason": true,
+        "fallback": true
+      },
+      "passed": true
+    },
+    {
+      "name": "satellite-busy",
+      "description": "a busy satellite may not take a second assignment",
+      "expected": {
+        "accepted": 0,
+        "reason": "satellite-busy",
+        "fallback": true
+      },
+      "observed": {
+        "accepted": 0,
+        "reason_counts": {
+          "satellite-busy": 1
+        },
+        "fallback": [
+          "wait"
+        ]
+      },
+      "checks": {
+        "accepted": true,
+        "reason": true,
+        "fallback": true
+      },
+      "passed": true
+    },
+    {
+      "name": "satellite-unavailable",
+      "description": "an unavailable satellite is rejected",
+      "expected": {
+        "accepted": 0,
+        "reason": "satellite-unavailable",
+        "fallback": true
+      },
+      "observed": {
+        "accepted": 0,
+        "reason_counts": {
+          "satellite-unavailable": 1
+        },
+        "fallback": [
+          "wait"
+        ]
+      },
+      "checks": {
+        "accepted": true,
+        "reason": true,
+        "fallback": true
+      },
+      "passed": true
+    },
+    {
+      "name": "task-not-available",
+      "description": "a task that is no longer open is rejected",
+      "expected": {
+        "accepted": 0,
+        "reason": "task-not-available",
+        "fallback": true
+      },
+      "observed": {
+        "accepted": 0,
+        "reason_counts": {
+          "task-not-available": 1
+        },
+        "fallback": [
+          "wait"
+        ]
+      },
+      "checks": {
+        "accepted": true,
+        "reason": true,
+        "fallback": true
+      },
+      "passed": true
+    },
+    {
+      "name": "deadline-too-close",
+      "description": "a deadline inside the safety margin is rejected",
+      "expected": {
+        "accepted": 0,
+        "reason": "deadline-too-close",
+        "fallback": true
+      },
+      "observed": {
+        "accepted": 0,
+        "reason_counts": {
+          "deadline-too-close": 1
+        },
+        "fallback": [
+          "wait"
+        ]
+      },
+      "checks": {
+        "accepted": true,
+        "reason": true,
+        "fallback": true
+      },
+      "passed": true
+    },
+    {
+      "name": "energy-floor",
+      "description": "an available but depleted satellite is rejected",
+      "expected": {
+        "accepted": 0,
+        "reason": "energy-floor",
+        "fallback": true
+      },
+      "observed": {
+        "accepted": 0,
+        "reason_counts": {
+          "energy-floor": 1
+        },
+        "fallback": [
+          "wait"
+        ]
+      },
+      "checks": {
+        "accepted": true,
+        "reason": true,
+        "fallback": true
+      },
+      "passed": true
+    },
+    {
+      "name": "resource-unknown",
+      "description": "uncertifiable energy is blocked, never approved",
+      "expected": {
+        "accepted": 0,
+        "reason": "resource-unknown",
+        "fallback": true
+      },
+      "observed": {
+        "accepted": 0,
+        "reason_counts": {
+          "resource-unknown": 1
+        },
+        "fallback": [
+          "wait"
+        ]
+      },
+      "checks": {
+        "accepted": true,
+        "reason": true,
+        "fallback": true
+      },
+      "passed": true
+    },
+    {
+      "name": "duplicate-assignment",
+      "description": "the same pair proposed twice is accepted once",
+      "expected": {
+        "accepted": 1,
+        "reason": "duplicate-assignment",
+        "fallback": false
+      },
+      "observed": {
+        "accepted": 1,
+        "reason_counts": {
+          "duplicate-assignment": 1
+        },
+        "fallback": []
+      },
+      "checks": {
+        "accepted": true,
+        "reason": true,
+        "fallback": true
+      },
+      "passed": true
+    },
+    {
+      "name": "unknown-kind-contract",
+      "description": "an invented action kind is rejected by the action contract",
+      "expected": {
+        "accepted": 0,
+        "reason": "unknown-kind",
+        "fallback": false
+      },
+      "observed": {
+        "accepted": 0,
+        "reason_counts": {},
+        "fallback": []
+      },
+      "checks": {
+        "rejected_at_contract": true
+      },
+      "passed": true
+    },
+    {
+      "name": "unknown-satellite",
+      "description": "an identifier outside the observation is rejected",
+      "expected": {
+        "accepted": 0,
+        "reason": "unknown-satellite",
+        "fallback": true
+      },
+      "observed": {
+        "accepted": 0,
+        "reason_counts": {
+          "unknown-satellite": 1
+        },
+        "fallback": [
+          "wait"
+        ]
+      },
+      "checks": {
+        "accepted": true,
+        "reason": true,
+        "fallback": true
+      },
+      "passed": true
+    },
+    {
+      "name": "unknown-task",
+      "description": "an unknown task identifier is rejected",
+      "expected": {
+        "accepted": 0,
+        "reason": "unknown-task",
+        "fallback": true
+      },
+      "observed": {
+        "accepted": 0,
+        "reason_counts": {
+          "unknown-task": 1
+        },
+        "fallback": [
+          "wait"
+        ]
+      },
+      "checks": {
+        "accepted": true,
+        "reason": true,
+        "fallback": true
+      },
+      "passed": true
+    },
+    {
+      "name": "storage-floor",
+      "description": "a storage floor blocks an otherwise legal pair",
+      "expected": {
+        "accepted": 0,
+        "reason": "storage-floor",
+        "fallback": true
+      },
+      "observed": {
+        "accepted": 0,
+        "reason_counts": {
+          "storage-floor": 1
+        },
+        "fallback": [
+          "wait"
+        ]
+      },
+      "checks": {
+        "accepted": true,
+        "reason": true,
+        "fallback": true
+      },
+      "passed": true
+    },
+    {
+      "name": "max-assignments",
+      "description": "a zero assignment cap rejects even a legal pair",
+      "expected": {
+        "accepted": 0,
+        "reason": "max-assignments",
+        "fallback": true
+      },
+      "observed": {
+        "accepted": 0,
+        "reason_counts": {
+          "max-assignments": 1
+        },
+        "fallback": [
+          "wait"
+        ]
+      },
+      "checks": {
+        "accepted": true,
+        "reason": true,
+        "fallback": true
+      },
+      "passed": true
+    },
+    {
+      "name": "no-fallback",
+      "description": "fallback 'none' suppresses the wait action but not the rejection",
+      "expected": {
+        "accepted": 0,
+        "reason": "not-in-mask",
+        "fallback": false
+      },
+      "observed": {
+        "accepted": 0,
+        "reason_counts": {
+          "not-in-mask": 1
+        },
+        "fallback": []
+      },
+      "checks": {
+        "accepted": true,
+        "reason": true,
+        "fallback": true
+      },
+      "passed": true
+    },
+    {
+      "name": "hostile-policy",
+      "description": "a policy can not disable the shield or return its own fallback",
+      "expected": {
+        "accepted": 0,
+        "reason": "not-in-mask",
+        "fallback": true
+      },
+      "observed": {
+        "accepted": 0,
+        "reason_counts": {
+          "not-in-mask": 1
+        },
+        "fallback": [
+          "wait"
+        ]
+      },
+      "checks": {
+        "accepted": true,
+        "reason": true,
+        "fallback": true
+      },
+      "passed": true
+    }
+  ],
+  "summary": {
+    "cases": 16,
+    "passed": 16,
+    "failed": [],
+    "reason_codes_covered": [
+      "deadline-too-close",
+      "duplicate-assignment",
+      "energy-floor",
+      "max-assignments",
+      "not-in-mask",
+      "resource-unknown",
+      "satellite-busy",
+      "satellite-unavailable",
+      "storage-floor",
+      "task-not-available",
+      "unknown-satellite",
+      "unknown-task"
+    ],
+    "reason_codes_missing": [
+      "unknown-kind"
+    ],
+    "fallback": "wait",
+    "disable_via_policy_output": false,
+    "unknown_kind_blocked_at_contract": true
+  },
+  "passed": true
+}

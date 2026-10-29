@@ -8,7 +8,12 @@ import type { SatelliteProjection } from "./EarthScene";
 import { EarthScene } from "./EarthScene";
 import { GroundTrackMap } from "./GroundTrackMap";
 import { InspectorPanel } from "./InspectorPanel";
+import { G2FaultLab } from "./G2FaultLab";
+import { MLLab } from "./MLLab";
 import { SceneDiagnostics } from "./SceneDiagnostics";
+import { fetchG2Report } from "../api/g2";
+import { fetchMlReport, type MlReport } from "../api/ml";
+import { faultFrameGeometry, frameIndexAt, type G2Report } from "./faultOverlay";
 import { DEFAULT_DIAGNOSTIC_TOGGLES, type DiagnosticToggles, snapshotAgeMs } from "./diagnostics";
 import { ScenarioCatalog } from "../scenario/ScenarioCatalog";
 import { ParameterEditor } from "../scenario/ParameterEditor";
@@ -32,6 +37,7 @@ interface SceneShellProps {
   connection?: ConnectionInfo | null;
   snapshotReceivedAtMs?: number | null;
   onExit?: () => void;
+  initialPanel?: "ml" | "g2" | null;
 }
 
 /** Link state banner; ticks its own countdown while the core is unreachable. */
@@ -129,7 +135,7 @@ function SatelliteRow({
   );
 }
 
-export function SceneShell({ snapshot, status, statusError, connection, snapshotReceivedAtMs, onExit }: SceneShellProps) {
+export function SceneShell({ snapshot, status, statusError, connection, snapshotReceivedAtMs, onExit, initialPanel = null }: SceneShellProps) {
   const viewport = useRef<HTMLDivElement>(null);
   const scene = useRef<EarthScene | null>(null);
   const [sceneError, setSceneError] = useState<string | null>(null);
@@ -148,6 +154,20 @@ export function SceneShell({ snapshot, status, statusError, connection, snapshot
   // editor or the registry-scale editor; both act on the same running scenario.
   const [settingsMode, setSettingsMode] = useState<"schema" | "registry">("registry");
   const [isScenarioOpen, setIsScenarioOpen] = useState(false);
+  // Day 34: the G2 failure lab replays the core's recorded fault episode.
+  // Days 46–56: the ML lab is a sibling evidence surface. The startup evidence
+  // modal deep-links into either one without mutating simulation state.
+  const [isFaultLabOpen, setIsFaultLabOpen] = useState(initialPanel === "g2");
+  const [isMLLabOpen, setIsMLLabOpen] = useState(initialPanel === "ml");
+  const [mlReport, setMlReport] = useState<MlReport | null>(null);
+  const [mlError, setMlError] = useState<string | null>(null);
+  const [mlLoading, setMlLoading] = useState(false);
+  const [mlReloadToken, setMlReloadToken] = useState(0);
+  const [g2Report, setG2Report] = useState<G2Report | null>(null);
+  const [g2Error, setG2Error] = useState<string | null>(null);
+  const [g2Loading, setG2Loading] = useState(false);
+  const [g2ReloadToken, setG2ReloadToken] = useState(0);
+  const [g2FrameIndex, setG2FrameIndex] = useState(0);
   const [autoRotate] = useState(true);
   const [showOverlays, setShowOverlays] = useState(true);
   const [showOrbits, setShowOrbits] = useState(true);
@@ -208,6 +228,65 @@ export function SceneShell({ snapshot, status, statusError, connection, snapshot
   useEffect(() => {
     scene.current?.setOrbitPlaneVisible(diagnosticToggles.orbitPlane);
   }, [diagnosticToggles.orbitPlane]);
+
+  // Days 46–56: fetch the compact ML evidence when the lab opens. The payload
+  // is cached in state; refresh clears it and this effect re-runs.
+  useEffect(() => {
+    if (!isMLLabOpen || mlReport !== null) return;
+    let cancelled = false;
+    setMlLoading(true);
+    setMlError(null);
+    fetchMlReport()
+      .then((report) => {
+        if (!cancelled) setMlReport(report);
+      })
+      .catch((err: unknown) => {
+        if (!cancelled) setMlError(err instanceof Error ? err.message : String(err));
+      })
+      .finally(() => {
+        if (!cancelled) setMlLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [isMLLabOpen, mlReport, mlReloadToken]);
+
+  // Day 34: fetch the precomputed G2 report when the lab opens (cache in state).
+  useEffect(() => {
+    if (!isFaultLabOpen || g2Report !== null) return;
+    let cancelled = false;
+    setG2Loading(true);
+    setG2Error(null);
+    fetchG2Report()
+      .then((report) => {
+        if (cancelled) return;
+        setG2Report(report);
+        setG2FrameIndex(frameIndexAt(report, report.first_violation?.time_s ?? 0));
+      })
+      .catch((err: unknown) => {
+        if (!cancelled) setG2Error(err instanceof Error ? err.message : String(err));
+      })
+      .finally(() => {
+        if (!cancelled) setG2Loading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [isFaultLabOpen, g2Report, g2ReloadToken]);
+
+  // Push the selected recorded frame into the overlay; clearing it on close so
+  // the live scene is never left showing stale fault geometry.
+  useEffect(() => {
+    if (!isFaultLabOpen || !g2Report) {
+      scene.current?.setFaultFrame(null);
+      return;
+    }
+    const frame = g2Report.timeline[Math.min(g2FrameIndex, g2Report.timeline.length - 1)];
+    scene.current?.setFaultFrame(frame ? faultFrameGeometry(g2Report, frame) : null);
+    return () => {
+      scene.current?.setFaultFrame(null);
+    };
+  }, [isFaultLabOpen, g2Report, g2FrameIndex]);
 
   // Renderer health readout; read from the scene rather than measuring in React.
   useEffect(() => {
@@ -373,6 +452,8 @@ export function SceneShell({ snapshot, status, statusError, connection, snapshot
               setIsInspectorOpen((v) => !v);
               setIsSettingsOpen(false);
               setIsDrawerOpen(false);
+              setIsFaultLabOpen(false);
+              setIsMLLabOpen(false);
             }}
             title="Satellite Inspector (select by ID, orbit elements, ECI state)"
             aria-label="Satellite Inspector"
@@ -381,6 +462,50 @@ export function SceneShell({ snapshot, status, statusError, connection, snapshot
               <circle cx="12" cy="12" r="3" />
               <path d="M12 2v3M12 19v3M2 12h3M19 12h3" />
               <circle cx="12" cy="12" r="8.5" strokeDasharray="3 3" />
+            </svg>
+          </button>
+
+          <button
+            type="button"
+            className={`rail-item ${isFaultLabOpen ? "rail-item--active" : ""}`}
+            aria-pressed={isFaultLabOpen}
+            onClick={() => {
+              setIsFaultLabOpen((v) => !v);
+              setIsInspectorOpen(false);
+              setIsSettingsOpen(false);
+              setIsDrawerOpen(false);
+              setIsMLLabOpen(false);
+            }}
+            title="G2 failure lab (fault episode, links, invariant violations)"
+            aria-label="G2 failure lab"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75">
+              <path d="M10 3v5L4.5 18a2 2 0 0 0 1.8 3h11.4a2 2 0 0 0 1.8-3L14 8V3" />
+              <line x1="8.5" y1="3" x2="15.5" y2="3" />
+              <line x1="12" y1="13" x2="12" y2="17" />
+              <circle cx="12" cy="11" r="0.6" fill="currentColor" />
+            </svg>
+          </button>
+
+          <button
+            type="button"
+            className={`rail-item ${isMLLabOpen ? "rail-item--active" : ""}`}
+            aria-pressed={isMLLabOpen}
+            onClick={() => {
+              setIsMLLabOpen((v) => !v);
+              setIsInspectorOpen(false);
+              setIsSettingsOpen(false);
+              setIsDrawerOpen(false);
+              setIsFaultLabOpen(false);
+            }}
+            title="G3 / ML evidence lab (gate, held-out, benchmark, pipeline, safety, ablations, training, search)"
+            aria-label="G3 ML evidence lab"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75">
+              <circle cx="6" cy="6" r="2.2" />
+              <circle cx="18" cy="6" r="2.2" />
+              <circle cx="12" cy="18" r="2.2" />
+              <path d="M8 7.2 10.4 16M16 7.2 13.6 16M8.2 6h7.6" />
             </svg>
           </button>
 
@@ -405,6 +530,8 @@ export function SceneShell({ snapshot, status, statusError, connection, snapshot
               setIsDrawerOpen((v) => !v);
               setIsInspectorOpen(false);
               setIsSettingsOpen(false);
+              setIsFaultLabOpen(false);
+              setIsMLLabOpen(false);
             }}
             title="Swarm telemetry table"
             aria-label="Swarm telemetry table"
@@ -425,6 +552,8 @@ export function SceneShell({ snapshot, status, statusError, connection, snapshot
               setIsSettingsOpen((v) => !v);
               setIsInspectorOpen(false);
               setIsDrawerOpen(false);
+              setIsFaultLabOpen(false);
+              setIsMLLabOpen(false);
             }}
             title="Mission parameters (schema-driven editor)"
             aria-label="Mission Parameters"
@@ -580,6 +709,38 @@ export function SceneShell({ snapshot, status, statusError, connection, snapshot
           onClearSelection={() => setSelectedSatId(null)}
           onClose={() => setIsInspectorOpen(false)}
           focusAvailable={viewMode === "3d" && !sceneError}
+        />
+      )}
+
+      {/* Days 46–56: evidence-only ML lab, fed by /api/ml */}
+      {isMLLabOpen && (
+        <MLLab
+          report={mlReport}
+          error={mlError}
+          loading={mlLoading}
+          onRefresh={() => {
+            setMlReport(null);
+            setMlError(null);
+            setMlReloadToken((value) => value + 1);
+          }}
+          onClose={() => setIsMLLabOpen(false)}
+        />
+      )}
+
+      {/* Day 34: recorded fault episode with links, positions and violations */}
+      {isFaultLabOpen && (
+        <G2FaultLab
+          report={g2Report}
+          error={g2Error}
+          loading={g2Loading}
+          frameIndex={g2FrameIndex}
+          onFrameIndex={setG2FrameIndex}
+          onRefresh={() => {
+            setG2Report(null);
+            setG2Error(null);
+            setG2ReloadToken((value) => value + 1);
+          }}
+          onClose={() => setIsFaultLabOpen(false)}
         />
       )}
 

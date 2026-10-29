@@ -81,7 +81,10 @@ class MetadataTests(unittest.TestCase):
                 self.assertTrue(metadata["deployable"])
             self.assertTrue(metadata["key"])
         keys = {item["key"] for item in policy.registered_policy_metadata()}
-        self.assertEqual(keys, {"local-greedy", "fixed-priority", "oracle-upper-bound"})
+        self.assertEqual(keys, {
+            "local-greedy", "fixed-priority", "leases-only",
+            "distributed-greedy", "oracle-upper-bound",
+        })
 
     def test_oracle_can_never_be_marked_deployable(self) -> None:
         with self.assertRaises(PolicyError):

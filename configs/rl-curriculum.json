@@ -1,0 +1,43 @@
+{
+  "run_id": "rl-demo",
+  "dataset_root": "data/ml/demo",
+  "model": {"model": "gnn", "hidden": 24, "layers": 1},
+  "seeds": [0, 1],
+  "learning_rate": 0.0003,
+  "gamma": 0.99,
+  "max_train_episodes": 10,
+  "validation_episodes": 3,
+  "resume": true,
+  "stages": [
+    {
+      "name": "small-connected",
+      "max_fleet": 6,
+      "max_targets": 3,
+      "episodes": 3,
+      "updates": 2,
+      "max_steps": 8,
+      "require_fault": false,
+      "description": "small, well-connected stage"
+    },
+    {
+      "name": "medium",
+      "max_fleet": 10,
+      "max_targets": 5,
+      "episodes": 3,
+      "updates": 2,
+      "max_steps": 10,
+      "require_fault": false,
+      "description": "medium fleet and task load"
+    },
+    {
+      "name": "faulted-partition",
+      "max_fleet": 12,
+      "max_targets": 6,
+      "episodes": 3,
+      "updates": 2,
+      "max_steps": 12,
+      "require_fault": true,
+      "description": "degraded links and partition faults"
+    }
+  ]
+}

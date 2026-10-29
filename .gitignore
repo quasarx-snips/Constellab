@@ -42,14 +42,18 @@ runs/
 evidence/
 models/
 data/raw/
+data/ml/
 *.ckpt
 *.pt
 *.npz
 
 # personal docs / plans
-docs/
+docs/*
 *.md
 !README.md
+!ROADMAP.md
+!docs/ml-pipeline.md
+!docs/g3-gate.md
 .freebuff/
 # regenerable map-data cache for scripts/generate_tactical_earth.py
 scripts/.geo_cache/

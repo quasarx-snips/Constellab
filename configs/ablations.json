@@ -1,0 +1,68 @@
+{
+  "dataset_root": "data/ml/demo",
+  "split": "test",
+  "seed": 50,
+  "shield": {
+    "min_energy_fraction": 0.1,
+    "min_storage_fraction": 0.0,
+    "deadline_margin_s": 0.0,
+    "max_assignments_per_step": 8,
+    "fallback": "wait"
+  },
+  "variants": [
+    {
+      "name": "full",
+      "checkpoint": "runs/curriculum-demo/seed-0/03-full/checkpoint-best.pt",
+      "kind": "imitation",
+      "transform": "none",
+      "shield": true,
+      "diagnostic": false,
+      "note": "deployable candidate with the independent shield"
+    },
+    {
+      "name": "no-shield",
+      "checkpoint": "runs/curriculum-demo/seed-0/03-full/checkpoint-best.pt",
+      "kind": "imitation",
+      "transform": "none",
+      "shield": false,
+      "diagnostic": true,
+      "note": "diagnostic only; never deployable"
+    },
+    {
+      "name": "no-communication",
+      "checkpoint": "runs/curriculum-demo/seed-0/03-full/checkpoint-best.pt",
+      "kind": "imitation",
+      "transform": "no-communication",
+      "shield": true,
+      "diagnostic": true,
+      "note": "diagnostic: contact relation removed at inference"
+    },
+    {
+      "name": "no-parameter-context",
+      "checkpoint": "runs/curriculum-demo/seed-0/03-full/checkpoint-best.pt",
+      "kind": "imitation",
+      "transform": "no-parameter-context",
+      "shield": true,
+      "diagnostic": true,
+      "note": "diagnostic: parameter tokens removed"
+    },
+    {
+      "name": "no-task-features",
+      "checkpoint": "runs/curriculum-demo/seed-0/03-full/checkpoint-best.pt",
+      "kind": "imitation",
+      "transform": "no-task-features",
+      "shield": true,
+      "diagnostic": true,
+      "note": "diagnostic: task feature columns zeroed"
+    },
+    {
+      "name": "ppo-finetuned",
+      "checkpoint": "runs/ppo-long/checkpoint-best.pt",
+      "kind": "ppo",
+      "transform": "none",
+      "shield": true,
+      "diagnostic": true,
+      "note": "PPO fine-tune kept as a negative result on the frozen suite"
+    }
+  ]
+}

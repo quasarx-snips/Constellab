@@ -1,10 +1,13 @@
 import {
-  ACESFilmicToneMapping, PerspectiveCamera, SRGBColorSpace, Vector3, WebGLRenderer, Scene, Mesh,
+  ACESFilmicToneMapping, BufferGeometry, Color, Float32BufferAttribute, Group, InstancedMesh,
+  LineBasicMaterial, LineSegments, Matrix4, Mesh, MeshBasicMaterial, PerspectiveCamera,
+  SRGBColorSpace, Scene, SphereGeometry, Vector3, WebGLRenderer,
 } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import type { SimulationSnapshot } from "../contract";
 import type { SceneAssets } from "./assets";
 import { REAL_EARTH_ASSETS } from "./assets";
+import type { FaultFrameGeometry } from "./faultOverlay";
 import { resetCamera, zoomCamera } from "./camera";
 import { SCENE_CONFIG } from "./config";
 import { earthRotationAngleRad, solarDeclinationDeg } from "./earth";
@@ -48,6 +51,7 @@ export class EarthScene {
   private readonly earthMesh: Mesh;
   private readonly fleet: FleetRenderer;
   private readonly overlays: { group: import("three").Group; dispose: () => void };
+  private faultLayer: { group: Group; dispose: () => void } | null = null;
   private frameTimesMs: number[] = [];
   private lastProjectionAtMs = 0;
   private currentSnapshot: SimulationSnapshot | null = null;
@@ -138,6 +142,10 @@ export class EarthScene {
         this.renderer.domElement.removeEventListener("click", this.handleClick);
         this.controls.dispose();
         this.overlays.dispose();
+        if (this.faultLayer) {
+          this.faultLayer.dispose();
+          this.faultLayer = null;
+        }
         this.fleet.dispose();
         world.dispose();
         this.renderer.dispose();
@@ -280,6 +288,72 @@ export class EarthScene {
 
   setOverlaysVisible(visible: boolean) {
     this.overlays.group.visible = visible;
+  }
+
+  /**
+   * Day 34: draw one recorded G2 frame (markers, contact links, fault halos and
+   * the task target) from the geometry the core reported. Passing null clears
+   * the layer. This never influences the live snapshot or the clock.
+   */
+  setFaultFrame(geometry: FaultFrameGeometry | null) {
+    if (this.faultLayer) {
+      this.worldScene.remove(this.faultLayer.group);
+      this.faultLayer.dispose();
+      this.faultLayer = null;
+    }
+    const canvas = this.renderer.domElement;
+    if (!geometry || geometry.satellites.length === 0) {
+      if (canvas) canvas.dataset.faultOverlay = "off";
+      return;
+    }
+    const group = new Group();
+    group.name = "g2-fault-overlay";
+    const disposables: Array<{ dispose: () => void }> = [];
+
+    // Recorded satellites, one instanced marker each; faults get the coral halo
+    // colour so the failing entities are visible without reading a panel.
+    const markerGeometry = new SphereGeometry(0.032, 12, 8);
+    const markerMaterial = new MeshBasicMaterial({ transparent: true, opacity: 0.95 });
+    const markers = new InstancedMesh(markerGeometry, markerMaterial, geometry.satellites.length);
+    const matrix = new Matrix4();
+    const groupColors: Record<string, number> = { A: 0xf0c777, B: 0x6f9b97 };
+    geometry.satellites.forEach((satellite, index) => {
+      const [x, y, z] = satellite.position;
+      markers.setMatrixAt(index, matrix.makeTranslation(x, y, z));
+      const color = satellite.faulted
+        ? 0xff765f
+        : groupColors[satellite.group] ?? 0xe7e9ed;
+      markers.setColorAt(index, new Color(color));
+    });
+    markers.instanceMatrix.needsUpdate = true;
+    if (markers.instanceColor) markers.instanceColor.needsUpdate = true;
+    group.add(markers);
+    disposables.push(markerGeometry, markerMaterial, markers);
+
+    if (geometry.segments.length > 0) {
+      const linkGeometry = new BufferGeometry();
+      linkGeometry.setAttribute("position", new Float32BufferAttribute(geometry.segments, 3));
+      const linkMaterial = new LineBasicMaterial({ color: 0x7d8598, transparent: true, opacity: 0.7 });
+      group.add(new LineSegments(linkGeometry, linkMaterial));
+      disposables.push(linkGeometry, linkMaterial);
+    }
+
+    const targetGeometry = new SphereGeometry(0.028, 10, 8);
+    const targetMaterial = new MeshBasicMaterial({ color: 0xff765f });
+    const target = new Mesh(targetGeometry, targetMaterial);
+    const direction = new Vector3(...geometry.target).normalize().multiplyScalar(1.04);
+    target.position.copy(direction);
+    group.add(target);
+    disposables.push(targetGeometry, targetMaterial);
+
+    this.worldScene.add(group);
+    this.faultLayer = { group, dispose: () => { for (const item of disposables) item.dispose(); } };
+    if (canvas) {
+      canvas.dataset.faultOverlay = "on";
+      canvas.dataset.faultOverlaySatellites = String(geometry.satellites.length);
+      canvas.dataset.faultOverlayLinks = String(geometry.segments.length / 6);
+      canvas.dataset.faultOverlayFaults = geometry.activeFaults.join(",");
+    }
   }
 
   /** Show/hide every orbit path; satellites stay visible either way. */

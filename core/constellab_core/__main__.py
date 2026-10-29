@@ -142,6 +142,23 @@ def _cmd_g1(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_g2(args: argparse.Namespace) -> int:
+    """Day 34: generate and persist the G2 failure gate report."""
+    from .g2 import write_report
+
+    target = write_report(Path(args.out) if args.out else None)
+    payload = json.loads(target.read_text(encoding="utf-8"))
+    summary = {
+        "report_path": str(target),
+        "checks": payload["checks"],
+        "fault_trace_hash": payload["fault"]["trace_hash"],
+        "control_trace_hash": payload["control"]["trace_hash"],
+        "first_violation": payload["first_violation"],
+    }
+    print(json.dumps(summary, indent=2))
+    return 0 if payload["checks"]["g2_pass"] else 1
+
+
 def _cmd_serve(args: argparse.Namespace) -> int:
     try:
         scenario = load_config_file(args.scenario)
@@ -192,6 +209,10 @@ def main(argv: list[str] | None = None) -> int:
     p_g1 = sub.add_parser("g1", help="generate the automated G1 acceptance report")
     p_g1.add_argument("--out", metavar="FILE", help="report target (default benchmarks/g1-acceptance.json)")
     p_g1.set_defaults(func=_cmd_g1)
+
+    p_g2 = sub.add_parser("g2", help="generate the automated G2 failure-gate report")
+    p_g2.add_argument("--out", metavar="FILE", help="report target (default benchmarks/g2-acceptance.json)")
+    p_g2.set_defaults(func=_cmd_g2)
 
     p_serve = sub.add_parser("serve", help="run the local core HTTP service")
     p_serve.add_argument("--host", default="127.0.0.1")

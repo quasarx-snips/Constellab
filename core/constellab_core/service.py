@@ -47,6 +47,8 @@ ROUTES = {
     ("GET", "/api/state"): "state",
     ("GET", "/api/registry"): "registry",
     ("GET", "/api/swarm"): "swarm",
+    ("GET", "/api/g2"): "g2",
+    ("GET", "/api/ml"): "ml",
     ("GET", "/api/clock"): "clock_get",
     ("POST", "/api/clock/pause"): "clock_pause",
     ("POST", "/api/clock/resume"): "clock_resume",
@@ -139,9 +141,16 @@ def swarm_payload() -> dict[str, Any]:
     so a new event source, sensor, task type, policy or link model is discoverable
     without a hard-coded endpoint list.
     """
-    from . import contacts, policy, sensors, targets, tasks, transport
+    from . import contacts, faults, invariants, policy, sensors, targets, tasks, trace, transport
 
     return {
+        "faults": {
+            "version": faults.FAULT_VERSION,
+            "kinds": list(faults.FAULT_KINDS),
+            "strategies": list(faults.FAULT_STRATEGIES),
+        },
+        "invariants": invariants.rules_payload(),
+        "trace": {"version": trace.TRACE_VERSION, "seeds": trace.SEED_VERSION},
         "targets": {
             "version": targets.EVENT_SOURCE_VERSION,
             "kinds": list(targets.SUPPORTED_EVENT_KINDS),
@@ -290,6 +299,28 @@ class CoreHandler(BaseHTTPRequestHandler):
             self._send(200, registry_payload())
         elif route == "swarm":
             self._send(200, swarm_payload())
+        elif route == "g2":
+            # The gate report is precomputed by the core (cached per process);
+            # the renderer displays recorded state and never decides correctness.
+            from .g2 import cached_demo
+
+            report = cached_demo()
+            self._send(200, {
+                "request_id": self.request_id,
+                "revision": self.server.revision,  # type: ignore[attr-defined]
+                **report,
+            })
+        elif route == "ml":
+            # Days 46–56: fixed-path evidence for the ML Lab. This endpoint is
+            # read-only and never recomputes a metric; missing reports are
+            # returned as unavailable with a reason the UI can display.
+            from .ml import ml_report
+
+            self._send(200, {
+                "request_id": self.request_id,
+                "revision": self.server.revision,  # type: ignore[attr-defined]
+                **ml_report(),
+            })
         else:
             self._not_found()
 

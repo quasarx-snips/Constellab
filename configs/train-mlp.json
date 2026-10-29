@@ -1,0 +1,27 @@
+{
+  "run_id": "baseline-mlp",
+  "dataset_root": "data/ml/demo",
+  "model": {
+    "model": "mlp",
+    "hidden": 32,
+    "layers": 2
+  },
+  "learning_rate": 0.003,
+  "weight_decay": 0.0001,
+  "schedule": "constant",
+  "abstain_weight": 1.0,
+  "graphs_per_batch": 8,
+  "steps_per_chunk": 4,
+  "batches_per_epoch": 8,
+  "epochs": 4,
+  "seed": 0,
+  "early_stopping": {
+    "patience": 2,
+    "min_delta": 0.0001,
+    "metric": "validation_loss"
+  },
+  "evaluation_episodes": 4,
+  "max_sequence_samples": 300,
+  "export": false,
+  "labels": "Day 39 per-satellite MLP baseline"
+}

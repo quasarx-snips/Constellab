@@ -1,0 +1,318 @@
+{
+  "version": "g3-gate-1",
+  "gate_id": "g3-demo",
+  "generated_at_s": 1793298221.903,
+  "status": "pass",
+  "promoted": "learned",
+  "fallback_policy": "fixed-priority",
+  "candidate": "learned",
+  "checkpoint": "runs/curriculum-demo/seed-0/03-full/checkpoint-best.pt",
+  "accepted_envelope": {
+    "ranges": {
+      "energy.initial_charge_ratio": {
+        "min": 0.503895,
+        "max": 0.987427
+      },
+      "faults.count": {
+        "min": 0,
+        "max": 6
+      },
+      "fleet.size": {
+        "min": 2,
+        "max": 24
+      },
+      "network.partitions": {
+        "min": 0,
+        "max": 2
+      },
+      "sensor.duty_cycle_ratio": {
+        "min": 0.264917,
+        "max": 0.9493
+      },
+      "tasks.target_count": {
+        "min": 1,
+        "max": 14
+      }
+    },
+    "families": [
+      "degraded",
+      "faulted",
+      "large-hard",
+      "nominal",
+      "partitioned",
+      "small-easy"
+    ],
+    "condition_classes": [
+      "boundary",
+      "degraded",
+      "noisy",
+      "nominal",
+      "rare"
+    ],
+    "held_out_keys": [
+      "orbit.altitude_km",
+      "orbit.inclination_deg",
+      "fleet.size",
+      "sensor.half_angle_deg",
+      "tasks.target_count",
+      "network.link_range_km",
+      "faults.count",
+      "time.horizon_s"
+    ]
+  },
+  "criteria": [
+    {
+      "key": "artifact",
+      "title": "Checkpoint matches its promotion manifest",
+      "required": true,
+      "passed": true,
+      "reasons": [],
+      "measured": {
+        "checkpoint": "runs\\curriculum-demo\\seed-0\\03-full\\checkpoint-best.pt",
+        "checkpoint_sha256": "ad6084d46bca95112501656b7af1f7019910f7cab139b265f710cc446d54f43c",
+        "manifest_checkpoint_hash": "0872de6c662f6e3943d92ef3cc7a61c2c8f4035509ac11c180625f8a2fcf2506",
+        "model_family": "gnn_gru",
+        "trained_campaign": "demo-48"
+      },
+      "thresholds": {
+        "manifest": "required",
+        "checkpoint_hash": "must match"
+      }
+    },
+    {
+      "key": "generalization",
+      "title": "Held-out and OOD generalization",
+      "required": true,
+      "passed": true,
+      "reasons": [],
+      "measured": {
+        "candidate_coverage": 0.637591,
+        "strongest_baseline": "deepsets",
+        "baseline_coverage": 0.632829,
+        "coverage_delta": 0.004762,
+        "ood_coverage": 0.637591,
+        "episodes": 15,
+        "conflicts": 0,
+        "invalid_actions": 0,
+        "p95_latency_ms": 6.1413,
+        "policy_count": 6
+      },
+      "thresholds": {
+        "max_coverage_drop": 0.02,
+        "min_ood_coverage": 0.2,
+        "min_episodes": 4,
+        "max_conflicts": 0,
+        "max_invalid_actions": 0,
+        "max_p95_latency_ms": 250.0
+      }
+    },
+    {
+      "key": "benchmark",
+      "title": "Paired policy comparison",
+      "required": true,
+      "passed": true,
+      "reasons": [],
+      "measured": {
+        "episodes": 15,
+        "policies": 7,
+        "entry": "learned",
+        "coverage": 0.628439,
+        "strongest_baseline": "deepsets",
+        "baseline_coverage": 0.623677,
+        "shield_rejection_rate": 0.011717
+      },
+      "thresholds": {
+        "min_policies": 3,
+        "max_shield_rejection_rate": 0.35
+      }
+    },
+    {
+      "key": "shield",
+      "title": "Independent action shield boundary suite",
+      "required": true,
+      "passed": true,
+      "reasons": [],
+      "measured": {
+        "cases": 16,
+        "failed": [],
+        "reason_codes_covered": 12,
+        "reason_codes_missing": [
+          "unknown-kind"
+        ],
+        "fallback": "wait"
+      },
+      "thresholds": {
+        "min_cases": 10,
+        "fallback": "declared"
+      }
+    },
+    {
+      "key": "compatibility",
+      "title": "Schema compatibility and safe fallback",
+      "required": true,
+      "passed": true,
+      "reasons": [],
+      "measured": {
+        "cases": 6,
+        "counts": {
+          "compatible": 3,
+          "incompatible": 2,
+          "out-of-distribution": 1
+        },
+        "envelope_ranges": [
+          "energy.initial_charge_ratio",
+          "faults.count",
+          "fleet.size",
+          "network.partitions",
+          "sensor.duty_cycle_ratio",
+          "tasks.target_count"
+        ],
+        "fallbacks": [
+          "baseline",
+          "model"
+        ]
+      },
+      "thresholds": {
+        "incompatible_and_ood_cases": "required",
+        "fallback": "baseline"
+      }
+    },
+    {
+      "key": "ablation",
+      "title": "Reward/feature/algorithm ablation table",
+      "required": true,
+      "passed": true,
+      "reasons": [],
+      "measured": {
+        "variants": [
+          "full",
+          "no-communication",
+          "no-parameter-context",
+          "no-shield",
+          "no-task-features",
+          "ppo-finetuned"
+        ],
+        "deployable": [
+          "full"
+        ],
+        "coverage": {
+          "full": 0.616968,
+          "no-communication": 0.616968,
+          "no-parameter-context": 0.616968,
+          "no-shield": 0.632841,
+          "no-task-features": 0.616968,
+          "ppo-finetuned": 0.582048
+        }
+      },
+      "thresholds": {
+        "min_variants": 4,
+        "deployable": [
+          "full"
+        ]
+      }
+    },
+    {
+      "key": "rl_curriculum",
+      "title": "Multi-seed decentralized RL campaign",
+      "required": true,
+      "passed": true,
+      "reasons": [],
+      "measured": {
+        "seeds": 2,
+        "stages": 6,
+        "selection_metric": "validation_mean_coverage",
+        "winner": {
+          "seed": 0,
+          "stage": "medium",
+          "value": 0.875,
+          "checkpoint": "runs\\rl-demo\\seed-0\\medium\\checkpoint-best.pt"
+        }
+      },
+      "thresholds": {
+        "min_seeds": 2,
+        "selection": "validation"
+      }
+    },
+    {
+      "key": "ranker",
+      "title": "Adversarial ranking evidence (adopted, not required for G3)",
+      "required": false,
+      "passed": true,
+      "reasons": [],
+      "measured": {
+        "records": 96,
+        "validation_auc": 0.8350694444444444,
+        "split_note": "validation families are held out"
+      },
+      "thresholds": {
+        "held_out_auc": "reported"
+      }
+    },
+    {
+      "key": "replay",
+      "title": "Deterministic re-execution of saved seeds",
+      "required": true,
+      "passed": true,
+      "reasons": [],
+      "measured": {
+        "episodes": [
+          {
+            "episode_id": "test-00005",
+            "trace_hashes": [
+              "d7787e8f61d94257fd2b82da53c006138071cf0d37ad274f00efe0194c0a5329",
+              "d7787e8f61d94257fd2b82da53c006138071cf0d37ad274f00efe0194c0a5329"
+            ],
+            "match": true
+          },
+          {
+            "episode_id": "test-00006",
+            "trace_hashes": [
+              "1a760afc91e605dc5085be41507e4de4ebdf4cfba673e007f3cff1fdfc714a1b",
+              "1a760afc91e605dc5085be41507e4de4ebdf4cfba673e007f3cff1fdfc714a1b"
+            ],
+            "match": true
+          }
+        ]
+      },
+      "thresholds": {
+        "replay_episodes": 2
+      }
+    }
+  ],
+  "required_failures": [],
+  "retained": [
+    "learned"
+  ],
+  "rejected": [],
+  "evidence": {
+    "generalization": {
+      "path": "benchmarks/generalization.json",
+      "sha256": "7d6a99cde31deda5f4aa7ec39f5c10bff099f97b8131e6c9db63ac9cbf61a73b"
+    },
+    "benchmark": {
+      "path": "benchmarks/policy-comparison.json",
+      "sha256": "1a187e78fb032746e0581bfa3147bdf8790c648dad0bc4e8f87b1c0b1939b393"
+    },
+    "shield": {
+      "path": "benchmarks/shield-suite.json",
+      "sha256": "4965d3d332cb546e3b6dcc87d0c426b0a6f427f339226f50f797442143096502"
+    },
+    "compatibility": {
+      "path": "benchmarks/compatibility.json",
+      "sha256": "b24ebc056e6d7448b16b9aca8f5abf673356b9d2e71e2e64dc4195f5e72f3948"
+    },
+    "ablation": {
+      "path": "benchmarks/ablations.json",
+      "sha256": "3e8de1288c00f49a95a9074d604b74f33b593b5e10c364163455f7f4bae2f01c"
+    },
+    "rl_curriculum": {
+      "path": "runs/rl-demo/rl-curriculum-manifest.json",
+      "sha256": "e247dab01ddbfbf4f003a31752718151af7a48a5aa30a9c7e3b192fe271efd6f"
+    },
+    "ranker": {
+      "path": "runs/ranker/ranker-manifest.json",
+      "sha256": "e26eb93ec23f4889dc6730625fc6b03e3793a129e66cadc108c4a6b727498982"
+    }
+  },
+  "selection_note": "G3 promotes only on declared thresholds; the strongest non-learning baseline remains the fallback and failed candidates are retained for analysis"
+}

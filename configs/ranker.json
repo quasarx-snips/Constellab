@@ -1,0 +1,11 @@
+{
+  "dataset": "runs/search/mixed",
+  "run_id": "mutation-ranker-demo",
+  "hidden": 16,
+  "epochs": 24,
+  "learning_rate": 0.001,
+  "weight_decay": 0.0001,
+  "batch_size": 8,
+  "seed": 55,
+  "validation_share": 0.3
+}

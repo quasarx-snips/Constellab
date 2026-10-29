@@ -1,0 +1,54 @@
+{
+  "curriculum_id": "swarm-curriculum",
+  "dataset_root": "data/ml/demo",
+  "model": {
+    "model": "gnn_gru",
+    "hidden": 64,
+    "layers": 2
+  },
+  "seeds": [0, 1, 2],
+  "epochs_per_stage": 4,
+  "learning_rate": 0.002,
+  "weight_decay": 0.0001,
+  "abstain_weight": 1.0,
+  "graphs_per_batch": 8,
+  "steps_per_chunk": 4,
+  "batches_per_epoch": 16,
+  "max_sequence_samples": 4000,
+  "evaluation_episodes": 6,
+  "early_stopping_patience": 2,
+  "stall_patience": 2,
+  "selection_metric": "validation_loss",
+  "balance_power": 1.0,
+  "evaluate_test": true,
+  "stages": [
+    {
+      "name": "foundation",
+      "description": "small fleet with a light event load",
+      "limits": {
+        "fleet.size": 6,
+        "tasks.target_count": 3
+      }
+    },
+    {
+      "name": "growth",
+      "description": "medium fleet and a handful of concurrent events",
+      "limits": {
+        "fleet.size": 10,
+        "tasks.target_count": 5
+      }
+    },
+    {
+      "name": "stress",
+      "description": "large fleet with a heavy event load",
+      "limits": {
+        "fleet.size": 14,
+        "tasks.target_count": 6
+      }
+    },
+    {
+      "name": "full",
+      "description": "the complete training distribution"
+    }
+  ]
+}

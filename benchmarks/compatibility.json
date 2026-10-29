@@ -1,0 +1,693 @@
+{
+  "version": "model-compatibility-1",
+  "dataset": "data/ml/demo",
+  "split": "test",
+  "manifest": {
+    "version": "model-manifest-1",
+    "checkpoint": "runs/curriculum-demo/seed-0/03-full/checkpoint-best.pt",
+    "checkpoint_hash": "0872de6c662f6e3943d92ef3cc7a61c2c8f4035509ac11c180625f8a2fcf2506",
+    "model_family": "gnn_gru",
+    "observation_version": "swarm-observation-1",
+    "env_version": "swarm-env-1",
+    "feature_schema_hash": "86ab420e39239fcfdda9cd2e671e398f5d6dda9bcccbc80b8a001b12e211c4f8",
+    "parameter_schema_hash": "aa421c726d214a7c4f4cd4f643f85702ea9b0e773176cdc180d70585e84baf45",
+    "trained_campaign": "demo-48",
+    "training_config": {
+      "run_id": "demo-curriculum-s0-full",
+      "labels": "demo-curriculum/full",
+      "dataset_root": "data/ml/demo",
+      "model": {
+        "model": "gnn_gru",
+        "hidden": 32,
+        "layers": 2
+      },
+      "learning_rate": 0.003,
+      "weight_decay": 0.0001,
+      "schedule": "cosine",
+      "warmup_steps": 0,
+      "label_smoothing": 0.0,
+      "abstain_weight": 1.0,
+      "graphs_per_batch": 8,
+      "steps_per_chunk": 4,
+      "batches_per_epoch": 6,
+      "epochs": 2,
+      "max_steps": 0,
+      "seed": 3,
+      "early_stopping": {
+        "patience": 2,
+        "min_delta": 0.0001,
+        "metric": "validation_loss"
+      },
+      "evaluate_every": 0,
+      "evaluation_episodes": 4,
+      "max_sequence_samples": 300,
+      "use_abstain_class": true,
+      "export": false,
+      "curriculum": {
+        "curriculum_id": "demo-curriculum",
+        "stage": "full",
+        "index": 3,
+        "of": 4,
+        "seed": 0
+      }
+    },
+    "envelope": {
+      "ranges": {
+        "energy.initial_charge_ratio": {
+          "min": 0.503895,
+          "max": 0.987427
+        },
+        "faults.count": {
+          "min": 0,
+          "max": 6
+        },
+        "fleet.size": {
+          "min": 2,
+          "max": 24
+        },
+        "network.partitions": {
+          "min": 0,
+          "max": 2
+        },
+        "sensor.duty_cycle_ratio": {
+          "min": 0.264917,
+          "max": 0.9493
+        },
+        "tasks.target_count": {
+          "min": 1,
+          "max": 14
+        }
+      },
+      "families": [
+        "degraded",
+        "faulted",
+        "large-hard",
+        "nominal",
+        "partitioned",
+        "small-easy"
+      ],
+      "condition_classes": [
+        "boundary",
+        "degraded",
+        "noisy",
+        "nominal",
+        "rare"
+      ],
+      "held_out_keys": [
+        "orbit.altitude_km",
+        "orbit.inclination_deg",
+        "fleet.size",
+        "sensor.half_angle_deg",
+        "tasks.target_count",
+        "network.link_range_km",
+        "faults.count",
+        "time.horizon_s"
+      ]
+    },
+    "versions": {
+      "python": "3.15.0",
+      "torch": "2.14.1+cpu"
+    }
+  },
+  "cases": [
+    {
+      "name": "episode:test-00005",
+      "kind": "dataset-episode",
+      "expected": {
+        "usable": true,
+        "fallback": [
+          "model",
+          "baseline"
+        ]
+      },
+      "report": {
+        "version": "model-compatibility-1",
+        "status": "compatible",
+        "compatible": true,
+        "usable": true,
+        "reasons": [],
+        "warnings": [
+          "outside training range: faults.count"
+        ],
+        "ood_score": 0.166667,
+        "envelope": {
+          "ranges": {
+            "energy.initial_charge_ratio": {
+              "min": 0.503895,
+              "max": 0.987427
+            },
+            "faults.count": {
+              "min": 0,
+              "max": 6
+            },
+            "fleet.size": {
+              "min": 2,
+              "max": 24
+            },
+            "network.partitions": {
+              "min": 0,
+              "max": 2
+            },
+            "sensor.duty_cycle_ratio": {
+              "min": 0.264917,
+              "max": 0.9493
+            },
+            "tasks.target_count": {
+              "min": 1,
+              "max": 14
+            }
+          },
+          "families": [
+            "degraded",
+            "faulted",
+            "large-hard",
+            "nominal",
+            "partitioned",
+            "small-easy"
+          ],
+          "condition_classes": [
+            "boundary",
+            "degraded",
+            "noisy",
+            "nominal",
+            "rare"
+          ],
+          "held_out_keys": [
+            "orbit.altitude_km",
+            "orbit.inclination_deg",
+            "fleet.size",
+            "sensor.half_angle_deg",
+            "tasks.target_count",
+            "network.link_range_km",
+            "faults.count",
+            "time.horizon_s"
+          ]
+        },
+        "schema": {
+          "observation_version": "swarm-observation-1",
+          "expected_observation_version": "swarm-observation-1",
+          "env_version": "swarm-env-1",
+          "expected_env_version": "swarm-env-1",
+          "feature_schema_hash": "86ab420e39239fcfdda9cd2e671e398f5d6dda9bcccbc80b8a001b12e211c4f8",
+          "expected_feature_schema_hash": "86ab420e39239fcfdda9cd2e671e398f5d6dda9bcccbc80b8a001b12e211c4f8",
+          "parameter_schema_hash": "aa421c726d214a7c4f4cd4f643f85702ea9b0e773176cdc180d70585e84baf45",
+          "expected_parameter_schema_hash": "aa421c726d214a7c4f4cd4f643f85702ea9b0e773176cdc180d70585e84baf45"
+        },
+        "fallback": "model"
+      },
+      "passed": true
+    },
+    {
+      "name": "episode:test-00006",
+      "kind": "dataset-episode",
+      "expected": {
+        "usable": true,
+        "fallback": [
+          "model",
+          "baseline"
+        ]
+      },
+      "report": {
+        "version": "model-compatibility-1",
+        "status": "compatible",
+        "compatible": true,
+        "usable": true,
+        "reasons": [],
+        "warnings": [
+          "outside training range: faults.count"
+        ],
+        "ood_score": 0.166667,
+        "envelope": {
+          "ranges": {
+            "energy.initial_charge_ratio": {
+              "min": 0.503895,
+              "max": 0.987427
+            },
+            "faults.count": {
+              "min": 0,
+              "max": 6
+            },
+            "fleet.size": {
+              "min": 2,
+              "max": 24
+            },
+            "network.partitions": {
+              "min": 0,
+              "max": 2
+            },
+            "sensor.duty_cycle_ratio": {
+              "min": 0.264917,
+              "max": 0.9493
+            },
+            "tasks.target_count": {
+              "min": 1,
+              "max": 14
+            }
+          },
+          "families": [
+            "degraded",
+            "faulted",
+            "large-hard",
+            "nominal",
+            "partitioned",
+            "small-easy"
+          ],
+          "condition_classes": [
+            "boundary",
+            "degraded",
+            "noisy",
+            "nominal",
+            "rare"
+          ],
+          "held_out_keys": [
+            "orbit.altitude_km",
+            "orbit.inclination_deg",
+            "fleet.size",
+            "sensor.half_angle_deg",
+            "tasks.target_count",
+            "network.link_range_km",
+            "faults.count",
+            "time.horizon_s"
+          ]
+        },
+        "schema": {
+          "observation_version": "swarm-observation-1",
+          "expected_observation_version": "swarm-observation-1",
+          "env_version": "swarm-env-1",
+          "expected_env_version": "swarm-env-1",
+          "feature_schema_hash": "86ab420e39239fcfdda9cd2e671e398f5d6dda9bcccbc80b8a001b12e211c4f8",
+          "expected_feature_schema_hash": "86ab420e39239fcfdda9cd2e671e398f5d6dda9bcccbc80b8a001b12e211c4f8",
+          "parameter_schema_hash": "aa421c726d214a7c4f4cd4f643f85702ea9b0e773176cdc180d70585e84baf45",
+          "expected_parameter_schema_hash": "aa421c726d214a7c4f4cd4f643f85702ea9b0e773176cdc180d70585e84baf45"
+        },
+        "fallback": "model"
+      },
+      "passed": true
+    },
+    {
+      "name": "episode:test-00008",
+      "kind": "dataset-episode",
+      "expected": {
+        "usable": true,
+        "fallback": [
+          "model",
+          "baseline"
+        ]
+      },
+      "report": {
+        "version": "model-compatibility-1",
+        "status": "compatible",
+        "compatible": true,
+        "usable": true,
+        "reasons": [],
+        "warnings": [
+          "outside training range: faults.count"
+        ],
+        "ood_score": 0.166667,
+        "envelope": {
+          "ranges": {
+            "energy.initial_charge_ratio": {
+              "min": 0.503895,
+              "max": 0.987427
+            },
+            "faults.count": {
+              "min": 0,
+              "max": 6
+            },
+            "fleet.size": {
+              "min": 2,
+              "max": 24
+            },
+            "network.partitions": {
+              "min": 0,
+              "max": 2
+            },
+            "sensor.duty_cycle_ratio": {
+              "min": 0.264917,
+              "max": 0.9493
+            },
+            "tasks.target_count": {
+              "min": 1,
+              "max": 14
+            }
+          },
+          "families": [
+            "degraded",
+            "faulted",
+            "large-hard",
+            "nominal",
+            "partitioned",
+            "small-easy"
+          ],
+          "condition_classes": [
+            "boundary",
+            "degraded",
+            "noisy",
+            "nominal",
+            "rare"
+          ],
+          "held_out_keys": [
+            "orbit.altitude_km",
+            "orbit.inclination_deg",
+            "fleet.size",
+            "sensor.half_angle_deg",
+            "tasks.target_count",
+            "network.link_range_km",
+            "faults.count",
+            "time.horizon_s"
+          ]
+        },
+        "schema": {
+          "observation_version": "swarm-observation-1",
+          "expected_observation_version": "swarm-observation-1",
+          "env_version": "swarm-env-1",
+          "expected_env_version": "swarm-env-1",
+          "feature_schema_hash": "86ab420e39239fcfdda9cd2e671e398f5d6dda9bcccbc80b8a001b12e211c4f8",
+          "expected_feature_schema_hash": "86ab420e39239fcfdda9cd2e671e398f5d6dda9bcccbc80b8a001b12e211c4f8",
+          "parameter_schema_hash": "aa421c726d214a7c4f4cd4f643f85702ea9b0e773176cdc180d70585e84baf45",
+          "expected_parameter_schema_hash": "aa421c726d214a7c4f4cd4f643f85702ea9b0e773176cdc180d70585e84baf45"
+        },
+        "fallback": "model"
+      },
+      "passed": true
+    },
+    {
+      "name": "schema-mismatch",
+      "kind": "tampered-manifest",
+      "expected": {
+        "status": "incompatible",
+        "fallback": "baseline"
+      },
+      "report": {
+        "version": "model-compatibility-1",
+        "status": "incompatible",
+        "compatible": false,
+        "usable": false,
+        "reasons": [
+          "feature-schema-mismatch"
+        ],
+        "warnings": [
+          "outside training range: faults.count"
+        ],
+        "ood_score": 0.166667,
+        "envelope": {
+          "ranges": {
+            "energy.initial_charge_ratio": {
+              "min": 0.503895,
+              "max": 0.987427
+            },
+            "faults.count": {
+              "min": 0,
+              "max": 6
+            },
+            "fleet.size": {
+              "min": 2,
+              "max": 24
+            },
+            "network.partitions": {
+              "min": 0,
+              "max": 2
+            },
+            "sensor.duty_cycle_ratio": {
+              "min": 0.264917,
+              "max": 0.9493
+            },
+            "tasks.target_count": {
+              "min": 1,
+              "max": 14
+            }
+          },
+          "families": [
+            "degraded",
+            "faulted",
+            "large-hard",
+            "nominal",
+            "partitioned",
+            "small-easy"
+          ],
+          "condition_classes": [
+            "boundary",
+            "degraded",
+            "noisy",
+            "nominal",
+            "rare"
+          ],
+          "held_out_keys": [
+            "orbit.altitude_km",
+            "orbit.inclination_deg",
+            "fleet.size",
+            "sensor.half_angle_deg",
+            "tasks.target_count",
+            "network.link_range_km",
+            "faults.count",
+            "time.horizon_s"
+          ]
+        },
+        "schema": {
+          "observation_version": "swarm-observation-1",
+          "expected_observation_version": "swarm-observation-1",
+          "env_version": "swarm-env-1",
+          "expected_env_version": "swarm-env-1",
+          "feature_schema_hash": "86ab420e39239fcfdda9cd2e671e398f5d6dda9bcccbc80b8a001b12e211c4f8",
+          "expected_feature_schema_hash": "0000000000000000",
+          "parameter_schema_hash": "aa421c726d214a7c4f4cd4f643f85702ea9b0e773176cdc180d70585e84baf45",
+          "expected_parameter_schema_hash": "aa421c726d214a7c4f4cd4f643f85702ea9b0e773176cdc180d70585e84baf45"
+        },
+        "fallback": "baseline"
+      },
+      "passed": true
+    },
+    {
+      "name": "unsupported-semantics",
+      "kind": "synthetic",
+      "expected": {
+        "status": "incompatible",
+        "fallback": "baseline"
+      },
+      "report": {
+        "version": "model-compatibility-1",
+        "status": "incompatible",
+        "compatible": false,
+        "usable": false,
+        "reasons": [
+          "unsupported-parameter-semantics"
+        ],
+        "warnings": [
+          "synthetic test: unsupported component semantics",
+          "outside training range: faults.count"
+        ],
+        "ood_score": 0.166667,
+        "envelope": {
+          "ranges": {
+            "energy.initial_charge_ratio": {
+              "min": 0.503895,
+              "max": 0.987427
+            },
+            "faults.count": {
+              "min": 0,
+              "max": 6
+            },
+            "fleet.size": {
+              "min": 2,
+              "max": 24
+            },
+            "network.partitions": {
+              "min": 0,
+              "max": 2
+            },
+            "sensor.duty_cycle_ratio": {
+              "min": 0.264917,
+              "max": 0.9493
+            },
+            "tasks.target_count": {
+              "min": 1,
+              "max": 14
+            }
+          },
+          "families": [
+            "degraded",
+            "faulted",
+            "large-hard",
+            "nominal",
+            "partitioned",
+            "small-easy"
+          ],
+          "condition_classes": [
+            "boundary",
+            "degraded",
+            "noisy",
+            "nominal",
+            "rare"
+          ],
+          "held_out_keys": [
+            "orbit.altitude_km",
+            "orbit.inclination_deg",
+            "fleet.size",
+            "sensor.half_angle_deg",
+            "tasks.target_count",
+            "network.link_range_km",
+            "faults.count",
+            "time.horizon_s"
+          ]
+        },
+        "schema": {
+          "observation_version": "swarm-observation-1",
+          "expected_observation_version": "swarm-observation-1",
+          "env_version": "swarm-env-1",
+          "expected_env_version": "swarm-env-1",
+          "feature_schema_hash": "86ab420e39239fcfdda9cd2e671e398f5d6dda9bcccbc80b8a001b12e211c4f8",
+          "expected_feature_schema_hash": "86ab420e39239fcfdda9cd2e671e398f5d6dda9bcccbc80b8a001b12e211c4f8",
+          "parameter_schema_hash": "aa421c726d214a7c4f4cd4f643f85702ea9b0e773176cdc180d70585e84baf45",
+          "expected_parameter_schema_hash": "aa421c726d214a7c4f4cd4f643f85702ea9b0e773176cdc180d70585e84baf45"
+        },
+        "fallback": "baseline"
+      },
+      "passed": true
+    },
+    {
+      "name": "numeric-extrapolation",
+      "kind": "synthetic",
+      "expected": {
+        "status": "out-of-distribution",
+        "fallback": "baseline"
+      },
+      "report": {
+        "version": "model-compatibility-1",
+        "status": "out-of-distribution",
+        "compatible": false,
+        "usable": true,
+        "reasons": [],
+        "warnings": [
+          "outside training range: faults.count, network.partitions"
+        ],
+        "ood_score": 1.0,
+        "envelope": {
+          "ranges": {
+            "energy.initial_charge_ratio": {
+              "min": 0.503895,
+              "max": 0.987427
+            },
+            "faults.count": {
+              "min": 0,
+              "max": 6
+            },
+            "fleet.size": {
+              "min": 2,
+              "max": 24
+            },
+            "network.partitions": {
+              "min": 0,
+              "max": 2
+            },
+            "sensor.duty_cycle_ratio": {
+              "min": 0.264917,
+              "max": 0.9493
+            },
+            "tasks.target_count": {
+              "min": 1,
+              "max": 14
+            }
+          },
+          "families": [
+            "degraded",
+            "faulted",
+            "large-hard",
+            "nominal",
+            "partitioned",
+            "small-easy"
+          ],
+          "condition_classes": [
+            "boundary",
+            "degraded",
+            "noisy",
+            "nominal",
+            "rare"
+          ],
+          "held_out_keys": [
+            "orbit.altitude_km",
+            "orbit.inclination_deg",
+            "fleet.size",
+            "sensor.half_angle_deg",
+            "tasks.target_count",
+            "network.link_range_km",
+            "faults.count",
+            "time.horizon_s"
+          ]
+        },
+        "schema": {
+          "observation_version": "swarm-observation-1",
+          "expected_observation_version": "swarm-observation-1",
+          "env_version": "swarm-env-1",
+          "expected_env_version": "swarm-env-1",
+          "feature_schema_hash": "86ab420e39239fcfdda9cd2e671e398f5d6dda9bcccbc80b8a001b12e211c4f8",
+          "expected_feature_schema_hash": "86ab420e39239fcfdda9cd2e671e398f5d6dda9bcccbc80b8a001b12e211c4f8",
+          "parameter_schema_hash": "aa421c726d214a7c4f4cd4f643f85702ea9b0e773176cdc180d70585e84baf45",
+          "expected_parameter_schema_hash": "aa421c726d214a7c4f4cd4f643f85702ea9b0e773176cdc180d70585e84baf45"
+        },
+        "fallback": "baseline"
+      },
+      "passed": true
+    }
+  ],
+  "counts": {
+    "compatible": 3,
+    "incompatible": 2,
+    "out-of-distribution": 1
+  },
+  "accepted_envelope": {
+    "ranges": {
+      "energy.initial_charge_ratio": {
+        "min": 0.503895,
+        "max": 0.987427
+      },
+      "faults.count": {
+        "min": 0,
+        "max": 6
+      },
+      "fleet.size": {
+        "min": 2,
+        "max": 24
+      },
+      "network.partitions": {
+        "min": 0,
+        "max": 2
+      },
+      "sensor.duty_cycle_ratio": {
+        "min": 0.264917,
+        "max": 0.9493
+      },
+      "tasks.target_count": {
+        "min": 1,
+        "max": 14
+      }
+    },
+    "families": [
+      "degraded",
+      "faulted",
+      "large-hard",
+      "nominal",
+      "partitioned",
+      "small-easy"
+    ],
+    "condition_classes": [
+      "boundary",
+      "degraded",
+      "noisy",
+      "nominal",
+      "rare"
+    ],
+    "held_out_keys": [
+      "orbit.altitude_km",
+      "orbit.inclination_deg",
+      "fleet.size",
+      "sensor.half_angle_deg",
+      "tasks.target_count",
+      "network.link_range_km",
+      "faults.count",
+      "time.horizon_s"
+    ]
+  },
+  "fallback_contract": "baseline for incompatible and out-of-distribution configurations",
+  "passed": true,
+  "failed": []
+}

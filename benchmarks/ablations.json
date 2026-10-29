@@ -1,0 +1,2087 @@
+{
+  "version": "policy-ablations-1",
+  "generated_at_s": 1793297648.3735237,
+  "suite": {
+    "episodes": 9,
+    "split": "test",
+    "seed": 50
+  },
+  "variants": {
+    "full": {
+      "variant": {
+        "name": "full",
+        "checkpoint": "runs/curriculum-demo/seed-0/03-full/checkpoint-best.pt",
+        "kind": "imitation",
+        "transform": "none",
+        "shield": true,
+        "diagnostic": false,
+        "note": "deployable candidate with the independent shield"
+      },
+      "aggregate": {
+        "episodes": 9,
+        "coverage": {
+          "mean": 0.616968,
+          "low": 0.494639,
+          "high": 0.73044,
+          "episodes": 9,
+          "resamples": 500
+        },
+        "reward": {
+          "mean": -0.070806,
+          "low": -0.104091,
+          "high": -0.044309,
+          "episodes": 9,
+          "resamples": 500
+        },
+        "coverage_by_tasks": 0.612613,
+        "observed": 68,
+        "tasks_total": 111,
+        "expired": 67,
+        "conflicts": 0,
+        "invalid_actions": 0,
+        "latency_ms": {
+          "mean": 5.9755,
+          "p95": 7.1407,
+          "samples": 9
+        }
+      },
+      "slices": {
+        "all": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.616968,
+            "low": 0.492075,
+            "high": 0.73101,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.070806,
+            "low": -0.09953,
+            "high": -0.043621,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.612613,
+          "observed": 68,
+          "tasks_total": 111,
+          "expired": 67,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 5.9755,
+            "p95": 7.1407,
+            "samples": 9
+          }
+        },
+        "condition:boundary": {
+          "episodes": 3,
+          "coverage": {
+            "mean": 0.532634,
+            "low": 0.461538,
+            "high": 0.636364,
+            "episodes": 3,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.080612,
+            "low": -0.164766,
+            "high": -0.034899,
+            "episodes": 3,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.526316,
+          "observed": 20,
+          "tasks_total": 38,
+          "expired": 24,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 5.4719,
+            "p95": 5.5911,
+            "samples": 3
+          }
+        },
+        "condition:noisy": {
+          "episodes": 1,
+          "coverage": {
+            "mean": 0.307692,
+            "low": null,
+            "high": null,
+            "episodes": 1
+          },
+          "reward": {
+            "mean": -0.113894,
+            "low": null,
+            "high": null,
+            "episodes": 1
+          },
+          "coverage_by_tasks": 0.307692,
+          "observed": 4,
+          "tasks_total": 13,
+          "expired": 9,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 7.1407,
+            "p95": 7.1407,
+            "samples": 1
+          }
+        },
+        "condition:nominal": {
+          "episodes": 5,
+          "coverage": {
+            "mean": 0.729424,
+            "low": 0.619021,
+            "high": 0.841559,
+            "episodes": 5,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.056305,
+            "low": -0.077357,
+            "high": -0.035253,
+            "episodes": 5,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.733333,
+          "observed": 44,
+          "tasks_total": 60,
+          "expired": 34,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 6.0445,
+            "p95": 5.6897,
+            "samples": 5
+          }
+        },
+        "family:partitioned": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.616968,
+            "low": 0.512043,
+            "high": 0.730695,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.070806,
+            "low": -0.099442,
+            "high": -0.043489,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.612613,
+          "observed": 68,
+          "tasks_total": 111,
+          "expired": 67,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 5.9755,
+            "p95": 7.1407,
+            "samples": 9
+          }
+        },
+        "fleet:large": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.616968,
+            "low": 0.512665,
+            "high": 0.740981,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.070806,
+            "low": -0.101846,
+            "high": -0.044516,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.612613,
+          "observed": 68,
+          "tasks_total": 111,
+          "expired": 67,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 5.9755,
+            "p95": 7.1407,
+            "samples": 9
+          }
+        },
+        "fleet:unseen": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.616968,
+            "low": 0.490676,
+            "high": 0.730207,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.070806,
+            "low": -0.101638,
+            "high": -0.045745,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.612613,
+          "observed": 68,
+          "tasks_total": 111,
+          "expired": 67,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 5.9755,
+            "p95": 7.1407,
+            "samples": 9
+          }
+        },
+        "held-out": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.616968,
+            "low": 0.50518,
+            "high": 0.730984,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.070806,
+            "low": -0.100258,
+            "high": -0.044299,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.612613,
+          "observed": 68,
+          "tasks_total": 111,
+          "expired": 67,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 5.9755,
+            "p95": 7.1407,
+            "samples": 9
+          }
+        },
+        "ood": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.616968,
+            "low": 0.500732,
+            "high": 0.736597,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.070806,
+            "low": -0.099242,
+            "high": -0.04616,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.612613,
+          "observed": 68,
+          "tasks_total": 111,
+          "expired": 67,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 5.9755,
+            "p95": 7.1407,
+            "samples": 9
+          }
+        },
+        "parameter-compatible": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.616968,
+            "low": 0.505883,
+            "high": 0.728579,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.070806,
+            "low": -0.100966,
+            "high": -0.044829,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.612613,
+          "observed": 68,
+          "tasks_total": 111,
+          "expired": 67,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 5.9755,
+            "p95": 7.1407,
+            "samples": 9
+          }
+        }
+      },
+      "shield": {
+        "version": "safety-shield-1",
+        "config": {
+          "version": "safety-shield-1",
+          "min_energy_fraction": 0.1,
+          "min_storage_fraction": 0.0,
+          "deadline_margin_s": 0.0,
+          "max_assignments_per_step": 8,
+          "require_energy_certified": true,
+          "fallback": "wait"
+        },
+        "steps": 1432,
+        "proposed": 1442,
+        "accepted": 79,
+        "rejected": 13,
+        "acceptance_rate": 0.054785,
+        "reason_counts": {
+          "energy-floor": 13
+        }
+      },
+      "metrics": {
+        "mean_coverage": 0.616968,
+        "coverage_ci": [
+          0.494639,
+          0.73044
+        ],
+        "mean_reward": -0.070806,
+        "conflicts": 0,
+        "invalid_actions": 0
+      }
+    },
+    "no-shield": {
+      "variant": {
+        "name": "no-shield",
+        "checkpoint": "runs/curriculum-demo/seed-0/03-full/checkpoint-best.pt",
+        "kind": "imitation",
+        "transform": "none",
+        "shield": false,
+        "diagnostic": true,
+        "note": "diagnostic only; never deployable"
+      },
+      "aggregate": {
+        "episodes": 9,
+        "coverage": {
+          "mean": 0.632841,
+          "low": 0.509601,
+          "high": 0.74349,
+          "episodes": 9,
+          "resamples": 500
+        },
+        "reward": {
+          "mean": -0.066496,
+          "low": -0.087887,
+          "high": -0.047382,
+          "episodes": 9,
+          "resamples": 500
+        },
+        "coverage_by_tasks": 0.630631,
+        "observed": 70,
+        "tasks_total": 111,
+        "expired": 65,
+        "conflicts": 0,
+        "invalid_actions": 0,
+        "latency_ms": {
+          "mean": 6.1351,
+          "p95": 7.4589,
+          "samples": 9
+        }
+      },
+      "slices": {
+        "all": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.632841,
+            "low": 0.522866,
+            "high": 0.745118,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.066496,
+            "low": -0.08936,
+            "high": -0.04549,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.630631,
+          "observed": 70,
+          "tasks_total": 111,
+          "expired": 65,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 6.1351,
+            "p95": 7.4589,
+            "samples": 9
+          }
+        },
+        "condition:boundary": {
+          "episodes": 3,
+          "coverage": {
+            "mean": 0.580253,
+            "low": 0.461538,
+            "high": 0.642857,
+            "episodes": 3,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.067683,
+            "low": -0.125979,
+            "high": -0.037323,
+            "episodes": 3,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.578947,
+          "observed": 22,
+          "tasks_total": 38,
+          "expired": 22,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 5.8742,
+            "p95": 5.3698,
+            "samples": 3
+          }
+        },
+        "condition:noisy": {
+          "episodes": 1,
+          "coverage": {
+            "mean": 0.307692,
+            "low": null,
+            "high": null,
+            "episodes": 1
+          },
+          "reward": {
+            "mean": -0.113894,
+            "low": null,
+            "high": null,
+            "episodes": 1
+          },
+          "coverage_by_tasks": 0.307692,
+          "observed": 4,
+          "tasks_total": 13,
+          "expired": 9,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 7.4589,
+            "p95": 7.4589,
+            "samples": 1
+          }
+        },
+        "condition:nominal": {
+          "episodes": 5,
+          "coverage": {
+            "mean": 0.729424,
+            "low": 0.609744,
+            "high": 0.841559,
+            "episodes": 5,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.056305,
+            "low": -0.077357,
+            "high": -0.035277,
+            "episodes": 5,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.733333,
+          "observed": 44,
+          "tasks_total": 60,
+          "expired": 34,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 6.0269,
+            "p95": 6.531,
+            "samples": 5
+          }
+        },
+        "family:partitioned": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.632841,
+            "low": 0.51393,
+            "high": 0.740356,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.066496,
+            "low": -0.088955,
+            "high": -0.045218,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.630631,
+          "observed": 70,
+          "tasks_total": 111,
+          "expired": 65,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 6.1351,
+            "p95": 7.4589,
+            "samples": 9
+          }
+        },
+        "fleet:large": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.632841,
+            "low": 0.514785,
+            "high": 0.746857,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.066496,
+            "low": -0.090688,
+            "high": -0.045327,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.630631,
+          "observed": 70,
+          "tasks_total": 111,
+          "expired": 65,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 6.1351,
+            "p95": 7.4589,
+            "samples": 9
+          }
+        },
+        "fleet:unseen": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.632841,
+            "low": 0.518881,
+            "high": 0.733518,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.066496,
+            "low": -0.090415,
+            "high": -0.046445,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.630631,
+          "observed": 70,
+          "tasks_total": 111,
+          "expired": 65,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 6.1351,
+            "p95": 7.4589,
+            "samples": 9
+          }
+        },
+        "held-out": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.632841,
+            "low": 0.513675,
+            "high": 0.736989,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.066496,
+            "low": -0.088172,
+            "high": -0.044414,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.630631,
+          "observed": 70,
+          "tasks_total": 111,
+          "expired": 65,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 6.1351,
+            "p95": 7.4589,
+            "samples": 9
+          }
+        },
+        "ood": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.632841,
+            "low": 0.517216,
+            "high": 0.731265,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.066496,
+            "low": -0.091221,
+            "high": -0.044966,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.630631,
+          "observed": 70,
+          "tasks_total": 111,
+          "expired": 65,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 6.1351,
+            "p95": 7.4589,
+            "samples": 9
+          }
+        },
+        "parameter-compatible": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.632841,
+            "low": 0.508232,
+            "high": 0.739586,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.066496,
+            "low": -0.088845,
+            "high": -0.046831,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.630631,
+          "observed": 70,
+          "tasks_total": 111,
+          "expired": 65,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 6.1351,
+            "p95": 7.4589,
+            "samples": 9
+          }
+        }
+      },
+      "shield": null,
+      "metrics": {
+        "mean_coverage": 0.632841,
+        "coverage_ci": [
+          0.509601,
+          0.74349
+        ],
+        "mean_reward": -0.066496,
+        "conflicts": 0,
+        "invalid_actions": 0
+      }
+    },
+    "no-communication": {
+      "variant": {
+        "name": "no-communication",
+        "checkpoint": "runs/curriculum-demo/seed-0/03-full/checkpoint-best.pt",
+        "kind": "imitation",
+        "transform": "no-communication",
+        "shield": true,
+        "diagnostic": true,
+        "note": "diagnostic: contact relation removed at inference"
+      },
+      "aggregate": {
+        "episodes": 9,
+        "coverage": {
+          "mean": 0.616968,
+          "low": 0.50777,
+          "high": 0.735257,
+          "episodes": 9,
+          "resamples": 500
+        },
+        "reward": {
+          "mean": -0.070806,
+          "low": -0.10403,
+          "high": -0.044129,
+          "episodes": 9,
+          "resamples": 500
+        },
+        "coverage_by_tasks": 0.612613,
+        "observed": 68,
+        "tasks_total": 111,
+        "expired": 67,
+        "conflicts": 0,
+        "invalid_actions": 0,
+        "latency_ms": {
+          "mean": 5.8624,
+          "p95": 6.5069,
+          "samples": 9
+        }
+      },
+      "slices": {
+        "all": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.616968,
+            "low": 0.499197,
+            "high": 0.725933,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.070806,
+            "low": -0.100108,
+            "high": -0.045579,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.612613,
+          "observed": 68,
+          "tasks_total": 111,
+          "expired": 67,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 5.8624,
+            "p95": 6.5069,
+            "samples": 9
+          }
+        },
+        "condition:boundary": {
+          "episodes": 3,
+          "coverage": {
+            "mean": 0.532634,
+            "low": 0.461538,
+            "high": 0.636364,
+            "episodes": 3,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.080612,
+            "low": -0.164766,
+            "high": -0.034899,
+            "episodes": 3,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.526316,
+          "observed": 20,
+          "tasks_total": 38,
+          "expired": 24,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 5.976,
+            "p95": 6.3453,
+            "samples": 3
+          }
+        },
+        "condition:noisy": {
+          "episodes": 1,
+          "coverage": {
+            "mean": 0.307692,
+            "low": null,
+            "high": null,
+            "episodes": 1
+          },
+          "reward": {
+            "mean": -0.113894,
+            "low": null,
+            "high": null,
+            "episodes": 1
+          },
+          "coverage_by_tasks": 0.307692,
+          "observed": 4,
+          "tasks_total": 13,
+          "expired": 9,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 5.1927,
+            "p95": 5.1927,
+            "samples": 1
+          }
+        },
+        "condition:nominal": {
+          "episodes": 5,
+          "coverage": {
+            "mean": 0.729424,
+            "low": 0.606714,
+            "high": 0.836797,
+            "episodes": 5,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.056305,
+            "low": -0.074504,
+            "high": -0.035253,
+            "episodes": 5,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.733333,
+          "observed": 44,
+          "tasks_total": 60,
+          "expired": 34,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 5.9281,
+            "p95": 6.0362,
+            "samples": 5
+          }
+        },
+        "family:partitioned": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.616968,
+            "low": 0.492592,
+            "high": 0.735257,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.070806,
+            "low": -0.099827,
+            "high": -0.044708,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.612613,
+          "observed": 68,
+          "tasks_total": 111,
+          "expired": 67,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 5.8624,
+            "p95": 6.5069,
+            "samples": 9
+          }
+        },
+        "fleet:large": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.616968,
+            "low": 0.501295,
+            "high": 0.733518,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.070806,
+            "low": -0.103176,
+            "high": -0.046969,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.612613,
+          "observed": 68,
+          "tasks_total": 111,
+          "expired": 67,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 5.8624,
+            "p95": 6.5069,
+            "samples": 9
+          }
+        },
+        "fleet:unseen": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.616968,
+            "low": 0.501787,
+            "high": 0.727458,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.070806,
+            "low": -0.102313,
+            "high": -0.04416,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.612613,
+          "observed": 68,
+          "tasks_total": 111,
+          "expired": 67,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 5.8624,
+            "p95": 6.5069,
+            "samples": 9
+          }
+        },
+        "held-out": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.616968,
+            "low": 0.514663,
+            "high": 0.734432,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.070806,
+            "low": -0.101118,
+            "high": -0.045607,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.612613,
+          "observed": 68,
+          "tasks_total": 111,
+          "expired": 67,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 5.8624,
+            "p95": 6.5069,
+            "samples": 9
+          }
+        },
+        "ood": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.616968,
+            "low": 0.496348,
+            "high": 0.734969,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.070806,
+            "low": -0.101458,
+            "high": -0.045771,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.612613,
+          "observed": 68,
+          "tasks_total": 111,
+          "expired": 67,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 5.8624,
+            "p95": 6.5069,
+            "samples": 9
+          }
+        },
+        "parameter-compatible": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.616968,
+            "low": 0.512332,
+            "high": 0.721501,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.070806,
+            "low": -0.100103,
+            "high": -0.046791,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.612613,
+          "observed": 68,
+          "tasks_total": 111,
+          "expired": 67,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 5.8624,
+            "p95": 6.5069,
+            "samples": 9
+          }
+        }
+      },
+      "shield": {
+        "version": "safety-shield-1",
+        "config": {
+          "version": "safety-shield-1",
+          "min_energy_fraction": 0.1,
+          "min_storage_fraction": 0.0,
+          "deadline_margin_s": 0.0,
+          "max_assignments_per_step": 8,
+          "require_energy_certified": true,
+          "fallback": "wait"
+        },
+        "steps": 1432,
+        "proposed": 1442,
+        "accepted": 79,
+        "rejected": 13,
+        "acceptance_rate": 0.054785,
+        "reason_counts": {
+          "energy-floor": 13
+        }
+      },
+      "metrics": {
+        "mean_coverage": 0.616968,
+        "coverage_ci": [
+          0.50777,
+          0.735257
+        ],
+        "mean_reward": -0.070806,
+        "conflicts": 0,
+        "invalid_actions": 0
+      }
+    },
+    "no-parameter-context": {
+      "variant": {
+        "name": "no-parameter-context",
+        "checkpoint": "runs/curriculum-demo/seed-0/03-full/checkpoint-best.pt",
+        "kind": "imitation",
+        "transform": "no-parameter-context",
+        "shield": true,
+        "diagnostic": true,
+        "note": "diagnostic: parameter tokens removed"
+      },
+      "aggregate": {
+        "episodes": 9,
+        "coverage": {
+          "mean": 0.616968,
+          "low": 0.505413,
+          "high": 0.733341,
+          "episodes": 9,
+          "resamples": 500
+        },
+        "reward": {
+          "mean": -0.070806,
+          "low": -0.101503,
+          "high": -0.044939,
+          "episodes": 9,
+          "resamples": 500
+        },
+        "coverage_by_tasks": 0.612613,
+        "observed": 68,
+        "tasks_total": 111,
+        "expired": 67,
+        "conflicts": 0,
+        "invalid_actions": 0,
+        "latency_ms": {
+          "mean": 6.2908,
+          "p95": 7.7661,
+          "samples": 9
+        }
+      },
+      "slices": {
+        "all": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.616968,
+            "low": 0.496581,
+            "high": 0.735024,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.070806,
+            "low": -0.100907,
+            "high": -0.044955,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.612613,
+          "observed": 68,
+          "tasks_total": 111,
+          "expired": 67,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 6.2908,
+            "p95": 7.7661,
+            "samples": 9
+          }
+        },
+        "condition:boundary": {
+          "episodes": 3,
+          "coverage": {
+            "mean": 0.532634,
+            "low": 0.461538,
+            "high": 0.590909,
+            "episodes": 3,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.080612,
+            "low": -0.164766,
+            "high": -0.034899,
+            "episodes": 3,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.526316,
+          "observed": 20,
+          "tasks_total": 38,
+          "expired": 24,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 5.7628,
+            "p95": 5.4686,
+            "samples": 3
+          }
+        },
+        "condition:noisy": {
+          "episodes": 1,
+          "coverage": {
+            "mean": 0.307692,
+            "low": null,
+            "high": null,
+            "episodes": 1
+          },
+          "reward": {
+            "mean": -0.113894,
+            "low": null,
+            "high": null,
+            "episodes": 1
+          },
+          "coverage_by_tasks": 0.307692,
+          "observed": 4,
+          "tasks_total": 13,
+          "expired": 9,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 9.1725,
+            "p95": 9.1725,
+            "samples": 1
+          }
+        },
+        "condition:nominal": {
+          "episodes": 5,
+          "coverage": {
+            "mean": 0.729424,
+            "low": 0.606714,
+            "high": 0.838095,
+            "episodes": 5,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.056305,
+            "low": -0.077357,
+            "high": -0.035253,
+            "episodes": 5,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.733333,
+          "observed": 44,
+          "tasks_total": 60,
+          "expired": 34,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 6.0313,
+            "p95": 5.706,
+            "samples": 5
+          }
+        },
+        "family:partitioned": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.616968,
+            "low": 0.494406,
+            "high": 0.71537,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.070806,
+            "low": -0.097274,
+            "high": -0.045668,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.612613,
+          "observed": 68,
+          "tasks_total": 111,
+          "expired": 67,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 6.2908,
+            "p95": 7.7661,
+            "samples": 9
+          }
+        },
+        "fleet:large": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.616968,
+            "low": 0.504662,
+            "high": 0.731213,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.070806,
+            "low": -0.105512,
+            "high": -0.046955,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.612613,
+          "observed": 68,
+          "tasks_total": 111,
+          "expired": 67,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 6.2908,
+            "p95": 7.7661,
+            "samples": 9
+          }
+        },
+        "fleet:unseen": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.616968,
+            "low": 0.495238,
+            "high": 0.731687,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.070806,
+            "low": -0.1023,
+            "high": -0.04708,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.612613,
+          "observed": 68,
+          "tasks_total": 111,
+          "expired": 67,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 6.2908,
+            "p95": 7.7661,
+            "samples": 9
+          }
+        },
+        "held-out": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.616968,
+            "low": 0.497203,
+            "high": 0.730344,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.070806,
+            "low": -0.098692,
+            "high": -0.046419,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.612613,
+          "observed": 68,
+          "tasks_total": 111,
+          "expired": 67,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 6.2908,
+            "p95": 7.7661,
+            "samples": 9
+          }
+        },
+        "ood": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.616968,
+            "low": 0.499223,
+            "high": 0.746505,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.070806,
+            "low": -0.100517,
+            "high": -0.047067,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.612613,
+          "observed": 68,
+          "tasks_total": 111,
+          "expired": 67,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 6.2908,
+            "p95": 7.7661,
+            "samples": 9
+          }
+        },
+        "parameter-compatible": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.616968,
+            "low": 0.50518,
+            "high": 0.727129,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.070806,
+            "low": -0.102572,
+            "high": -0.045476,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.612613,
+          "observed": 68,
+          "tasks_total": 111,
+          "expired": 67,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 6.2908,
+            "p95": 7.7661,
+            "samples": 9
+          }
+        }
+      },
+      "shield": {
+        "version": "safety-shield-1",
+        "config": {
+          "version": "safety-shield-1",
+          "min_energy_fraction": 0.1,
+          "min_storage_fraction": 0.0,
+          "deadline_margin_s": 0.0,
+          "max_assignments_per_step": 8,
+          "require_energy_certified": true,
+          "fallback": "wait"
+        },
+        "steps": 1432,
+        "proposed": 1442,
+        "accepted": 79,
+        "rejected": 13,
+        "acceptance_rate": 0.054785,
+        "reason_counts": {
+          "energy-floor": 13
+        }
+      },
+      "metrics": {
+        "mean_coverage": 0.616968,
+        "coverage_ci": [
+          0.505413,
+          0.733341
+        ],
+        "mean_reward": -0.070806,
+        "conflicts": 0,
+        "invalid_actions": 0
+      }
+    },
+    "no-task-features": {
+      "variant": {
+        "name": "no-task-features",
+        "checkpoint": "runs/curriculum-demo/seed-0/03-full/checkpoint-best.pt",
+        "kind": "imitation",
+        "transform": "no-task-features",
+        "shield": true,
+        "diagnostic": true,
+        "note": "diagnostic: task feature columns zeroed"
+      },
+      "aggregate": {
+        "episodes": 9,
+        "coverage": {
+          "mean": 0.616968,
+          "low": 0.494949,
+          "high": 0.723129,
+          "episodes": 9,
+          "resamples": 500
+        },
+        "reward": {
+          "mean": -0.070806,
+          "low": -0.097482,
+          "high": -0.046805,
+          "episodes": 9,
+          "resamples": 500
+        },
+        "coverage_by_tasks": 0.612613,
+        "observed": 68,
+        "tasks_total": 111,
+        "expired": 67,
+        "conflicts": 0,
+        "invalid_actions": 0,
+        "latency_ms": {
+          "mean": 6.2632,
+          "p95": 7.0168,
+          "samples": 9
+        }
+      },
+      "slices": {
+        "all": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.616968,
+            "low": 0.48718,
+            "high": 0.74608,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.070806,
+            "low": -0.10086,
+            "high": -0.045761,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.612613,
+          "observed": 68,
+          "tasks_total": 111,
+          "expired": 67,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 6.2632,
+            "p95": 7.0168,
+            "samples": 9
+          }
+        },
+        "condition:boundary": {
+          "episodes": 3,
+          "coverage": {
+            "mean": 0.532634,
+            "low": 0.461538,
+            "high": 0.636364,
+            "episodes": 3,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.080612,
+            "low": -0.164766,
+            "high": -0.034899,
+            "episodes": 3,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.526316,
+          "observed": 20,
+          "tasks_total": 38,
+          "expired": 24,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 5.907,
+            "p95": 5.4792,
+            "samples": 3
+          }
+        },
+        "condition:noisy": {
+          "episodes": 1,
+          "coverage": {
+            "mean": 0.307692,
+            "low": null,
+            "high": null,
+            "episodes": 1
+          },
+          "reward": {
+            "mean": -0.113894,
+            "low": null,
+            "high": null,
+            "episodes": 1
+          },
+          "coverage_by_tasks": 0.307692,
+          "observed": 4,
+          "tasks_total": 13,
+          "expired": 9,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 6.8122,
+            "p95": 6.8122,
+            "samples": 1
+          }
+        },
+        "condition:nominal": {
+          "episodes": 5,
+          "coverage": {
+            "mean": 0.729424,
+            "low": 0.609744,
+            "high": 0.836797,
+            "episodes": 5,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.056305,
+            "low": -0.07593,
+            "high": -0.035228,
+            "episodes": 5,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.733333,
+          "observed": 44,
+          "tasks_total": 60,
+          "expired": 34,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 6.3672,
+            "p95": 6.7523,
+            "samples": 5
+          }
+        },
+        "family:partitioned": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.616968,
+            "low": 0.500906,
+            "high": 0.72842,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.070806,
+            "low": -0.103104,
+            "high": -0.046137,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.612613,
+          "observed": 68,
+          "tasks_total": 111,
+          "expired": 67,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 6.2632,
+            "p95": 7.0168,
+            "samples": 9
+          }
+        },
+        "fleet:large": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.616968,
+            "low": 0.501139,
+            "high": 0.730825,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.070806,
+            "low": -0.099709,
+            "high": -0.046312,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.612613,
+          "observed": 68,
+          "tasks_total": 111,
+          "expired": 67,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 6.2632,
+            "p95": 7.0168,
+            "samples": 9
+          }
+        },
+        "fleet:unseen": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.616968,
+            "low": 0.492674,
+            "high": 0.727358,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.070806,
+            "low": -0.10382,
+            "high": -0.046135,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.612613,
+          "observed": 68,
+          "tasks_total": 111,
+          "expired": 67,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 6.2632,
+            "p95": 7.0168,
+            "samples": 9
+          }
+        },
+        "held-out": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.616968,
+            "low": 0.492696,
+            "high": 0.726303,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.070806,
+            "low": -0.102159,
+            "high": -0.045448,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.612613,
+          "observed": 68,
+          "tasks_total": 111,
+          "expired": 67,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 6.2632,
+            "p95": 7.0168,
+            "samples": 9
+          }
+        },
+        "ood": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.616968,
+            "low": 0.486325,
+            "high": 0.735024,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.070806,
+            "low": -0.10086,
+            "high": -0.046256,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.612613,
+          "observed": 68,
+          "tasks_total": 111,
+          "expired": 67,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 6.2632,
+            "p95": 7.0168,
+            "samples": 9
+          }
+        },
+        "parameter-compatible": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.616968,
+            "low": 0.496633,
+            "high": 0.735257,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.070806,
+            "low": -0.100426,
+            "high": -0.045743,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.612613,
+          "observed": 68,
+          "tasks_total": 111,
+          "expired": 67,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 6.2632,
+            "p95": 7.0168,
+            "samples": 9
+          }
+        }
+      },
+      "shield": {
+        "version": "safety-shield-1",
+        "config": {
+          "version": "safety-shield-1",
+          "min_energy_fraction": 0.1,
+          "min_storage_fraction": 0.0,
+          "deadline_margin_s": 0.0,
+          "max_assignments_per_step": 8,
+          "require_energy_certified": true,
+          "fallback": "wait"
+        },
+        "steps": 1432,
+        "proposed": 1442,
+        "accepted": 79,
+        "rejected": 13,
+        "acceptance_rate": 0.054785,
+        "reason_counts": {
+          "energy-floor": 13
+        }
+      },
+      "metrics": {
+        "mean_coverage": 0.616968,
+        "coverage_ci": [
+          0.494949,
+          0.723129
+        ],
+        "mean_reward": -0.070806,
+        "conflicts": 0,
+        "invalid_actions": 0
+      }
+    },
+    "ppo-finetuned": {
+      "variant": {
+        "name": "ppo-finetuned",
+        "checkpoint": "runs/ppo-long/checkpoint-best.pt",
+        "kind": "ppo",
+        "transform": "none",
+        "shield": true,
+        "diagnostic": true,
+        "note": "PPO fine-tune kept as a negative result on the frozen suite"
+      },
+      "aggregate": {
+        "episodes": 9,
+        "coverage": {
+          "mean": 0.582048,
+          "low": 0.490232,
+          "high": 0.698598,
+          "episodes": 9,
+          "resamples": 500
+        },
+        "reward": {
+          "mean": -0.074785,
+          "low": -0.105592,
+          "high": -0.045863,
+          "episodes": 9,
+          "resamples": 500
+        },
+        "coverage_by_tasks": 0.576577,
+        "observed": 64,
+        "tasks_total": 111,
+        "expired": 69,
+        "conflicts": 0,
+        "invalid_actions": 0,
+        "latency_ms": {
+          "mean": 6.5366,
+          "p95": 6.7081,
+          "samples": 9
+        }
+      },
+      "slices": {
+        "all": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.582048,
+            "low": 0.48026,
+            "high": 0.689459,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.074785,
+            "low": -0.107051,
+            "high": -0.046804,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.576577,
+          "observed": 64,
+          "tasks_total": 111,
+          "expired": 69,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 6.5366,
+            "p95": 6.7081,
+            "samples": 9
+          }
+        },
+        "condition:boundary": {
+          "episodes": 3,
+          "coverage": {
+            "mean": 0.532634,
+            "low": 0.461538,
+            "high": 0.636364,
+            "episodes": 3,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.080612,
+            "low": -0.164766,
+            "high": -0.034899,
+            "episodes": 3,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.526316,
+          "observed": 20,
+          "tasks_total": 38,
+          "expired": 24,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 6.2942,
+            "p95": 6.6885,
+            "samples": 3
+          }
+        },
+        "condition:noisy": {
+          "episodes": 1,
+          "coverage": {
+            "mean": 0.307692,
+            "low": null,
+            "high": null,
+            "episodes": 1
+          },
+          "reward": {
+            "mean": -0.113894,
+            "low": null,
+            "high": null,
+            "episodes": 1
+          },
+          "coverage_by_tasks": 0.307692,
+          "observed": 4,
+          "tasks_total": 13,
+          "expired": 9,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 11.1863,
+            "p95": 11.1863,
+            "samples": 1
+          }
+        },
+        "condition:nominal": {
+          "episodes": 5,
+          "coverage": {
+            "mean": 0.666567,
+            "low": 0.543956,
+            "high": 0.786147,
+            "episodes": 5,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.063468,
+            "low": -0.091683,
+            "high": -0.035277,
+            "episodes": 5,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.666667,
+          "observed": 40,
+          "tasks_total": 60,
+          "expired": 36,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 5.7522,
+            "p95": 6.0604,
+            "samples": 5
+          }
+        },
+        "family:partitioned": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.582048,
+            "low": 0.48692,
+            "high": 0.679117,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.074785,
+            "low": -0.106394,
+            "high": -0.04694,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.576577,
+          "observed": 64,
+          "tasks_total": 111,
+          "expired": 69,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 6.5366,
+            "p95": 6.7081,
+            "samples": 9
+          }
+        },
+        "fleet:large": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.582048,
+            "low": 0.484737,
+            "high": 0.68883,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.074785,
+            "low": -0.104086,
+            "high": -0.049661,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.576577,
+          "observed": 64,
+          "tasks_total": 111,
+          "expired": 69,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 6.5366,
+            "p95": 6.7081,
+            "samples": 9
+          }
+        },
+        "fleet:unseen": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.582048,
+            "low": 0.469974,
+            "high": 0.695416,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.074785,
+            "low": -0.105736,
+            "high": -0.048109,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.576577,
+          "observed": 64,
+          "tasks_total": 111,
+          "expired": 69,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 6.5366,
+            "p95": 6.7081,
+            "samples": 9
+          }
+        },
+        "held-out": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.582048,
+            "low": 0.47669,
+            "high": 0.68759,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.074785,
+            "low": -0.104072,
+            "high": -0.048238,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.576577,
+          "observed": 64,
+          "tasks_total": 111,
+          "expired": 69,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 6.5366,
+            "p95": 6.7081,
+            "samples": 9
+          }
+        },
+        "ood": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.582048,
+            "low": 0.487179,
+            "high": 0.695286,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.074785,
+            "low": -0.101228,
+            "high": -0.048241,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.576577,
+          "observed": 64,
+          "tasks_total": 111,
+          "expired": 69,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 6.5366,
+            "p95": 6.7081,
+            "samples": 9
+          }
+        },
+        "parameter-compatible": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.582048,
+            "low": 0.471195,
+            "high": 0.686943,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.074785,
+            "low": -0.10672,
+            "high": -0.047055,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.576577,
+          "observed": 64,
+          "tasks_total": 111,
+          "expired": 69,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 6.5366,
+            "p95": 6.7081,
+            "samples": 9
+          }
+        }
+      },
+      "shield": {
+        "version": "safety-shield-1",
+        "config": {
+          "version": "safety-shield-1",
+          "min_energy_fraction": 0.1,
+          "min_storage_fraction": 0.0,
+          "deadline_margin_s": 0.0,
+          "max_assignments_per_step": 8,
+          "require_energy_certified": true,
+          "fallback": "wait"
+        },
+        "steps": 1432,
+        "proposed": 1432,
+        "accepted": 76,
+        "rejected": 12,
+        "acceptance_rate": 0.053073,
+        "reason_counts": {
+          "energy-floor": 12
+        }
+      },
+      "metrics": {
+        "mean_coverage": 0.582048,
+        "coverage_ci": [
+          0.490232,
+          0.698598
+        ],
+        "mean_reward": -0.074785,
+        "conflicts": 0,
+        "invalid_actions": 0
+      }
+    }
+  },
+  "selection_note": "one factor at a time; diagnostic variants are retained as negative results and are not deployable candidates"
+}

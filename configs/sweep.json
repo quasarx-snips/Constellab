@@ -1,0 +1,20 @@
+{
+  "sweep_id": "swarm-architecture",
+  "dataset_root": "data/ml/demo",
+  "families": ["mlp", "deepsets", "gnn", "gnn_gru", "gnn_attention"],
+  "hidden_sizes": [32, 64],
+  "learning_rates": [0.001, 0.003],
+  "abstain_weights": [0.5, 1.0],
+  "weight_decays": [0.0001],
+  "budget": 20,
+  "epochs": 4,
+  "batches_per_epoch": 12,
+  "graphs_per_batch": 8,
+  "steps_per_chunk": 4,
+  "seed": 0,
+  "selection_metric": "validation_loss",
+  "early_stopping_patience": 2,
+  "evaluate_episodes": 4,
+  "max_sequence_samples": 3000,
+  "resume": true
+}

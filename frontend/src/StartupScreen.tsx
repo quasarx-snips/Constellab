@@ -10,7 +10,7 @@ import { StartupModals } from "./startup/StartupModals";
 const SPLASH_MS = 1600;
 
 interface StartupScreenProps {
-  onLaunch: () => void;
+  onLaunch: (panel?: "ml" | "g2") => void;
 }
 
 /**
@@ -72,7 +72,7 @@ export function StartupScreen({ onLaunch }: StartupScreenProps) {
           {/* Top Header Navbar */}
           <StartupHeader
             onModeChange={(mode: HudNavMode) => {
-              if (mode === "ANALYZE") {
+              if (mode === "ANALYZE" || mode === "UNDERSTAND") {
                 setModalType("evidence");
               } else if (mode === "OBSERVE") {
                 setModalType("scenarios");

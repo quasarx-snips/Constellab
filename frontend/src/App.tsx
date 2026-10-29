@@ -28,6 +28,8 @@ type SnapshotState =
   | { kind: "ready"; snapshot: SimulationSnapshot }
   | { kind: "rejected"; reason: string; errors: { path: string; message: string }[] };
 
+export type LaunchPanel = "ml" | "g2";
+
 async function fetchJson(path: string): Promise<unknown> {
   const res = await fetch(`${CORE_URL}${path}`);
   if (!res.ok) throw new Error(`core returned HTTP ${res.status} for ${path}`);
@@ -71,6 +73,7 @@ export default function App() {
     }
     return "startup";
   });
+  const [launchPanel, setLaunchPanel] = useState<LaunchPanel | null>(null);
   const [status, setStatus] = useState<CoreStatus | null>(null);
   const [statusError, setStatusError] = useState<string | null>(null);
   const [snapshot, setSnapshot] = useState<SnapshotState>({ kind: "loading" });
@@ -82,7 +85,10 @@ export default function App() {
   // without being torn down and recreated on every reply.
   const connectionRef = useRef<ConnectionInfo>(connection);
 
-  const handleLaunch = useCallback(() => setPhase("app"), []);
+  const handleLaunch = useCallback((panel?: LaunchPanel) => {
+    setLaunchPanel(panel ?? null);
+    setPhase("app");
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -166,7 +172,11 @@ export default function App() {
             statusError={statusError}
             connection={connection}
             snapshotReceivedAtMs={receivedAtMs}
-            onExit={() => setPhase("startup")}
+            initialPanel={launchPanel}
+            onExit={() => {
+              setLaunchPanel(null);
+              setPhase("startup");
+            }}
           />
         </ErrorBoundary>
       </main>

@@ -1,0 +1,25 @@
+{
+  "dataset_root": "data/ml/demo",
+  "split": "test",
+  "seed": 52,
+  "policies": {
+    "fixed-priority": {
+      "type": "baseline",
+      "key": "expert-rule"
+    },
+    "greedy": {
+      "type": "baseline",
+      "key": "first-feasible"
+    },
+    "wait": {
+      "type": "baseline",
+      "key": "wait"
+    },
+    "mlp": "runs/baseline-mlp/checkpoint-best.pt",
+    "deepsets": "runs/baseline-deepsets/checkpoint-best.pt",
+    "learned": "runs/curriculum-demo/seed-0/03-full/checkpoint-best.pt",
+    "ppo-finetuned": "runs/ppo-long/checkpoint-best.pt"
+  },
+  "extra_episodes": 6,
+  "shield": true
+}

@@ -23,6 +23,7 @@
     "test:api": "tsc -p frontend/tsconfig.test.json && node --test \"frontend/.test-out/api/__tests__/*.test.js\"",
     "bench:fleet": "tsc -p frontend/tsconfig.bench.json && node frontend/.bench-out/bench/fleet-bench.js",
     "test:e2e": "tsc -p frontend/tsconfig.test.json && node --test \"frontend/.test-out/e2e/__tests__/*.test.js\"",
+    "ml": "node scripts/py.js -m constellab_ml",
     "g0": "node scripts/g0.js",
     "demo": "node scripts/demo.js",
     "headless": "node scripts/py.js -m constellab_core run"

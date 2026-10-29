@@ -1,0 +1,5737 @@
+{
+  "version": "g2-failure-1",
+  "scenario_id": "g2-partition",
+  "seed": 7,
+  "horizon_s": 1800.0,
+  "step_s": 30.0,
+  "groups": {
+    "A": [
+      "g2-alpha",
+      "g2-bravo"
+    ],
+    "B": [
+      "g2-charlie",
+      "g2-delta"
+    ]
+  },
+  "target": {
+    "id": "hotspot.g2-eq",
+    "kind": "hotspot",
+    "lat_deg": 37.49008913144864,
+    "lon_deg": -8.34483960180699,
+    "radius_km": 120.0,
+    "start_s": 0.0,
+    "end_s": 1800.0,
+    "status": "active",
+    "urgency": 5,
+    "requirements": {
+      "min_confidence": 0.4
+    },
+    "confidence": 0.5
+  },
+  "checks": {
+    "fault_reproduces_duplicate_claim": true,
+    "control_has_no_duplicate_claim": true,
+    "same_seed_identical_hashes": true,
+    "fault_and_control_hashes_differ": true,
+    "replay_reproduces_hash": true,
+    "violation_names_entities": true,
+    "g2_pass": true
+  },
+  "fault": {
+    "policy": {
+      "key": "distributed-greedy",
+      "label": "Distributed greedy",
+      "kind": "baseline",
+      "deployable": true,
+      "version": "policy-interface-1",
+      "assumptions": [
+        "each satellite sees only claims delivered by the link graph",
+        "task state is a local view, not the simulator's global board",
+        "deterministic tie-breaking by task id"
+      ],
+      "description": "Per-satellite greedy claims over a partition-aware claim bus."
+    },
+    "metrics": {
+      "tasks": 1,
+      "completed": 1,
+      "expired": 0,
+      "cancelled": 0,
+      "open": 0,
+      "attempts": 1,
+      "reward": 2.677906,
+      "rejected_actions": 0,
+      "duplicate_actions": 0,
+      "policy": "distributed-greedy",
+      "deployable": true,
+      "proposals": 3,
+      "conflicts": 2,
+      "usable_windows": 4
+    },
+    "trace_hash": "4a8ed83a2cd4ad2bddb5849d24b0ad3c1d9c1cd40946b832de5b383aa8ca6a55",
+    "events": [
+      {
+        "sequence": 1,
+        "time_s": 0.0,
+        "kind": "episode.start",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "scenario_id": "g2-partition",
+          "horizon_s": 1800.0,
+          "step_s": 30.0,
+          "seed": 7,
+          "faults_hash": "dd5b2535984efbfe6296c1ccee9b1be1d7fe2d3db8d2b5a3f7838d90f5c7c1f1"
+        }
+      },
+      {
+        "sequence": 2,
+        "time_s": 0.0,
+        "kind": "fault.active",
+        "cause": "fault-plan",
+        "payload": {
+          "id": "g2-partition-00",
+          "kind": "link-cut",
+          "start_s": 0.0,
+          "end_s": 1800.0,
+          "satellites": [
+            "g2-alpha",
+            "g2-bravo"
+          ],
+          "peers": [
+            "g2-charlie",
+            "g2-delta"
+          ],
+          "quality": 1.0,
+          "delay_s": 0.0,
+          "reason": "G2 demo: the two halves of the fleet never exchange claims"
+        }
+      },
+      {
+        "sequence": 3,
+        "time_s": 0.0,
+        "kind": "task.assigned",
+        "cause": "policy",
+        "payload": {
+          "task_id": "task.hotspot.g2-eq",
+          "target_id": "hotspot.g2-eq",
+          "satellite_id": "g2-alpha",
+          "policy": "distributed-greedy"
+        }
+      },
+      {
+        "sequence": 4,
+        "time_s": 0.0,
+        "kind": "proposal.rejected",
+        "cause": "task-not-available",
+        "payload": {
+          "action": "assign",
+          "task_id": "task.hotspot.g2-eq",
+          "satellite_id": "g2-charlie",
+          "at_s": 0.0,
+          "score": 1.0,
+          "reason": "task is 'in-progress'"
+        }
+      },
+      {
+        "sequence": 5,
+        "time_s": 0.0,
+        "kind": "proposal.rejected",
+        "cause": "task-not-available",
+        "payload": {
+          "action": "assign",
+          "task_id": "task.hotspot.g2-eq",
+          "satellite_id": "g2-delta",
+          "at_s": 0.0,
+          "score": 1.0,
+          "reason": "task is 'in-progress'"
+        }
+      },
+      {
+        "sequence": 6,
+        "time_s": 0.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 3,
+          "assigned": 1,
+          "rejected": 2,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 7,
+        "time_s": 30.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 8,
+        "time_s": 60.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 9,
+        "time_s": 90.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 10,
+        "time_s": 120.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 11,
+        "time_s": 150.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 12,
+        "time_s": 180.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 13,
+        "time_s": 210.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 14,
+        "time_s": 240.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 15,
+        "time_s": 270.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 16,
+        "time_s": 300.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 17,
+        "time_s": 330.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 18,
+        "time_s": 360.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 19,
+        "time_s": 390.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 20,
+        "time_s": 420.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 21,
+        "time_s": 450.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 22,
+        "time_s": 480.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 23,
+        "time_s": 510.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 24,
+        "time_s": 540.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 25,
+        "time_s": 570.0,
+        "kind": "task.observed",
+        "cause": "scheduled-access",
+        "payload": {
+          "task_id": "task.hotspot.g2-eq",
+          "satellite_id": "g2-alpha",
+          "target_id": "hotspot.g2-eq",
+          "time_s": 570.0,
+          "confidence": 0.821007,
+          "freshness": 0.683333,
+          "accepted": true,
+          "resolution_m": 10.144802,
+          "duration_s": 60.0,
+          "energy_j": 720.0,
+          "data_bit": 120000000.0,
+          "cost": 0.1272,
+          "reasons": []
+        }
+      },
+      {
+        "sequence": 26,
+        "time_s": 570.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 1
+        }
+      },
+      {
+        "sequence": 27,
+        "time_s": 600.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 28,
+        "time_s": 630.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 29,
+        "time_s": 660.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 30,
+        "time_s": 690.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 31,
+        "time_s": 720.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 32,
+        "time_s": 750.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 33,
+        "time_s": 780.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 34,
+        "time_s": 810.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 35,
+        "time_s": 840.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 36,
+        "time_s": 870.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 37,
+        "time_s": 900.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 38,
+        "time_s": 930.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 39,
+        "time_s": 960.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 40,
+        "time_s": 990.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 41,
+        "time_s": 1020.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 42,
+        "time_s": 1050.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 43,
+        "time_s": 1080.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 44,
+        "time_s": 1110.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 45,
+        "time_s": 1140.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 46,
+        "time_s": 1170.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 47,
+        "time_s": 1200.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 48,
+        "time_s": 1230.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 49,
+        "time_s": 1260.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 50,
+        "time_s": 1290.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 51,
+        "time_s": 1320.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 52,
+        "time_s": 1350.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 53,
+        "time_s": 1380.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 54,
+        "time_s": 1410.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 55,
+        "time_s": 1440.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 56,
+        "time_s": 1470.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 57,
+        "time_s": 1500.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 58,
+        "time_s": 1530.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 59,
+        "time_s": 1560.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 60,
+        "time_s": 1590.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 61,
+        "time_s": 1620.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 62,
+        "time_s": 1650.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 63,
+        "time_s": 1680.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 64,
+        "time_s": 1710.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 65,
+        "time_s": 1740.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 66,
+        "time_s": 1770.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 67,
+        "time_s": 1800.0,
+        "kind": "fault.cleared",
+        "cause": "fault-plan",
+        "payload": {
+          "fault_id": "g2-partition-00"
+        }
+      },
+      {
+        "sequence": 68,
+        "time_s": 1800.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 69,
+        "time_s": 1800.0,
+        "kind": "episode.end",
+        "cause": "horizon",
+        "payload": {
+          "tasks": 1,
+          "completed": 1,
+          "expired": 0,
+          "cancelled": 0,
+          "open": 0,
+          "attempts": 1,
+          "reward": 2.677906,
+          "rejected_actions": 0,
+          "duplicate_actions": 0,
+          "policy": "distributed-greedy",
+          "deployable": true,
+          "proposals": 3,
+          "conflicts": 2,
+          "usable_windows": 4
+        }
+      }
+    ],
+    "invariants": {
+      "version": "invariants-1",
+      "findings": [
+        {
+          "rule": "duplicate-task-claim",
+          "severity": "error",
+          "time_s": 0.0,
+          "message": "3 satellites proposed task.hotspot.g2-eq at t=0 s; their claims never crossed the partition",
+          "entities": [
+            "g2-alpha",
+            "g2-charlie",
+            "g2-delta",
+            "task.hotspot.g2-eq"
+          ],
+          "evidence": {
+            "task_id": "task.hotspot.g2-eq",
+            "satellites": [
+              "g2-alpha",
+              "g2-charlie",
+              "g2-delta"
+            ]
+          }
+        },
+        {
+          "rule": "invalid-policy-action",
+          "severity": "info",
+          "time_s": 0.0,
+          "message": "rejected assign for task.hotspot.g2-eq: task is 'in-progress'",
+          "entities": [
+            "g2-charlie",
+            "task.hotspot.g2-eq"
+          ],
+          "evidence": {
+            "action": "assign",
+            "task_id": "task.hotspot.g2-eq",
+            "satellite_id": "g2-charlie",
+            "at_s": 0.0,
+            "score": 1.0,
+            "reason": "task is 'in-progress'"
+          }
+        },
+        {
+          "rule": "invalid-policy-action",
+          "severity": "info",
+          "time_s": 0.0,
+          "message": "rejected assign for task.hotspot.g2-eq: task is 'in-progress'",
+          "entities": [
+            "g2-delta",
+            "task.hotspot.g2-eq"
+          ],
+          "evidence": {
+            "action": "assign",
+            "task_id": "task.hotspot.g2-eq",
+            "satellite_id": "g2-delta",
+            "at_s": 0.0,
+            "score": 1.0,
+            "reason": "task is 'in-progress'"
+          }
+        }
+      ],
+      "counts": {
+        "duplicate-task-claim": 1,
+        "invalid-policy-action": 2
+      },
+      "violations": 3,
+      "errors": 1
+    },
+    "manifest": {
+      "version": "event-trace-1",
+      "label": "g2-fault-on",
+      "scenario": {
+        "schema_version": "1.0.0",
+        "scenario_id": "g2-partition",
+        "seed": 7,
+        "epoch_utc": "2026-10-12T00:00:00Z",
+        "satellites": [
+          {
+            "id": "g2-alpha",
+            "name": "G2-ALPHA",
+            "orbit": {
+              "semi_major_axis_km": 6928.137,
+              "eccentricity": 0.001,
+              "inclination_deg": 97.6,
+              "raan_deg": 0.0,
+              "argument_of_perigee_deg": 0.0,
+              "true_anomaly_deg": 0.0
+            }
+          },
+          {
+            "id": "g2-bravo",
+            "name": "G2-BRAVO",
+            "orbit": {
+              "semi_major_axis_km": 6928.137,
+              "eccentricity": 0.001,
+              "inclination_deg": 97.6,
+              "raan_deg": 0.0,
+              "argument_of_perigee_deg": 0.0,
+              "true_anomaly_deg": 0.2
+            }
+          },
+          {
+            "id": "g2-charlie",
+            "name": "G2-CHARLIE",
+            "orbit": {
+              "semi_major_axis_km": 6928.137,
+              "eccentricity": 0.001,
+              "inclination_deg": 97.6,
+              "raan_deg": 0.0,
+              "argument_of_perigee_deg": 0.0,
+              "true_anomaly_deg": 0.4
+            }
+          },
+          {
+            "id": "g2-delta",
+            "name": "G2-DELTA",
+            "orbit": {
+              "semi_major_axis_km": 6928.137,
+              "eccentricity": 0.001,
+              "inclination_deg": 97.6,
+              "raan_deg": 0.0,
+              "argument_of_perigee_deg": 0.0,
+              "true_anomaly_deg": 0.6
+            }
+          }
+        ],
+        "name": "G2 partition failure (4 satellites, 2 groups)",
+        "time_scale": 60.0,
+        "components": [
+          {
+            "type": "event-source.clock-tick"
+          },
+          {
+            "type": "task.round-robin"
+          },
+          {
+            "type": "sensor.conical",
+            "parameters": {
+              "half_angle_deg": 40
+            }
+          },
+          {
+            "type": "payload.imaging"
+          },
+          {
+            "type": "storage.buffer"
+          },
+          {
+            "type": "compute.capacity"
+          },
+          {
+            "type": "power.solar-battery"
+          }
+        ]
+      },
+      "policy_key": "distributed-greedy",
+      "seed": 7,
+      "faults": {
+        "version": "fault-injection-1",
+        "strategy": "manual",
+        "seed": 0,
+        "generator": {
+          "label": "G2 partition"
+        },
+        "faults": [
+          {
+            "id": "g2-partition-00",
+            "kind": "link-cut",
+            "start_s": 0.0,
+            "end_s": 1800.0,
+            "satellites": [
+              "g2-alpha",
+              "g2-bravo"
+            ],
+            "peers": [
+              "g2-charlie",
+              "g2-delta"
+            ],
+            "quality": 1.0,
+            "delay_s": 0.0,
+            "reason": "G2 demo: the two halves of the fleet never exchange claims"
+          }
+        ]
+      },
+      "expected_trace_hash": "4a8ed83a2cd4ad2bddb5849d24b0ad3c1d9c1cd40946b832de5b383aa8ca6a55",
+      "horizon_s": 1800.0,
+      "step_s": 30.0,
+      "versions": {
+        "g2": "g2-failure-1",
+        "policy": "policy-interface-1",
+        "faults": "fault-injection-1"
+      }
+    },
+    "first_violation": {
+      "rule": "duplicate-task-claim",
+      "severity": "error",
+      "time_s": 0.0,
+      "message": "3 satellites proposed task.hotspot.g2-eq at t=0 s; their claims never crossed the partition",
+      "entities": [
+        "g2-alpha",
+        "g2-charlie",
+        "g2-delta",
+        "task.hotspot.g2-eq"
+      ],
+      "evidence": {
+        "task_id": "task.hotspot.g2-eq",
+        "satellites": [
+          "g2-alpha",
+          "g2-charlie",
+          "g2-delta"
+        ]
+      }
+    }
+  },
+  "control": {
+    "policy": {
+      "key": "distributed-greedy",
+      "label": "Distributed greedy",
+      "kind": "baseline",
+      "deployable": true,
+      "version": "policy-interface-1",
+      "assumptions": [
+        "each satellite sees only claims delivered by the link graph",
+        "task state is a local view, not the simulator's global board",
+        "deterministic tie-breaking by task id"
+      ],
+      "description": "Per-satellite greedy claims over a partition-aware claim bus."
+    },
+    "metrics": {
+      "tasks": 1,
+      "completed": 1,
+      "expired": 0,
+      "cancelled": 0,
+      "open": 0,
+      "attempts": 1,
+      "reward": 2.677906,
+      "rejected_actions": 0,
+      "duplicate_actions": 0,
+      "policy": "distributed-greedy",
+      "deployable": true,
+      "proposals": 1,
+      "conflicts": 0,
+      "usable_windows": 4
+    },
+    "trace_hash": "cc68d9fcebf1ebdbeab16863b8e2f86df97ca10b42c1b92e293a5132f5dd2a67",
+    "events": [
+      {
+        "sequence": 1,
+        "time_s": 0.0,
+        "kind": "episode.start",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "scenario_id": "g2-partition",
+          "horizon_s": 1800.0,
+          "step_s": 30.0,
+          "seed": 7,
+          "faults_hash": "ea89f9958873096bd7f0b4f11f91a14a3dcd4d4e86e5098ac18fa41d24e00cbb"
+        }
+      },
+      {
+        "sequence": 2,
+        "time_s": 0.0,
+        "kind": "task.assigned",
+        "cause": "policy",
+        "payload": {
+          "task_id": "task.hotspot.g2-eq",
+          "target_id": "hotspot.g2-eq",
+          "satellite_id": "g2-alpha",
+          "policy": "distributed-greedy"
+        }
+      },
+      {
+        "sequence": 3,
+        "time_s": 0.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 1,
+          "assigned": 1,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 4,
+        "time_s": 30.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 5,
+        "time_s": 60.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 6,
+        "time_s": 90.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 7,
+        "time_s": 120.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 8,
+        "time_s": 150.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 9,
+        "time_s": 180.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 10,
+        "time_s": 210.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 11,
+        "time_s": 240.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 12,
+        "time_s": 270.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 13,
+        "time_s": 300.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 14,
+        "time_s": 330.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 15,
+        "time_s": 360.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 16,
+        "time_s": 390.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 17,
+        "time_s": 420.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 18,
+        "time_s": 450.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 19,
+        "time_s": 480.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 20,
+        "time_s": 510.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 21,
+        "time_s": 540.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 22,
+        "time_s": 570.0,
+        "kind": "task.observed",
+        "cause": "scheduled-access",
+        "payload": {
+          "task_id": "task.hotspot.g2-eq",
+          "satellite_id": "g2-alpha",
+          "target_id": "hotspot.g2-eq",
+          "time_s": 570.0,
+          "confidence": 0.821007,
+          "freshness": 0.683333,
+          "accepted": true,
+          "resolution_m": 10.144802,
+          "duration_s": 60.0,
+          "energy_j": 720.0,
+          "data_bit": 120000000.0,
+          "cost": 0.1272,
+          "reasons": []
+        }
+      },
+      {
+        "sequence": 23,
+        "time_s": 570.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 1
+        }
+      },
+      {
+        "sequence": 24,
+        "time_s": 600.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 25,
+        "time_s": 630.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 26,
+        "time_s": 660.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 27,
+        "time_s": 690.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 28,
+        "time_s": 720.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 29,
+        "time_s": 750.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 30,
+        "time_s": 780.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 31,
+        "time_s": 810.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 32,
+        "time_s": 840.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 33,
+        "time_s": 870.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 34,
+        "time_s": 900.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 35,
+        "time_s": 930.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 36,
+        "time_s": 960.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 37,
+        "time_s": 990.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 38,
+        "time_s": 1020.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 39,
+        "time_s": 1050.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 40,
+        "time_s": 1080.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 41,
+        "time_s": 1110.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 42,
+        "time_s": 1140.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 43,
+        "time_s": 1170.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 44,
+        "time_s": 1200.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 45,
+        "time_s": 1230.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 46,
+        "time_s": 1260.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 47,
+        "time_s": 1290.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 48,
+        "time_s": 1320.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 49,
+        "time_s": 1350.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 50,
+        "time_s": 1380.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 51,
+        "time_s": 1410.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 52,
+        "time_s": 1440.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 53,
+        "time_s": 1470.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 54,
+        "time_s": 1500.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 55,
+        "time_s": 1530.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 56,
+        "time_s": 1560.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 57,
+        "time_s": 1590.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 58,
+        "time_s": 1620.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 59,
+        "time_s": 1650.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 60,
+        "time_s": 1680.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 61,
+        "time_s": 1710.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 62,
+        "time_s": 1740.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 63,
+        "time_s": 1770.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 64,
+        "time_s": 1800.0,
+        "kind": "decision.recorded",
+        "cause": "",
+        "payload": {
+          "policy": "distributed-greedy",
+          "proposals": 0,
+          "assigned": 0,
+          "rejected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "sequence": 65,
+        "time_s": 1800.0,
+        "kind": "episode.end",
+        "cause": "horizon",
+        "payload": {
+          "tasks": 1,
+          "completed": 1,
+          "expired": 0,
+          "cancelled": 0,
+          "open": 0,
+          "attempts": 1,
+          "reward": 2.677906,
+          "rejected_actions": 0,
+          "duplicate_actions": 0,
+          "policy": "distributed-greedy",
+          "deployable": true,
+          "proposals": 1,
+          "conflicts": 0,
+          "usable_windows": 4
+        }
+      }
+    ],
+    "invariants": {
+      "version": "invariants-1",
+      "findings": [],
+      "counts": {},
+      "violations": 0,
+      "errors": 0
+    },
+    "manifest": {
+      "version": "event-trace-1",
+      "label": "g2-fault-off",
+      "scenario": {
+        "schema_version": "1.0.0",
+        "scenario_id": "g2-partition",
+        "seed": 7,
+        "epoch_utc": "2026-10-12T00:00:00Z",
+        "satellites": [
+          {
+            "id": "g2-alpha",
+            "name": "G2-ALPHA",
+            "orbit": {
+              "semi_major_axis_km": 6928.137,
+              "eccentricity": 0.001,
+              "inclination_deg": 97.6,
+              "raan_deg": 0.0,
+              "argument_of_perigee_deg": 0.0,
+              "true_anomaly_deg": 0.0
+            }
+          },
+          {
+            "id": "g2-bravo",
+            "name": "G2-BRAVO",
+            "orbit": {
+              "semi_major_axis_km": 6928.137,
+              "eccentricity": 0.001,
+              "inclination_deg": 97.6,
+              "raan_deg": 0.0,
+              "argument_of_perigee_deg": 0.0,
+              "true_anomaly_deg": 0.2
+            }
+          },
+          {
+            "id": "g2-charlie",
+            "name": "G2-CHARLIE",
+            "orbit": {
+              "semi_major_axis_km": 6928.137,
+              "eccentricity": 0.001,
+              "inclination_deg": 97.6,
+              "raan_deg": 0.0,
+              "argument_of_perigee_deg": 0.0,
+              "true_anomaly_deg": 0.4
+            }
+          },
+          {
+            "id": "g2-delta",
+            "name": "G2-DELTA",
+            "orbit": {
+              "semi_major_axis_km": 6928.137,
+              "eccentricity": 0.001,
+              "inclination_deg": 97.6,
+              "raan_deg": 0.0,
+              "argument_of_perigee_deg": 0.0,
+              "true_anomaly_deg": 0.6
+            }
+          }
+        ],
+        "name": "G2 partition failure (4 satellites, 2 groups)",
+        "time_scale": 60.0,
+        "components": [
+          {
+            "type": "event-source.clock-tick"
+          },
+          {
+            "type": "task.round-robin"
+          },
+          {
+            "type": "sensor.conical",
+            "parameters": {
+              "half_angle_deg": 40
+            }
+          },
+          {
+            "type": "payload.imaging"
+          },
+          {
+            "type": "storage.buffer"
+          },
+          {
+            "type": "compute.capacity"
+          },
+          {
+            "type": "power.solar-battery"
+          }
+        ]
+      },
+      "policy_key": "distributed-greedy",
+      "seed": 7,
+      "faults": {
+        "version": "fault-injection-1",
+        "strategy": "manual",
+        "seed": 0,
+        "generator": {
+          "label": "no-fault control"
+        },
+        "faults": []
+      },
+      "expected_trace_hash": "cc68d9fcebf1ebdbeab16863b8e2f86df97ca10b42c1b92e293a5132f5dd2a67",
+      "horizon_s": 1800.0,
+      "step_s": 30.0,
+      "versions": {
+        "g2": "g2-failure-1",
+        "policy": "policy-interface-1",
+        "faults": "fault-injection-1"
+      }
+    },
+    "first_violation": null
+  },
+  "replay": {
+    "trace_hash": "4a8ed83a2cd4ad2bddb5849d24b0ad3c1d9c1cd40946b832de5b383aa8ca6a55",
+    "matches": true
+  },
+  "timeline": [
+    {
+      "time_s": 0.0,
+      "positions_km": {
+        "g2-alpha": [
+          6921.208863,
+          0.0,
+          0.0
+        ],
+        "g2-bravo": [
+          6921.166739,
+          -3.195252,
+          23.947299
+        ],
+        "g2-charlie": [
+          6921.040367,
+          -6.390465,
+          47.894308
+        ],
+        "g2-delta": [
+          6920.829748,
+          -9.5856,
+          71.840734
+        ]
+      },
+      "target_eci_km": [
+        5013.426716,
+        -735.387322,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 30.0,
+      "positions_km": {
+        "g2-alpha": [
+          6917.464766,
+          -30.119971,
+          225.738682
+        ],
+        "g2-bravo": [
+          6916.628501,
+          -33.313311,
+          249.671652
+        ],
+        "g2-charlie": [
+          6915.708043,
+          -36.506246,
+          273.601585
+        ],
+        "g2-delta": [
+          6914.703404,
+          -39.698736,
+          297.528188
+        ]
+      },
+      "target_eci_km": [
+        5015.023477,
+        -724.418024,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 60.0,
+      "positions_km": {
+        "g2-alpha": [
+          6906.236538,
+          -60.207354,
+          451.233132
+        ],
+        "g2-bravo": [
+          6904.607039,
+          -63.395328,
+          475.125881
+        ],
+        "g2-charlie": [
+          6902.893495,
+          -66.582529,
+          499.012848
+        ],
+        "g2-delta": [
+          6901.095925,
+          -69.768921,
+          522.893741
+        ]
+      },
+      "target_eci_km": [
+        5016.596238,
+        -713.44526,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 90.0,
+      "positions_km": {
+        "g2-alpha": [
+          6887.536362,
+          -90.229599,
+          676.239389
+        ],
+        "g2-bravo": [
+          6885.115399,
+          -93.408756,
+          700.066066
+        ],
+        "g2-charlie": [
+          6882.610627,
+          -96.586777,
+          723.884223
+        ],
+        "g2-delta": [
+          6880.022078,
+          -99.763622,
+          747.69357
+        ]
+      },
+      "target_eci_km": [
+        5018.14499,
+        -702.469081,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 120.0,
+      "positions_km": {
+        "g2-alpha": [
+          6861.384533,
+          -120.154223,
+          900.514019
+        ],
+        "g2-bravo": [
+          6858.174731,
+          -123.321126,
+          924.248848
+        ],
+        "g2-charlie": [
+          6854.88145,
+          -126.486527,
+          947.972427
+        ],
+        "g2-delta": [
+          6851.504731,
+          -129.650389,
+          971.684469
+        ]
+      },
+      "target_eci_km": [
+        5019.669727,
+        -691.489541,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 150.0,
+      "positions_km": {
+        "g2-alpha": [
+          6827.809426,
+          -149.948854,
+          1123.814391
+        ],
+        "g2-bravo": [
+          6823.81427,
+          -153.100075,
+          1147.431694
+        ],
+        "g2-charlie": [
+          6819.736053,
+          -156.249433,
+          1171.035031
+        ],
+        "g2-delta": [
+          6815.574827,
+          -159.396889,
+          1194.624116
+        ]
+      },
+      "target_eci_km": [
+        5021.170441,
+        -680.506691,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 180.0,
+      "positions_km": {
+        "g2-alpha": [
+          6786.847476,
+          -179.581259,
+          1345.898935
+        ],
+        "g2-bravo": [
+          6782.071299,
+          -182.71339,
+          1369.373164
+        ],
+        "g2-charlie": [
+          6777.212572,
+          -185.843297,
+          1392.830725
+        ],
+        "g2-delta": [
+          6772.271354,
+          -188.970942,
+          1416.271335
+        ]
+      },
+      "target_eci_km": [
+        5022.647125,
+        -669.520584,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 210.0,
+      "positions_km": {
+        "g2-alpha": [
+          6738.543126,
+          -209.019383,
+          1566.527411
+        ],
+        "g2-bravo": [
+          6732.991112,
+          -212.129035,
+          1589.833172
+        ],
+        "g2-charlie": [
+          6727.357146,
+          -215.236106,
+          1613.119583
+        ],
+        "g2-delta": [
+          6721.641298,
+          -218.340557,
+          1636.386361
+        ]
+      },
+      "target_eci_km": [
+        5024.099772,
+        -658.531274,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 240.0,
+      "positions_km": {
+        "g2-alpha": [
+          6682.948789,
+          -238.231382,
+          1785.461164
+        ],
+        "g2-bravo": [
+          6676.626961,
+          -241.315193,
+          1808.573249
+        ],
+        "g2-charlie": [
+          6670.223869,
+          -244.396066,
+          1831.663322
+        ],
+        "g2-delta": [
+          6663.739593,
+          -247.473966,
+          1854.731102
+        ]
+      },
+      "target_eci_km": [
+        5025.528374,
+        -647.538811,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 270.0,
+      "positions_km": {
+        "g2-alpha": [
+          6620.124783,
+          -267.185661,
+          2002.463391
+        ],
+        "g2-bravo": [
+          6613.039999,
+          -270.240295,
+          2025.356802
+        ],
+        "g2-charlie": [
+          6605.874729,
+          -273.291639,
+          2048.225564
+        ],
+        "g2-delta": [
+          6598.629059,
+          -276.339657,
+          2071.069398
+        ]
+      },
+      "target_eci_km": [
+        5026.932926,
+        -636.54325,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 300.0,
+      "positions_km": {
+        "g2-alpha": [
+          6550.139265,
+          -295.850905,
+          2217.299397
+        ],
+        "g2-bravo": [
+          6542.299212,
+          -298.873057,
+          2239.949376
+        ],
+        "g2-charlie": [
+          6534.379536,
+          -301.891572,
+          2262.572094
+        ],
+        "g2-delta": [
+          6526.380334,
+          -304.906413,
+          2285.167276
+        ]
+      },
+      "target_eci_km": [
+        5028.31342,
+        -625.544643,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 330.0,
+      "positions_km": {
+        "g2-alpha": [
+          6473.06816,
+          -324.196113,
+          2429.736849
+        ],
+        "g2-bravo": [
+          6464.481343,
+          -327.182516,
+          2452.118902
+        ],
+        "g2-charlie": [
+          6455.815853,
+          -330.164938,
+          2474.471113
+        ],
+        "g2-delta": [
+          6447.071795,
+          -333.143342,
+          2496.793211
+        ]
+      },
+      "target_eci_km": [
+        5029.66985,
+        -614.543041,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 360.0,
+      "positions_km": {
+        "g2-alpha": [
+          6388.995072,
+          -352.190635,
+          2639.546033
+        ],
+        "g2-bravo": [
+          6379.670806,
+          -355.13806,
+          2661.635959
+        ],
+        "g2-charlie": [
+          6370.268902,
+          -358.081164,
+          2683.693495
+        ],
+        "g2-delta": [
+          6360.789473,
+          -361.01991,
+          2705.718372
+        ]
+      },
+      "target_eci_km": [
+        5031.00221,
+        -603.538499,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 390.0,
+      "positions_km": {
+        "g2-alpha": [
+          6298.011197,
+          -379.804203,
+          2846.500098
+        ],
+        "g2-bravo": [
+          6287.959595,
+          -382.709463,
+          2868.274015
+        ],
+        "g2-charlie": [
+          6277.831473,
+          -385.610067,
+          2890.013029
+        ],
+        "g2-delta": [
+          6267.626956,
+          -388.505978,
+          2911.716874
+        ]
+      },
+      "target_eci_km": [
+        5032.310492,
+        -592.531068,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 420.0,
+      "positions_km": {
+        "g2-alpha": [
+          6200.215216,
+          -407.006964,
+          3050.375312
+        ],
+        "g2-bravo": [
+          6189.44718,
+          -409.86692,
+          3071.809682
+        ],
+        "g2-charlie": [
+          6178.603827,
+          -412.721888,
+          3093.206673
+        ],
+        "g2-delta": [
+          6167.685288,
+          -415.571834,
+          3114.566025
+        ]
+      },
+      "target_eci_km": [
+        5033.594691,
+        -581.520802,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 450.0,
+      "positions_km": {
+        "g2-alpha": [
+          6095.713194,
+          -433.769514,
+          3250.951296
+        ],
+        "g2-bravo": [
+          6084.240402,
+          -436.581073,
+          3272.022952
+        ],
+        "g2-charlie": [
+          6072.693575,
+          -439.38732,
+          3293.054794
+        ],
+        "g2-delta": [
+          6061.072855,
+          -442.188221,
+          3314.046567
+        ]
+      },
+      "target_eci_km": [
+        5034.8548,
+        -570.507752,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 480.0,
+      "positions_km": {
+        "g2-alpha": [
+          5984.618456,
+          -460.062928,
+          3448.01127
+        ],
+        "g2-bravo": [
+          5972.453348,
+          -462.823053,
+          3468.69744
+        ],
+        "g2-charlie": [
+          5960.215569,
+          -465.577546,
+          3489.341404
+        ],
+        "g2-delta": [
+          5947.90527,
+          -468.326374,
+          3509.942913
+        ]
+      },
+      "target_eci_km": [
+        5036.090814,
+        -559.491973,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 510.0,
+      "positions_km": {
+        "g2-alpha": [
+          5867.051465,
+          -485.858794,
+          3641.342288
+        ],
+        "g2-bravo": [
+          5854.207232,
+          -488.564501,
+          3661.620619
+        ],
+        "g2-charlie": [
+          5841.291771,
+          -491.264264,
+          3681.8544
+        ],
+        "g2-delta": [
+          5828.30524,
+          -493.958049,
+          3702.043385
+        ]
+      },
+      "target_eci_km": [
+        5037.302726,
+        -548.473515,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 540.0,
+      "positions_km": {
+        "g2-alpha": [
+          5743.139693,
+          -511.129239,
+          3830.735466
+        ],
+        "g2-bravo": [
+          5729.63026,
+          -513.777606,
+          3850.584051
+        ],
+        "g2-charlie": [
+          5716.051118,
+          -516.419722,
+          3870.385789
+        ],
+        "g2-delta": [
+          5702.402434,
+          -519.055555,
+          3890.140441
+        ]
+      },
+      "target_eci_km": [
+        5038.490531,
+        -537.452433,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 570.0,
+      "positions_km": {
+        "g2-alpha": [
+          5613.017472,
+          -535.846966,
+          4015.986212
+        ],
+        "g2-bravo": [
+          5598.857484,
+          -538.435131,
+          4035.383611
+        ],
+        "g2-charlie": [
+          5584.629383,
+          -541.016747,
+          4054.731919
+        ],
+        "g2-delta": [
+          5570.333341,
+          -543.591781,
+          4074.0309
+        ]
+      },
+      "target_eci_km": [
+        5039.654224,
+        -526.428779,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 600.0,
+      "positions_km": {
+        "g2-alpha": [
+          5476.825857,
+          -559.985278,
+          4196.894446
+        ],
+        "g2-bravo": [
+          5462.030662,
+          -562.510448,
+          4215.819713
+        ],
+        "g2-charlie": [
+          5447.169023,
+          -565.028775,
+          4234.693695
+        ],
+        "g2-delta": [
+          5432.241119,
+          -567.540228,
+          4253.516165
+        ]
+      },
+      "target_eci_km": [
+        5040.793797,
+        -515.402605,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 630.0,
+      "positions_km": {
+        "g2-alpha": [
+          5334.712459,
+          -583.51811,
+          4373.264819
+        ],
+        "g2-bravo": [
+          5319.298094,
+          -585.977557,
+          4391.69752
+        ],
+        "g2-charlie": [
+          5303.819023,
+          -588.429877,
+          4410.0768
+        ],
+        "g2-delta": [
+          5288.275436,
+          -590.875039,
+          4428.402436
+        ]
+      },
+      "target_eci_km": [
+        5041.909247,
+        -504.373965,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 660.0,
+      "positions_km": {
+        "g2-alpha": [
+          5186.831295,
+          -606.420056,
+          4544.906924
+        ],
+        "g2-bravo": [
+          5170.814462,
+          -608.811126,
+          4562.82716
+        ],
+        "g2-charlie": [
+          5154.734734,
+          -611.194791,
+          4580.691898
+        ],
+        "g2-delta": [
+          5138.592308,
+          -613.571022,
+          4598.500921
+        ]
+      },
+      "target_eci_km": [
+        5043.000568,
+        -493.342911,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 690.0,
+      "positions_km": {
+        "g2-alpha": [
+          5033.342608,
+          -628.666398,
+          4711.635498
+        ],
+        "g2-bravo": [
+          5016.740662,
+          -630.98651,
+          4729.023932
+        ],
+        "g2-charlie": [
+          5000.0777,
+          -633.298948,
+          4746.354849
+        ],
+        "g2-delta": [
+          4983.353924,
+          -635.603684,
+          4763.62804
+        ]
+      },
+      "target_eci_km": [
+        5044.067754,
+        -482.309496,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 720.0,
+      "positions_km": {
+        "g2-alpha": [
+          4874.412699,
+          -650.233129,
+          4873.270631
+        ],
+        "g2-bravo": [
+          4857.243626,
+          -652.479781,
+          4890.1085
+        ],
+        "g2-charlie": [
+          4840.015482,
+          -654.718497,
+          4906.886898
+        ],
+        "g2-delta": [
+          4822.728474,
+          -656.949251,
+          4923.605622
+        ]
+      },
+      "target_eci_km": [
+        5045.1108,
+        -471.273773,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 750.0,
+      "positions_km": {
+        "g2-alpha": [
+          4710.213738,
+          -671.096984,
+          5029.637951
+        ],
+        "g2-bravo": [
+          4692.496137,
+          -673.267751,
+          5045.907094
+        ],
+        "g2-charlie": [
+          4674.721472,
+          -675.430331,
+          5062.114876
+        ],
+        "g2-delta": [
+          4656.889958,
+          -677.584697,
+          5078.2611
+        ]
+      },
+      "target_eci_km": [
+        5046.129702,
+        -460.235794,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 780.0,
+      "positions_km": {
+        "g2-alpha": [
+          4540.92358,
+          -691.235461,
+          5180.568817
+        ],
+        "g2-bravo": [
+          4522.676641,
+          -693.328004,
+          5196.251692
+        ],
+        "g2-charlie": [
+          4504.374706,
+          -695.412115,
+          5211.871381
+        ],
+        "g2-delta": [
+          4486.017998,
+          -697.487771,
+          5227.427696
+        ]
+      },
+      "target_eci_km": [
+        5047.124454,
+        -449.195613,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 810.0,
+      "positions_km": {
+        "g2-alpha": [
+          4366.725569,
+          -710.626848,
+          5325.900503
+        ],
+        "g2-bravo": [
+          4347.969051,
+          -712.63891,
+          5340.980203
+        ],
+        "g2-charlie": [
+          4329.159665,
+          -714.642307,
+          5355.994962
+        ],
+        "g2-delta": [
+          4310.297642,
+          -716.637014,
+          5370.9446
+        ]
+      },
+      "target_eci_km": [
+        5048.095052,
+        -438.153282,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 840.0,
+      "positions_km": {
+        "g2-alpha": [
+          4187.808333,
+          -729.250245,
+          5465.476366
+        ],
+        "g2-bravo": [
+          4168.562545,
+          -731.179657,
+          5479.936642
+        ],
+        "g2-charlie": [
+          4149.266076,
+          -733.10018,
+          5494.330292
+        ],
+        "g2-delta": [
+          4129.919158,
+          -735.01179,
+          5508.657144
+        ]
+      },
+      "target_eci_km": [
+        5049.041491,
+        -427.108854,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 870.0,
+      "positions_km": {
+        "g2-alpha": [
+          4004.365585,
+          -747.085585,
+          5599.146023
+        ],
+        "g2-bravo": [
+          3984.651362,
+          -748.93027,
+          5612.971296
+        ],
+        "g2-charlie": [
+          3964.888698,
+          -750.765851,
+          5626.728333
+        ],
+        "g2-delta": [
+          3945.077831,
+          -752.592304,
+          5640.416967
+        ]
+      },
+      "target_eci_km": [
+        5049.963767,
+        -416.062382,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 900.0,
+      "positions_km": {
+        "g2-alpha": [
+          3816.595903,
+          -764.113659,
+          5726.765505
+        ],
+        "g2-bravo": [
+          3796.434584,
+          -765.871631,
+          5739.940889
+        ],
+        "g2-charlie": [
+          3776.227116,
+          -767.620293,
+          5753.046499
+        ],
+        "g2-delta": [
+          3755.973743,
+          -769.359623,
+          5766.082176
+        ]
+      },
+      "target_eci_km": [
+        5050.861875,
+        -405.013919,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 930.0,
+      "positions_km": {
+        "g2-alpha": [
+          3624.702517,
+          -780.316135,
+          5848.197415
+        ],
+        "g2-bravo": [
+          3604.115922,
+          -781.985501,
+          5860.708729
+        ],
+        "g2-charlie": [
+          3583.485519,
+          -783.645362,
+          5873.148807
+        ],
+        "g2-delta": [
+          3562.811558,
+          -785.295697,
+          5885.517497
+        ]
+      },
+      "target_eci_km": [
+        5051.735811,
+        -393.963518,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 960.0,
+      "positions_km": {
+        "g2-alpha": [
+          3428.893087,
+          -795.675577,
+          5963.311076
+        ],
+        "g2-bravo": [
+          3407.903493,
+          -797.254541,
+          5975.144859
+        ],
+        "g2-charlie": [
+          3386.872478,
+          -798.823815,
+          5986.906021
+        ],
+        "g2-delta": [
+          3365.800298,
+          -800.38338,
+          5998.59442
+        ]
+      },
+      "target_eci_km": [
+        5052.58557,
+        -382.911231,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 990.0,
+      "positions_km": {
+        "g2-alpha": [
+          3229.379475,
+          -810.175463,
+          6071.982668
+        ],
+        "g2-bravo": [
+          3208.009589,
+          -811.662327,
+          6083.126196
+        ],
+        "g2-charlie": [
+          3186.600715,
+          -813.139327,
+          6094.195796
+        ],
+        "g2-delta": [
+          3165.153114,
+          -814.606445,
+          6105.191335
+        ]
+      },
+      "target_eci_km": [
+        5053.411149,
+        -371.857112,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 1020.0,
+      "positions_km": {
+        "g2-alpha": [
+          3026.377515,
+          -823.800205,
+          6174.095362
+        ],
+        "g2-bravo": [
+          3004.650452,
+          -825.193372,
+          6184.536657
+        ],
+        "g2-charlie": [
+          2982.886876,
+          -826.57651,
+          6194.902799
+        ],
+        "g2-delta": [
+          2961.087052,
+          -827.949605,
+          6205.193663
+        ]
+      },
+      "target_eci_km": [
+        5054.212544,
+        -360.801213,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 1050.0,
+      "positions_km": {
+        "g2-alpha": [
+          2820.106773,
+          -836.535165,
+          6269.539443
+        ],
+        "g2-bravo": [
+          2798.046031,
+          -837.833137,
+          6279.267291
+        ],
+        "g2-charlie": [
+          2775.95129,
+          -839.120929,
+          6288.918842
+        ],
+        "g2-delta": [
+          2753.822819,
+          -840.398525,
+          6298.493978
+        ]
+      },
+      "target_eci_km": [
+        5054.98975,
+        -349.743588,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 1080.0,
+      "positions_km": {
+        "g2-alpha": [
+          2610.790314,
+          -848.366667,
+          6358.212426
+        ],
+        "g2-bravo": [
+          2588.419748,
+          -849.568052,
+          6367.216386
+        ],
+        "g2-charlie": [
+          2566.017733,
+          -850.759114,
+          6376.142987
+        ],
+        "g2-delta": [
+          2543.584542,
+          -851.939841,
+          6384.992121
+        ]
+      },
+      "target_eci_km": [
+        5055.742765,
+        -338.684288,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 1110.0,
+      "positions_km": {
+        "g2-alpha": [
+          2398.654455,
+          -859.282017,
+          6440.019168
+        ],
+        "g2-bravo": [
+          2375.99825,
+          -860.385526,
+          6448.289583
+        ],
+        "g2-charlie": [
+          2353.31318,
+          -861.478582,
+          6456.481661
+        ],
+        "g2-delta": [
+          2330.59952,
+          -862.561173,
+          6464.595303
+        ]
+      },
+      "target_eci_km": [
+        5056.471584,
+        -327.623368,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 1140.0,
+      "positions_km": {
+        "g2-alpha": [
+          2183.928521,
+          -869.269512,
+          6514.871964
+        ],
+        "g2-bravo": [
+          2161.011166,
+          -870.273963,
+          6522.399972
+        ],
+        "g2-charlie": [
+          2138.067561,
+          -871.267842,
+          6529.84875
+        ],
+        "g2-delta": [
+          2115.097982,
+          -872.251138,
+          6537.218208
+        ]
+      },
+      "target_eci_km": [
+        5057.176204,
+        -316.56088,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 1170.0,
+      "positions_km": {
+        "g2-alpha": [
+          1966.844591,
+          -878.318456,
+          6582.690643
+        ],
+        "g2-bravo": [
+          1943.690854,
+          -879.222773,
+          6589.468185
+        ],
+        "g2-charlie": [
+          1920.513508,
+          -880.116411,
+          6596.16569
+        ],
+        "g2-delta": [
+          1897.312833,
+          -880.999359,
+          6602.783078
+        ]
+      },
+      "target_eci_km": [
+        5057.856622,
+        -305.496877,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 1200.0,
+      "positions_km": {
+        "g2-alpha": [
+          1747.637251,
+          -886.419167,
+          6643.402647
+        ],
+        "g2-bravo": [
+          1724.272149,
+          -887.222384,
+          6649.422479
+        ],
+        "g2-charlie": [
+          1700.886106,
+          -888.014825,
+          6655.361552
+        ],
+        "g2-delta": [
+          1677.479403,
+          -888.796482,
+          6661.219797
+        ]
+      },
+      "target_eci_km": [
+        5058.512834,
+        -294.431412,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 1230.0,
+      "positions_km": {
+        "g2-alpha": [
+          1526.543337,
+          -893.56299,
+          6696.943113
+        ],
+        "g2-bravo": [
+          1502.992112,
+          -894.264249,
+          6702.198808
+        ],
+        "g2-charlie": [
+          1479.422634,
+          -894.954649,
+          6707.373112
+        ],
+        "g2-delta": [
+          1455.835189,
+          -895.63418,
+          6712.465963
+        ]
+      },
+      "target_eci_km": [
+        5059.144838,
+        -283.364537,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 1260.0,
+      "positions_km": {
+        "g2-alpha": [
+          1303.801677,
+          -899.742307,
+          6743.254937
+        ],
+        "g2-bravo": [
+          1280.089766,
+          -900.340861,
+          6747.740896
+        ],
+        "g2-charlie": [
+          1256.36231,
+          -900.928483,
+          6752.144919
+        ],
+        "g2-delta": [
+          1232.619598,
+          -901.505166,
+          6756.466952
+        ]
+      },
+      "target_eci_km": [
+        5059.75263,
+        -272.296307,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 1290.0,
+      "positions_km": {
+        "g2-alpha": [
+          1079.652832,
+          -904.95054,
+          6782.288831
+        ],
+        "g2-bravo": [
+          1055.805841,
+          -905.445754,
+          6786.000287
+        ],
+        "g2-charlie": [
+          1031.946031,
+          -905.929974,
+          6789.62935
+        ],
+        "g2-delta": [
+          1008.07369,
+          -906.403196,
+          6793.175977
+        ]
+      },
+      "target_eci_km": [
+        5060.336207,
+        -261.226774,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 1320.0,
+      "positions_km": {
+        "g2-alpha": [
+          854.338837,
+          -909.182164,
+          6814.003377
+        ],
+        "g2-bravo": [
+          830.382514,
+          -909.573513,
+          6816.936401
+        ],
+        "g2-charlie": [
+          806.416109,
+          -909.953819,
+          6819.786664
+        ],
+        "g2-delta": [
+          782.439914,
+          -910.323078,
+          6822.554132
+        ]
+      },
+      "target_eci_km": [
+        5060.895566,
+        -250.15599,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 1350.0,
+      "positions_km": {
+        "g2-alpha": [
+          628.102938,
+          -912.432707,
+          6838.365067
+        ],
+        "g2-bravo": [
+          604.063143,
+          -912.719779,
+          6840.516569
+        ],
+        "g2-charlie": [
+          580.016014,
+          -912.995771,
+          6842.585032
+        ],
+        "g2-delta": [
+          555.961843,
+          -913.26068,
+          6844.570433
+        ]
+      },
+      "target_eci_km": [
+        5061.430706,
+        -239.084009,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 1380.0,
+      "positions_km": {
+        "g2-alpha": [
+          401.189328,
+          -914.698759,
+          6855.348333
+        ],
+        "g2-bravo": [
+          377.092006,
+          -914.881254,
+          6856.71607
+        ],
+        "g2-charlie": [
+          352.990105,
+          -915.052644,
+          6858.000579
+        ],
+        "g2-delta": [
+          328.883919,
+          -915.212927,
+          6859.201846
+        ]
+      },
+      "target_eci_km": [
+        5061.941622,
+        -228.010884,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 1410.0,
+      "positions_km": {
+        "g2-alpha": [
+          173.842883,
+          -915.977971,
+          6864.93558
+        ],
+        "g2-bravo": [
+          149.714036,
+          -916.055702,
+          6865.518152
+        ],
+        "g2-charlie": [
+          125.58337,
+          -916.122316,
+          6866.017398
+        ],
+        "g2-delta": [
+          101.45118,
+          -916.177811,
+          6866.433313
+        ]
+      },
+      "target_eci_km": [
+        5062.428314,
+        -216.936668,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 1440.0,
+      "positions_km": {
+        "g2-alpha": [
+          -53.691101,
+          -916.26906,
+          6867.117192
+        ],
+        "g2-bravo": [
+          -77.825442,
+          -916.241955,
+          6866.914048
+        ],
+        "g2-charlie": [
+          -101.95884,
+          -916.20373,
+          6866.62757
+        ],
+        "g2-delta": [
+          -126.091002,
+          -916.154388,
+          6866.257762
+        ]
+      },
+      "target_eci_km": [
+        5062.890778,
+        -205.861414,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 1470.0,
+      "positions_km": {
+        "g2-alpha": [
+          -281.167174,
+          -915.57181,
+          6861.891545
+        ],
+        "g2-bravo": [
+          -305.280979,
+          -915.439907,
+          6860.902983
+        ],
+        "g2-charlie": [
+          -329.391079,
+          -915.296897,
+          6859.831167
+        ],
+        "g2-delta": [
+          -353.497184,
+          -915.142779,
+          6858.676111
+        ]
+      },
+      "target_eci_km": [
+        5063.329012,
+        -194.785174,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 1500.0,
+      "positions_km": {
+        "g2-alpha": [
+          -508.339999,
+          -913.88707,
+          6849.265005
+        ],
+        "g2-bravo": [
+          -532.407261,
+          -913.650523,
+          6847.492167
+        ],
+        "g2-charlie": [
+          -556.468064,
+          -913.40289,
+          6845.636247
+        ],
+        "g2-delta": [
+          -580.522117,
+          -913.144175,
+          6843.697267
+        ]
+      },
+      "target_eci_km": [
+        5063.743015,
+        -183.708002,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 1530.0,
+      "positions_km": {
+        "g2-alpha": [
+          -734.964612,
+          -911.216754,
+          6829.251917
+        ],
+        "g2-bravo": [
+          -758.959383,
+          -910.875827,
+          6826.696792
+        ],
+        "g2-charlie": [
+          -782.944946,
+          -910.52385,
+          6824.058845
+        ],
+        "g2-delta": [
+          -806.921013,
+          -910.160826,
+          6821.338109
+        ]
+      },
+      "target_eci_km": [
+        5064.132784,
+        -172.629951,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 1560.0,
+      "positions_km": {
+        "g2-alpha": [
+          -960.796688,
+          -907.563838,
+          6801.874585
+        ],
+        "g2-bravo": [
+          -984.693102,
+          -907.11891,
+          6798.540005
+        ],
+        "g2-charlie": [
+          -1008.577571,
+          -906.662978,
+          6795.122953
+        ],
+        "g2-delta": [
+          -1032.449806,
+          -906.196047,
+          6791.623471
+        ]
+      },
+      "target_eci_km": [
+        5064.498317,
+        -161.551074,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 1590.0,
+      "positions_km": {
+        "g2-alpha": [
+          -1185.592806,
+          -902.932357,
+          6767.163249
+        ],
+        "g2-bravo": [
+          -1209.365107,
+          -902.383917,
+          6763.052886
+        ],
+        "g2-charlie": [
+          -1233.12274,
+          -901.824532,
+          6758.860489
+        ],
+        "g2-delta": [
+          -1256.865417,
+          -901.254208,
+          6754.586109
+        ]
+      },
+      "target_eci_km": [
+        5064.839613,
+        -150.471424,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 1620.0,
+      "positions_km": {
+        "g2-alpha": [
+          -1409.110707,
+          -897.327399,
+          6725.156046
+        ],
+        "g2-bravo": [
+          -1432.73328,
+          -896.676049,
+          6720.274405
+        ],
+        "g2-charlie": [
+          -1456.338477,
+          -896.013824,
+          6715.311258
+        ],
+        "g2-delta": [
+          -1479.926011,
+          -895.340731,
+          6710.266664
+        ]
+      },
+      "target_eci_km": [
+        5065.15667,
+        -139.391053,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 1650.0,
+      "positions_km": {
+        "g2-alpha": [
+          -1631.109558,
+          -890.755101,
+          6675.898965
+        ],
+        "g2-bravo": [
+          -1654.556952,
+          -890.001553,
+          6670.251384
+        ],
+        "g2-charlie": [
+          -1677.984282,
+          -889.237211,
+          6664.522911
+        ],
+        "g2-delta": [
+          -1701.391264,
+          -888.462086,
+          6658.713614
+        ]
+      },
+      "target_eci_km": [
+        5065.449486,
+        -128.310016,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 1680.0,
+      "positions_km": {
+        "g2-alpha": [
+          -1851.350207,
+          -883.222641,
+          6619.445799
+        ],
+        "g2-bravo": [
+          -1874.597167,
+          -882.367716,
+          6613.038438
+        ],
+        "g2-charlie": [
+          -1897.821396,
+          -881.502092,
+          6606.550886
+        ],
+        "g2-delta": [
+          -1921.022613,
+          -880.625778,
+          6599.983222
+        ]
+      },
+      "target_eci_km": [
+        5065.71806,
+        -117.228364,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 1710.0,
+      "positions_km": {
+        "g2-alpha": [
+          -2069.595442,
+          -874.738227,
+          6555.85808
+        ],
+        "g2-bravo": [
+          -2092.616932,
+          -873.782858,
+          6548.697917
+        ],
+        "g2-charlie": [
+          -2115.613049,
+          -872.816893,
+          6541.45835
+        ],
+        "g2-delta": [
+          -2138.583516,
+          -871.840346,
+          6534.139468
+        ]
+      },
+      "target_eci_km": [
+        5065.962391,
+        -106.146152,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 1740.0,
+      "positions_km": {
+        "g2-alpha": [
+          -2285.610247,
+          -865.311095,
+          6485.205011
+        ],
+        "g2-bravo": [
+          -2308.381478,
+          -864.256319,
+          6477.299833
+        ],
+        "g2-charlie": [
+          -2331.124724,
+          -863.191065,
+          6469.316123
+        ],
+        "g2-delta": [
+          -2353.839708,
+          -862.115346,
+          6461.253981
+        ]
+      },
+      "target_eci_km": [
+        5066.182478,
+        -95.063431,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 1770.0,
+      "positions_km": {
+        "g2-alpha": [
+          -2499.162048,
+          -854.951491,
+          6407.563389
+        ],
+        "g2-bravo": [
+          -2521.658507,
+          -853.798455,
+          6398.921783
+        ],
+        "g2-charlie": [
+          -2544.124397,
+          -852.635068,
+          6390.202603
+        ],
+        "g2-delta": [
+          -2566.559446,
+          -851.461345,
+          6381.405957
+        ]
+      },
+      "target_eci_km": [
+        5066.378319,
+        -83.980256,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [
+        "g2-partition-00"
+      ],
+      "faulted_satellites": [
+        "g2-alpha",
+        "g2-bravo"
+      ]
+    },
+    {
+      "time_s": 1800.0,
+      "positions_km": {
+        "g2-alpha": [
+          -2710.020968,
+          -843.670664,
+          6323.01752
+        ],
+        "g2-bravo": [
+          -2732.218441,
+          -842.420618,
+          6313.648864
+        ],
+        "g2-charlie": [
+          -2754.382795,
+          -841.160361,
+          6304.203676
+        ],
+        "g2-delta": [
+          -2776.513762,
+          -839.889908,
+          6294.682071
+        ]
+      },
+      "target_eci_km": [
+        5066.549914,
+        -72.896678,
+        3860.69137
+      ],
+      "links": [
+        [
+          "g2-alpha",
+          "g2-bravo"
+        ],
+        [
+          "g2-alpha",
+          "g2-charlie"
+        ],
+        [
+          "g2-alpha",
+          "g2-delta"
+        ],
+        [
+          "g2-bravo",
+          "g2-charlie"
+        ],
+        [
+          "g2-bravo",
+          "g2-delta"
+        ],
+        [
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "groups": [
+        [
+          "g2-alpha",
+          "g2-bravo",
+          "g2-charlie",
+          "g2-delta"
+        ]
+      ],
+      "active_faults": [],
+      "faulted_satellites": []
+    }
+  ],
+  "first_violation": {
+    "rule": "duplicate-task-claim",
+    "severity": "error",
+    "time_s": 0.0,
+    "message": "3 satellites proposed task.hotspot.g2-eq at t=0 s; their claims never crossed the partition",
+    "entities": [
+      "g2-alpha",
+      "g2-charlie",
+      "g2-delta",
+      "task.hotspot.g2-eq"
+    ],
+    "evidence": {
+      "task_id": "task.hotspot.g2-eq",
+      "satellites": [
+        "g2-alpha",
+        "g2-charlie",
+        "g2-delta"
+      ]
+    }
+  },
+  "limitations": [
+    "claim delivery is a link-graph visibility model, not a radio or protocol simulation",
+    "the local task view hides peer assignments that no delivered claim covered",
+    "terminal task states remain globally visible so completed work is not re-proposed"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "dataset_root": "data/ml/demo",
+  "split": "train",
+  "base_index": 0,
+  "policy": "distributed-greedy",
+  "mode": "random",
+  "budget": 24,
+  "seed": 53,
+  "dataset_out": "runs/search/mixed/partitioned-fail.jsonl"
+}

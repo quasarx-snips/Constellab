@@ -231,13 +231,56 @@ class TestSwarmRegistries(ApiTestCase):
         self.assertEqual({item["key"] for item in payload["tasks"]["types"]},
                          {"task.imaging", "task.change-detection"})
         self.assertEqual({item["key"] for item in payload["policies"]["policies"]},
-                         {"local-greedy", "fixed-priority", "oracle-upper-bound"})
+                         {"local-greedy", "fixed-priority", "leases-only",
+                          "distributed-greedy", "oracle-upper-bound"})
         self.assertEqual({item["key"] for item in payload["contacts"]["models"]},
                          {"link.uhf", "link.optical"})
         self.assertIn("overflow_policy", payload["transport"]["defaults"])
         # The route is advertised in status alongside every other endpoint.
         _, status = self._request("GET", "/api/status")
         self.assertIn("GET /api/swarm", status["endpoints"])
+
+
+class TestG2Endpoint(ApiTestCase):
+    def test_g2_route_serves_the_cached_gate_report(self):
+        res, payload = self._request("GET", "/api/g2")
+        self.assertEqual(res.status, 200)
+        self.assertEqual(payload["request_id"], res.getheader("X-Request-Id"))
+        self.assertEqual(payload["revision"], int(res.getheader("X-Revision")))
+        self.assertTrue(payload["checks"]["g2_pass"])
+        self.assertTrue(payload["checks"]["replay_reproduces_hash"])
+        self.assertEqual(payload["scenario_id"], "g2-partition")
+        self.assertEqual(payload["fault"]["metrics"]["conflicts"], 2)
+        self.assertEqual(payload["control"]["metrics"]["conflicts"], 0)
+        self.assertEqual(payload["first_violation"]["rule"], "duplicate-task-claim")
+        self.assertEqual(payload["timeline"][0]["time_s"], 0.0)
+
+        # The route is discoverable through status, so a stale core is obvious.
+        _, status = self._request("GET", "/api/status")
+        self.assertIn("GET /api/g2", status["endpoints"])
+
+    def test_ml_route_serves_the_compact_evidence_payload(self):
+        res, payload = self._request("GET", "/api/ml")
+        self.assertEqual(res.status, 200)
+        self.assertEqual(payload["version"], "ml-report-1")
+        self.assertIn("gate", payload)
+        self.assertIn("generalization", payload)
+        self.assertIn("benchmark", payload)
+        self.assertIn("shield", payload)
+        self.assertIn("compatibility", payload)
+        self.assertIn("ablations", payload)
+        self.assertIn("training", payload)
+        self.assertIn("pipeline", payload)
+        self.assertIn("manifest", payload["pipeline"])
+        self.assertIn("request_id", payload)
+        _, status = self._request("GET", "/api/status")
+        self.assertIn("GET /api/ml", status["endpoints"])
+
+    def test_g2_report_is_stable_across_requests(self):
+        _, first = self._request("GET", "/api/g2")
+        _, second = self._request("GET", "/api/g2")
+        self.assertEqual(first["fault"]["trace_hash"], second["fault"]["trace_hash"])
+        self.assertEqual(first["control"]["trace_hash"], second["control"]["trace_hash"])
 
 
 if __name__ == "__main__":

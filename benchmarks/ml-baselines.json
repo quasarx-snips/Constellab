@@ -1,0 +1,158 @@
+{
+  "campaign": "demo-48",
+  "split": "test",
+  "episodes": 9,
+  "selection_note": "comparison only: checkpoints must have been selected on validation data before this report reads the test split",
+  "policies": {
+    "expert-rule": {
+      "aggregate": {
+        "episodes": 9,
+        "mean_coverage": 0.613794,
+        "mean_reward": -0.069435,
+        "observed": 68,
+        "expired": 67,
+        "conflicts": 0,
+        "invalid_actions": 0,
+        "tasks_total": 111,
+        "coverage_by_tasks": 0.612613
+      },
+      "families": {
+        "partitioned": {
+          "episodes": 9,
+          "observed": 68,
+          "expired": 67,
+          "conflicts": 0,
+          "tasks_total": 111,
+          "mean_coverage": 0.613794,
+          "mean_reward": -0.069435,
+          "coverage_by_tasks": 0.612613
+        }
+      }
+    },
+    "first-feasible": {
+      "aggregate": {
+        "episodes": 9,
+        "mean_coverage": 0.59731,
+        "mean_reward": -0.070683,
+        "observed": 66,
+        "expired": 68,
+        "conflicts": 0,
+        "invalid_actions": 0,
+        "tasks_total": 111,
+        "coverage_by_tasks": 0.594595
+      },
+      "families": {
+        "partitioned": {
+          "episodes": 9,
+          "observed": 66,
+          "expired": 68,
+          "conflicts": 0,
+          "tasks_total": 111,
+          "mean_coverage": 0.59731,
+          "mean_reward": -0.070683,
+          "coverage_by_tasks": 0.594595
+        }
+      }
+    },
+    "wait": {
+      "aggregate": {
+        "episodes": 9,
+        "mean_coverage": 0.0,
+        "mean_reward": -0.136865,
+        "observed": 0,
+        "expired": 111,
+        "conflicts": 0,
+        "invalid_actions": 0,
+        "tasks_total": 111,
+        "coverage_by_tasks": 0.0
+      },
+      "families": {
+        "partitioned": {
+          "episodes": 9,
+          "observed": 0,
+          "expired": 111,
+          "conflicts": 0,
+          "tasks_total": 111,
+          "mean_coverage": 0.0,
+          "mean_reward": -0.136865,
+          "coverage_by_tasks": 0.0
+        }
+      }
+    },
+    "mlp": {
+      "aggregate": {
+        "episodes": 9,
+        "mean_coverage": 0.624905,
+        "mean_reward": -0.068198,
+        "observed": 69,
+        "expired": 66,
+        "conflicts": 0,
+        "invalid_actions": 0,
+        "tasks_total": 111,
+        "coverage_by_tasks": 0.621622
+      },
+      "families": {
+        "partitioned": {
+          "episodes": 9,
+          "observed": 69,
+          "expired": 66,
+          "conflicts": 0,
+          "tasks_total": 111,
+          "mean_coverage": 0.624905,
+          "mean_reward": -0.068198,
+          "coverage_by_tasks": 0.621622
+        }
+      }
+    },
+    "deepsets": {
+      "aggregate": {
+        "episodes": 9,
+        "mean_coverage": 0.624905,
+        "mean_reward": -0.068198,
+        "observed": 69,
+        "expired": 66,
+        "conflicts": 0,
+        "invalid_actions": 0,
+        "tasks_total": 111,
+        "coverage_by_tasks": 0.621622
+      },
+      "families": {
+        "partitioned": {
+          "episodes": 9,
+          "observed": 69,
+          "expired": 66,
+          "conflicts": 0,
+          "tasks_total": 111,
+          "mean_coverage": 0.624905,
+          "mean_reward": -0.068198,
+          "coverage_by_tasks": 0.621622
+        }
+      }
+    },
+    "gnn_gru": {
+      "aggregate": {
+        "episodes": 9,
+        "mean_coverage": 0.624905,
+        "mean_reward": -0.068097,
+        "observed": 69,
+        "expired": 66,
+        "conflicts": 0,
+        "invalid_actions": 0,
+        "tasks_total": 111,
+        "coverage_by_tasks": 0.621622
+      },
+      "families": {
+        "partitioned": {
+          "episodes": 9,
+          "observed": 69,
+          "expired": 66,
+          "conflicts": 0,
+          "tasks_total": 111,
+          "mean_coverage": 0.624905,
+          "mean_reward": -0.068097,
+          "coverage_by_tasks": 0.621622
+        }
+      }
+    }
+  }
+}

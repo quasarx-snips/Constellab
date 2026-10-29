@@ -1,0 +1,10 @@
+{
+  "dataset_root": "data/ml/demo",
+  "split": "train",
+  "base_index": 10,
+  "policy": "local-greedy",
+  "mode": "random",
+  "budget": 24,
+  "seed": 56,
+  "dataset_out": "runs/search/mixed/faulted-pass.jsonl"
+}

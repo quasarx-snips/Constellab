@@ -1,0 +1,31 @@
+{
+  "run_id": "swarm-gnn-gru",
+  "dataset_root": "data/ml/demo",
+  "model": {
+    "model": "gnn_gru",
+    "hidden": 64,
+    "layers": 2
+  },
+  "learning_rate": 0.002,
+  "weight_decay": 0.0001,
+  "schedule": "cosine",
+  "warmup_steps": 20,
+  "abstain_weight": 1.0,
+  "graphs_per_batch": 8,
+  "steps_per_chunk": 4,
+  "batches_per_epoch": 16,
+  "epochs": 8,
+  "max_steps": 0,
+  "seed": 0,
+  "early_stopping": {
+    "patience": 3,
+    "min_delta": 0.0001,
+    "metric": "validation_loss"
+  },
+  "evaluate_every": 2,
+  "evaluation_episodes": 6,
+  "max_sequence_samples": 4000,
+  "use_abstain_class": true,
+  "export": true,
+  "labels": "documented baseline"
+}

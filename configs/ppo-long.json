@@ -1,0 +1,20 @@
+{
+  "run_id": "ppo-long",
+  "dataset_root": "data/ml/demo",
+  "model": {"model": "gnn", "hidden": 32, "layers": 2},
+  "learning_rate": 0.0003,
+  "gamma": 0.99,
+  "gae_lambda": 0.95,
+  "clip_ratio": 0.2,
+  "entropy_coef": 0.005,
+  "value_coef": 0.5,
+  "max_grad_norm": 0.5,
+  "epochs": 4,
+  "updates": 24,
+  "episodes_per_update": 4,
+  "max_episode_steps": 12,
+  "max_train_episodes": 24,
+  "validation_episodes": 4,
+  "evaluate_every": 1,
+  "seed": 3
+}

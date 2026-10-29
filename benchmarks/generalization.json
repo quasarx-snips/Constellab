@@ -1,0 +1,4794 @@
+{
+  "version": "generalization-suite-1",
+  "generated_at_s": 1793297054.942,
+  "suite": {
+    "split": "test",
+    "seed": 46,
+    "inventory": {
+      "training_episodes": 30,
+      "training_fleets": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        9,
+        10,
+        11,
+        12,
+        14,
+        15,
+        16
+      ],
+      "training_fleet_range": [
+        2.0,
+        16.0
+      ],
+      "training_task_range": [
+        1.0,
+        8.0
+      ],
+      "test_episodes": 9,
+      "sampled_extra": 6,
+      "source_campaign": "demo-48"
+    },
+    "slice_counts": {
+      "all": 15,
+      "condition:boundary": 5,
+      "condition:noisy": 1,
+      "condition:nominal": 9,
+      "family:partitioned": 15,
+      "fleet:large": 15,
+      "fleet:unseen": 15,
+      "held-out": 15,
+      "ood": 15,
+      "parameter-compatible": 15
+    },
+    "envelope": {
+      "ranges": {
+        "energy.initial_charge_ratio": {
+          "min": 0.503895,
+          "max": 0.987427
+        },
+        "faults.count": {
+          "min": 0,
+          "max": 6
+        },
+        "fleet.size": {
+          "min": 2,
+          "max": 24
+        },
+        "network.partitions": {
+          "min": 0,
+          "max": 2
+        },
+        "sensor.duty_cycle_ratio": {
+          "min": 0.264917,
+          "max": 0.9493
+        },
+        "tasks.target_count": {
+          "min": 1,
+          "max": 14
+        }
+      },
+      "families": [
+        "degraded",
+        "faulted",
+        "large-hard",
+        "nominal",
+        "partitioned",
+        "small-easy"
+      ],
+      "condition_classes": [
+        "boundary",
+        "degraded",
+        "noisy",
+        "nominal",
+        "rare"
+      ],
+      "held_out_keys": [
+        "orbit.altitude_km",
+        "orbit.inclination_deg",
+        "fleet.size",
+        "sensor.half_angle_deg",
+        "tasks.target_count",
+        "network.link_range_km",
+        "faults.count",
+        "time.horizon_s"
+      ]
+    }
+  },
+  "policies": {
+    "expert-rule": {
+      "policy": {
+        "key": "expert-rule",
+        "kind": "rule",
+        "deployable": true,
+        "version": "expert-1",
+        "weights": {
+          "quality": 1.0,
+          "urgency": 0.4,
+          "deadline": 0.6,
+          "window_soon": 0.5,
+          "duration": 0.2,
+          "contention": 0.35,
+          "resource": 0.05
+        },
+        "decisions": 74,
+        "abstains": 69,
+        "candidates": 7
+      },
+      "episodes": [
+        {
+          "episode_id": "test-00005",
+          "family": "partitioned",
+          "condition_class": "boundary",
+          "fleet_size": 24,
+          "task_count": 13,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.461538,
+          "observed": 6,
+          "tasks_total": 13,
+          "expired": 7,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.04217,
+          "mean_latency_s": 321.301,
+          "latency_ms": 0.0301,
+          "latency_p95_ms": 0.0291,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:boundary",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00006",
+          "family": "partitioned",
+          "condition_class": "boundary",
+          "fleet_size": 17,
+          "task_count": 11,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.636364,
+          "observed": 7,
+          "tasks_total": 11,
+          "expired": 6,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.034899,
+          "mean_latency_s": 266.625,
+          "latency_ms": 0.0329,
+          "latency_p95_ms": 0.0468,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:boundary",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00008",
+          "family": "partitioned",
+          "condition_class": "noisy",
+          "fleet_size": 19,
+          "task_count": 14,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.307692,
+          "observed": 4,
+          "tasks_total": 13,
+          "expired": 9,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.113894,
+          "mean_latency_s": 366.17,
+          "latency_ms": 0.0262,
+          "latency_p95_ms": 0.0538,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:noisy",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00015",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 23,
+          "task_count": 12,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.833333,
+          "observed": 10,
+          "tasks_total": 12,
+          "expired": 6,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.028982,
+          "mean_latency_s": 399.337,
+          "latency_ms": 0.0274,
+          "latency_p95_ms": 0.0628,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00020",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 23,
+          "task_count": 11,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.818182,
+          "observed": 9,
+          "tasks_total": 11,
+          "expired": 2,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.029106,
+          "mean_latency_s": 467.191,
+          "latency_ms": 0.0276,
+          "latency_p95_ms": 0.0575,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00023",
+          "family": "partitioned",
+          "condition_class": "boundary",
+          "fleet_size": 24,
+          "task_count": 14,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.642857,
+          "observed": 9,
+          "tasks_total": 14,
+          "expired": 9,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.125979,
+          "mean_latency_s": 300.0,
+          "latency_ms": 0.0474,
+          "latency_p95_ms": 0.0608,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:boundary",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00033",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 24,
+          "task_count": 13,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.538462,
+          "observed": 7,
+          "tasks_total": 13,
+          "expired": 7,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.060087,
+          "mean_latency_s": 331.932,
+          "latency_ms": 0.0365,
+          "latency_p95_ms": 0.0577,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00035",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 20,
+          "task_count": 14,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.785714,
+          "observed": 11,
+          "tasks_total": 14,
+          "expired": 14,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.099648,
+          "mean_latency_s": 240.0,
+          "latency_ms": 0.0504,
+          "latency_p95_ms": 0.0573,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00042",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 19,
+          "task_count": 10,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.5,
+          "observed": 5,
+          "tasks_total": 10,
+          "expired": 7,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.090152,
+          "mean_latency_s": 480.885,
+          "latency_ms": 0.0357,
+          "latency_p95_ms": 0.0644,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-146000",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 18,
+          "task_count": 12,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.916667,
+          "observed": 11,
+          "tasks_total": 12,
+          "expired": 4,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.021039,
+          "mean_latency_s": 240.0,
+          "latency_ms": 0.0391,
+          "latency_p95_ms": 0.0591,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-146001",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 17,
+          "task_count": 11,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.727273,
+          "observed": 8,
+          "tasks_total": 11,
+          "expired": 6,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.045347,
+          "mean_latency_s": 250.718,
+          "latency_ms": 0.0248,
+          "latency_p95_ms": 0.0583,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-146002",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 20,
+          "task_count": 9,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.666667,
+          "observed": 6,
+          "tasks_total": 9,
+          "expired": 3,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.03935,
+          "mean_latency_s": 742.933,
+          "latency_ms": 0.0257,
+          "latency_p95_ms": 0.0588,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-146003",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 21,
+          "task_count": 12,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.25,
+          "observed": 3,
+          "tasks_total": 12,
+          "expired": 10,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.152374,
+          "mean_latency_s": 382.941,
+          "latency_ms": 0.0272,
+          "latency_p95_ms": 0.0426,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-146005",
+          "family": "partitioned",
+          "condition_class": "boundary",
+          "fleet_size": 24,
+          "task_count": 13,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.846154,
+          "observed": 11,
+          "tasks_total": 13,
+          "expired": 5,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.015568,
+          "mean_latency_s": 264.545455,
+          "latency_ms": 0.0372,
+          "latency_p95_ms": 0.0733,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:boundary",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-146006",
+          "family": "partitioned",
+          "condition_class": "boundary",
+          "fleet_size": 24,
+          "task_count": 13,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.461538,
+          "observed": 6,
+          "tasks_total": 13,
+          "expired": 7,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.081356,
+          "mean_latency_s": 367.005,
+          "latency_ms": 0.0243,
+          "latency_p95_ms": 0.055,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:boundary",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        }
+      ],
+      "slices": {
+        "all": {
+          "episodes": 15,
+          "coverage": {
+            "mean": 0.626163,
+            "low": 0.524842,
+            "high": 0.716411,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.06533,
+            "low": -0.087205,
+            "high": -0.045983,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.624309,
+          "observed": 113,
+          "tasks_total": 181,
+          "expired": 102,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 0.0328,
+            "p95": 0.0474,
+            "samples": 15
+          }
+        },
+        "condition:boundary": {
+          "episodes": 5,
+          "coverage": {
+            "mean": 0.60969,
+            "low": 0.496503,
+            "high": 0.728571,
+            "episodes": 5,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.059994,
+            "low": -0.094972,
+            "high": -0.028621,
+            "episodes": 5,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.609375,
+          "observed": 39,
+          "tasks_total": 64,
+          "expired": 34,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 0.0344,
+            "p95": 0.0372,
+            "samples": 5
+          }
+        },
+        "condition:noisy": {
+          "episodes": 1,
+          "coverage": {
+            "mean": 0.307692,
+            "low": null,
+            "high": null,
+            "episodes": 1
+          },
+          "reward": {
+            "mean": -0.113894,
+            "low": null,
+            "high": null,
+            "episodes": 1
+          },
+          "coverage_by_tasks": 0.307692,
+          "observed": 4,
+          "tasks_total": 13,
+          "expired": 9,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 0.0262,
+            "p95": 0.0262,
+            "samples": 1
+          }
+        },
+        "condition:nominal": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.6707,
+            "low": 0.535113,
+            "high": 0.78602,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.062898,
+            "low": -0.091799,
+            "high": -0.038662,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.673077,
+          "observed": 70,
+          "tasks_total": 104,
+          "expired": 59,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 0.0327,
+            "p95": 0.0391,
+            "samples": 9
+          }
+        },
+        "family:partitioned": {
+          "episodes": 15,
+          "coverage": {
+            "mean": 0.626163,
+            "low": 0.526623,
+            "high": 0.727528,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.06533,
+            "low": -0.08745,
+            "high": -0.045041,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.624309,
+          "observed": 113,
+          "tasks_total": 181,
+          "expired": 102,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 0.0328,
+            "p95": 0.0474,
+            "samples": 15
+          }
+        },
+        "fleet:large": {
+          "episodes": 15,
+          "coverage": {
+            "mean": 0.626163,
+            "low": 0.531746,
+            "high": 0.710956,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.06533,
+            "low": -0.087666,
+            "high": -0.04513,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.624309,
+          "observed": 113,
+          "tasks_total": 181,
+          "expired": 102,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 0.0328,
+            "p95": 0.0474,
+            "samples": 15
+          }
+        },
+        "fleet:unseen": {
+          "episodes": 15,
+          "coverage": {
+            "mean": 0.626163,
+            "low": 0.524104,
+            "high": 0.724148,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.06533,
+            "low": -0.085834,
+            "high": -0.045253,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.624309,
+          "observed": 113,
+          "tasks_total": 181,
+          "expired": 102,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 0.0328,
+            "p95": 0.0474,
+            "samples": 15
+          }
+        },
+        "held-out": {
+          "episodes": 15,
+          "coverage": {
+            "mean": 0.626163,
+            "low": 0.532801,
+            "high": 0.721473,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.06533,
+            "low": -0.087319,
+            "high": -0.045875,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.624309,
+          "observed": 113,
+          "tasks_total": 181,
+          "expired": 102,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 0.0328,
+            "p95": 0.0474,
+            "samples": 15
+          }
+        },
+        "ood": {
+          "episodes": 15,
+          "coverage": {
+            "mean": 0.626163,
+            "low": 0.520357,
+            "high": 0.716806,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.06533,
+            "low": -0.088583,
+            "high": -0.045436,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.624309,
+          "observed": 113,
+          "tasks_total": 181,
+          "expired": 102,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 0.0328,
+            "p95": 0.0474,
+            "samples": 15
+          }
+        },
+        "parameter-compatible": {
+          "episodes": 15,
+          "coverage": {
+            "mean": 0.626163,
+            "low": 0.520879,
+            "high": 0.737446,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.06533,
+            "low": -0.08579,
+            "high": -0.044777,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.624309,
+          "observed": 113,
+          "tasks_total": 181,
+          "expired": 102,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 0.0328,
+            "p95": 0.0474,
+            "samples": 15
+          }
+        }
+      },
+      "aggregate": {
+        "episodes": 15,
+        "coverage": {
+          "mean": 0.626163,
+          "low": 0.527533,
+          "high": 0.721656,
+          "episodes": 15,
+          "resamples": 500
+        },
+        "reward": {
+          "mean": -0.06533,
+          "low": -0.087343,
+          "high": -0.044604,
+          "episodes": 15,
+          "resamples": 500
+        },
+        "coverage_by_tasks": 0.624309,
+        "observed": 113,
+        "tasks_total": 181,
+        "expired": 102,
+        "conflicts": 0,
+        "invalid_actions": 0,
+        "latency_ms": {
+          "mean": 0.0328,
+          "p95": 0.0474,
+          "samples": 15
+        }
+      },
+      "shield": null
+    },
+    "first-feasible": {
+      "policy": {
+        "key": "baseline-first-feasible",
+        "kind": "baseline",
+        "deployable": true,
+        "version": "1"
+      },
+      "episodes": [
+        {
+          "episode_id": "test-00005",
+          "family": "partitioned",
+          "condition_class": "boundary",
+          "fleet_size": 24,
+          "task_count": 13,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.384615,
+          "observed": 5,
+          "tasks_total": 13,
+          "expired": 8,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.048268,
+          "mean_latency_s": 321.301,
+          "latency_ms": 0.0109,
+          "latency_p95_ms": 0.0158,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:boundary",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00006",
+          "family": "partitioned",
+          "condition_class": "boundary",
+          "fleet_size": 17,
+          "task_count": 11,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.636364,
+          "observed": 7,
+          "tasks_total": 11,
+          "expired": 6,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.034899,
+          "mean_latency_s": 266.625,
+          "latency_ms": 0.0184,
+          "latency_p95_ms": 0.0146,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:boundary",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00008",
+          "family": "partitioned",
+          "condition_class": "noisy",
+          "fleet_size": 19,
+          "task_count": 14,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.307692,
+          "observed": 4,
+          "tasks_total": 13,
+          "expired": 9,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.113894,
+          "mean_latency_s": 366.17,
+          "latency_ms": 0.0142,
+          "latency_p95_ms": 0.0144,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:noisy",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00015",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 23,
+          "task_count": 12,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.833333,
+          "observed": 10,
+          "tasks_total": 12,
+          "expired": 6,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.028982,
+          "mean_latency_s": 399.337,
+          "latency_ms": 0.0156,
+          "latency_p95_ms": 0.0156,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00020",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 23,
+          "task_count": 11,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.818182,
+          "observed": 9,
+          "tasks_total": 11,
+          "expired": 2,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.029106,
+          "mean_latency_s": 467.191,
+          "latency_ms": 0.0107,
+          "latency_p95_ms": 0.0143,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00023",
+          "family": "partitioned",
+          "condition_class": "boundary",
+          "fleet_size": 24,
+          "task_count": 14,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.642857,
+          "observed": 9,
+          "tasks_total": 14,
+          "expired": 9,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.125979,
+          "mean_latency_s": 300.0,
+          "latency_ms": 0.0112,
+          "latency_p95_ms": 0.0149,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:boundary",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00033",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 24,
+          "task_count": 13,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.538462,
+          "observed": 7,
+          "tasks_total": 13,
+          "expired": 7,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.060087,
+          "mean_latency_s": 331.932,
+          "latency_ms": 0.0118,
+          "latency_p95_ms": 0.0132,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00035",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 20,
+          "task_count": 14,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.714286,
+          "observed": 10,
+          "tasks_total": 14,
+          "expired": 14,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.103962,
+          "mean_latency_s": 264.0,
+          "latency_ms": 0.078,
+          "latency_p95_ms": 0.0157,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00042",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 19,
+          "task_count": 10,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.5,
+          "observed": 5,
+          "tasks_total": 10,
+          "expired": 7,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.090968,
+          "mean_latency_s": 552.885,
+          "latency_ms": 0.0101,
+          "latency_p95_ms": 0.0135,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-146000",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 18,
+          "task_count": 12,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.916667,
+          "observed": 11,
+          "tasks_total": 12,
+          "expired": 4,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.021039,
+          "mean_latency_s": 240.0,
+          "latency_ms": 0.0104,
+          "latency_p95_ms": 0.0151,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-146001",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 17,
+          "task_count": 11,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.636364,
+          "observed": 7,
+          "tasks_total": 11,
+          "expired": 7,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.059802,
+          "mean_latency_s": 250.718,
+          "latency_ms": 0.0113,
+          "latency_p95_ms": 0.0186,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-146002",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 20,
+          "task_count": 9,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.666667,
+          "observed": 6,
+          "tasks_total": 9,
+          "expired": 3,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.03935,
+          "mean_latency_s": 742.933,
+          "latency_ms": 0.0268,
+          "latency_p95_ms": 0.0143,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-146003",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 21,
+          "task_count": 12,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.166667,
+          "observed": 2,
+          "tasks_total": 12,
+          "expired": 11,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.166918,
+          "mean_latency_s": 382.941,
+          "latency_ms": 0.0099,
+          "latency_p95_ms": 0.0139,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-146005",
+          "family": "partitioned",
+          "condition_class": "boundary",
+          "fleet_size": 24,
+          "task_count": 13,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.846154,
+          "observed": 11,
+          "tasks_total": 13,
+          "expired": 5,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.019206,
+          "mean_latency_s": 289.090909,
+          "latency_ms": 0.0109,
+          "latency_p95_ms": 0.0172,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:boundary",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-146006",
+          "family": "partitioned",
+          "condition_class": "boundary",
+          "fleet_size": 24,
+          "task_count": 13,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.384615,
+          "observed": 5,
+          "tasks_total": 13,
+          "expired": 8,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.102416,
+          "mean_latency_s": 376.005,
+          "latency_ms": 0.011,
+          "latency_p95_ms": 0.0156,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:boundary",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        }
+      ],
+      "slices": {
+        "all": {
+          "episodes": 15,
+          "coverage": {
+            "mean": 0.599528,
+            "low": 0.479176,
+            "high": 0.708769,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.069658,
+            "low": -0.090025,
+            "high": -0.047801,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.596685,
+          "observed": 108,
+          "tasks_total": 181,
+          "expired": 106,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 0.0174,
+            "p95": 0.0268,
+            "samples": 15
+          }
+        },
+        "condition:boundary": {
+          "episodes": 5,
+          "coverage": {
+            "mean": 0.578921,
+            "low": 0.434965,
+            "high": 0.753846,
+            "episodes": 5,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.066154,
+            "low": -0.10305,
+            "high": -0.031296,
+            "episodes": 5,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.578125,
+          "observed": 37,
+          "tasks_total": 64,
+          "expired": 36,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 0.0125,
+            "p95": 0.0112,
+            "samples": 5
+          }
+        },
+        "condition:noisy": {
+          "episodes": 1,
+          "coverage": {
+            "mean": 0.307692,
+            "low": null,
+            "high": null,
+            "episodes": 1
+          },
+          "reward": {
+            "mean": -0.113894,
+            "low": null,
+            "high": null,
+            "episodes": 1
+          },
+          "coverage_by_tasks": 0.307692,
+          "observed": 4,
+          "tasks_total": 13,
+          "expired": 9,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 0.0142,
+            "p95": 0.0142,
+            "samples": 1
+          }
+        },
+        "condition:nominal": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.643403,
+            "low": 0.485043,
+            "high": 0.765392,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.06669,
+            "low": -0.09735,
+            "high": -0.042168,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.644231,
+          "observed": 67,
+          "tasks_total": 104,
+          "expired": 61,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 0.0205,
+            "p95": 0.0268,
+            "samples": 9
+          }
+        },
+        "family:partitioned": {
+          "episodes": 15,
+          "coverage": {
+            "mean": 0.599528,
+            "low": 0.487718,
+            "high": 0.698241,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.069658,
+            "low": -0.09155,
+            "high": -0.047749,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.596685,
+          "observed": 108,
+          "tasks_total": 181,
+          "expired": 106,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 0.0174,
+            "p95": 0.0268,
+            "samples": 15
+          }
+        },
+        "fleet:large": {
+          "episodes": 15,
+          "coverage": {
+            "mean": 0.599528,
+            "low": 0.4999,
+            "high": 0.704901,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.069658,
+            "low": -0.091497,
+            "high": -0.048334,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.596685,
+          "observed": 108,
+          "tasks_total": 181,
+          "expired": 106,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 0.0174,
+            "p95": 0.0268,
+            "samples": 15
+          }
+        },
+        "fleet:unseen": {
+          "episodes": 15,
+          "coverage": {
+            "mean": 0.599528,
+            "low": 0.48789,
+            "high": 0.693462,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.069658,
+            "low": -0.091464,
+            "high": -0.048905,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.596685,
+          "observed": 108,
+          "tasks_total": 181,
+          "expired": 106,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 0.0174,
+            "p95": 0.0268,
+            "samples": 15
+          }
+        },
+        "held-out": {
+          "episodes": 15,
+          "coverage": {
+            "mean": 0.599528,
+            "low": 0.489511,
+            "high": 0.700083,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.069658,
+            "low": -0.094266,
+            "high": -0.049188,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.596685,
+          "observed": 108,
+          "tasks_total": 181,
+          "expired": 106,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 0.0174,
+            "p95": 0.0268,
+            "samples": 15
+          }
+        },
+        "ood": {
+          "episodes": 15,
+          "coverage": {
+            "mean": 0.599528,
+            "low": 0.496731,
+            "high": 0.704185,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.069658,
+            "low": -0.089295,
+            "high": -0.048594,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.596685,
+          "observed": 108,
+          "tasks_total": 181,
+          "expired": 106,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 0.0174,
+            "p95": 0.0268,
+            "samples": 15
+          }
+        },
+        "parameter-compatible": {
+          "episodes": 15,
+          "coverage": {
+            "mean": 0.599528,
+            "low": 0.493951,
+            "high": 0.700777,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.069658,
+            "low": -0.091261,
+            "high": -0.050358,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.596685,
+          "observed": 108,
+          "tasks_total": 181,
+          "expired": 106,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 0.0174,
+            "p95": 0.0268,
+            "samples": 15
+          }
+        }
+      },
+      "aggregate": {
+        "episodes": 15,
+        "coverage": {
+          "mean": 0.599528,
+          "low": 0.486924,
+          "high": 0.701676,
+          "episodes": 15,
+          "resamples": 500
+        },
+        "reward": {
+          "mean": -0.069658,
+          "low": -0.095892,
+          "high": -0.049089,
+          "episodes": 15,
+          "resamples": 500
+        },
+        "coverage_by_tasks": 0.596685,
+        "observed": 108,
+        "tasks_total": 181,
+        "expired": 106,
+        "conflicts": 0,
+        "invalid_actions": 0,
+        "latency_ms": {
+          "mean": 0.0174,
+          "p95": 0.0268,
+          "samples": 15
+        }
+      },
+      "shield": null
+    },
+    "wait": {
+      "policy": {
+        "key": "baseline-wait",
+        "kind": "baseline",
+        "deployable": true,
+        "version": "1"
+      },
+      "episodes": [
+        {
+          "episode_id": "test-00005",
+          "family": "partitioned",
+          "condition_class": "boundary",
+          "fleet_size": 24,
+          "task_count": 13,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.0,
+          "observed": 0,
+          "tasks_total": 13,
+          "expired": 13,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.079865,
+          "mean_latency_s": null,
+          "latency_ms": 0.0105,
+          "latency_p95_ms": 0.0149,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:boundary",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00006",
+          "family": "partitioned",
+          "condition_class": "boundary",
+          "fleet_size": 17,
+          "task_count": 11,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.0,
+          "observed": 0,
+          "tasks_total": 11,
+          "expired": 11,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.06808,
+          "mean_latency_s": null,
+          "latency_ms": 0.0108,
+          "latency_p95_ms": 0.0125,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:boundary",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00008",
+          "family": "partitioned",
+          "condition_class": "noisy",
+          "fleet_size": 19,
+          "task_count": 14,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.0,
+          "observed": 0,
+          "tasks_total": 13,
+          "expired": 13,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.188859,
+          "mean_latency_s": null,
+          "latency_ms": 0.0095,
+          "latency_p95_ms": 0.0126,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:noisy",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00015",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 23,
+          "task_count": 12,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.0,
+          "observed": 0,
+          "tasks_total": 12,
+          "expired": 12,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.07236,
+          "mean_latency_s": null,
+          "latency_ms": 0.022,
+          "latency_p95_ms": 0.0132,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00020",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 23,
+          "task_count": 11,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.0,
+          "observed": 0,
+          "tasks_total": 11,
+          "expired": 11,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.133666,
+          "mean_latency_s": null,
+          "latency_ms": 0.0091,
+          "latency_p95_ms": 0.0126,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00023",
+          "family": "partitioned",
+          "condition_class": "boundary",
+          "fleet_size": 24,
+          "task_count": 14,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.0,
+          "observed": 0,
+          "tasks_total": 14,
+          "expired": 14,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.248675,
+          "mean_latency_s": null,
+          "latency_ms": 0.009,
+          "latency_p95_ms": 0.0124,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:boundary",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00033",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 24,
+          "task_count": 13,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.0,
+          "observed": 0,
+          "tasks_total": 13,
+          "expired": 13,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.150285,
+          "mean_latency_s": null,
+          "latency_ms": 0.0252,
+          "latency_p95_ms": 0.0144,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00035",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 20,
+          "task_count": 14,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.0,
+          "observed": 0,
+          "tasks_total": 14,
+          "expired": 14,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.160274,
+          "mean_latency_s": null,
+          "latency_ms": 0.0091,
+          "latency_p95_ms": 0.0117,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00042",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 19,
+          "task_count": 10,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.0,
+          "observed": 0,
+          "tasks_total": 10,
+          "expired": 10,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.129721,
+          "mean_latency_s": null,
+          "latency_ms": 0.0094,
+          "latency_p95_ms": 0.0128,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-146000",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 18,
+          "task_count": 12,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.0,
+          "observed": 0,
+          "tasks_total": 12,
+          "expired": 12,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.100447,
+          "mean_latency_s": null,
+          "latency_ms": 0.0091,
+          "latency_p95_ms": 0.0112,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-146001",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 17,
+          "task_count": 11,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.0,
+          "observed": 0,
+          "tasks_total": 11,
+          "expired": 11,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.13861,
+          "mean_latency_s": null,
+          "latency_ms": 0.0103,
+          "latency_p95_ms": 0.0111,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-146002",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 20,
+          "task_count": 9,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.0,
+          "observed": 0,
+          "tasks_total": 9,
+          "expired": 9,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.135253,
+          "mean_latency_s": null,
+          "latency_ms": 0.009,
+          "latency_p95_ms": 0.0131,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-146003",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 21,
+          "task_count": 12,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.0,
+          "observed": 0,
+          "tasks_total": 12,
+          "expired": 12,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.191107,
+          "mean_latency_s": null,
+          "latency_ms": 0.0094,
+          "latency_p95_ms": 0.0134,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-146005",
+          "family": "partitioned",
+          "condition_class": "boundary",
+          "fleet_size": 24,
+          "task_count": 13,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.0,
+          "observed": 0,
+          "tasks_total": 13,
+          "expired": 13,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.189669,
+          "mean_latency_s": null,
+          "latency_ms": 0.0095,
+          "latency_p95_ms": 0.0121,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:boundary",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-146006",
+          "family": "partitioned",
+          "condition_class": "boundary",
+          "fleet_size": 24,
+          "task_count": 13,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.0,
+          "observed": 0,
+          "tasks_total": 13,
+          "expired": 13,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.203803,
+          "mean_latency_s": null,
+          "latency_ms": 0.0103,
+          "latency_p95_ms": 0.0148,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:boundary",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        }
+      ],
+      "slices": {
+        "all": {
+          "episodes": 15,
+          "coverage": {
+            "mean": 0.0,
+            "low": 0.0,
+            "high": 0.0,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.146045,
+            "low": -0.172579,
+            "high": -0.12176,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.0,
+          "observed": 0,
+          "tasks_total": 181,
+          "expired": 181,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 0.0115,
+            "p95": 0.022,
+            "samples": 15
+          }
+        },
+        "condition:boundary": {
+          "episodes": 5,
+          "coverage": {
+            "mean": 0.0,
+            "low": 0.0,
+            "high": 0.0,
+            "episodes": 5,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.158018,
+            "low": -0.218925,
+            "high": -0.097112,
+            "episodes": 5,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.0,
+          "observed": 0,
+          "tasks_total": 64,
+          "expired": 64,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 0.01,
+            "p95": 0.0105,
+            "samples": 5
+          }
+        },
+        "condition:noisy": {
+          "episodes": 1,
+          "coverage": {
+            "mean": 0.0,
+            "low": null,
+            "high": null,
+            "episodes": 1
+          },
+          "reward": {
+            "mean": -0.188859,
+            "low": null,
+            "high": null,
+            "episodes": 1
+          },
+          "coverage_by_tasks": 0.0,
+          "observed": 0,
+          "tasks_total": 13,
+          "expired": 13,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 0.0095,
+            "p95": 0.0095,
+            "samples": 1
+          }
+        },
+        "condition:nominal": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.0,
+            "low": 0.0,
+            "high": 0.0,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.134636,
+            "low": -0.155149,
+            "high": -0.114498,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.0,
+          "observed": 0,
+          "tasks_total": 104,
+          "expired": 104,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 0.0125,
+            "p95": 0.022,
+            "samples": 9
+          }
+        },
+        "family:partitioned": {
+          "episodes": 15,
+          "coverage": {
+            "mean": 0.0,
+            "low": 0.0,
+            "high": 0.0,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.146045,
+            "low": -0.171876,
+            "high": -0.121716,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.0,
+          "observed": 0,
+          "tasks_total": 181,
+          "expired": 181,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 0.0115,
+            "p95": 0.022,
+            "samples": 15
+          }
+        },
+        "fleet:large": {
+          "episodes": 15,
+          "coverage": {
+            "mean": 0.0,
+            "low": 0.0,
+            "high": 0.0,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.146045,
+            "low": -0.170049,
+            "high": -0.122061,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.0,
+          "observed": 0,
+          "tasks_total": 181,
+          "expired": 181,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 0.0115,
+            "p95": 0.022,
+            "samples": 15
+          }
+        },
+        "fleet:unseen": {
+          "episodes": 15,
+          "coverage": {
+            "mean": 0.0,
+            "low": 0.0,
+            "high": 0.0,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.146045,
+            "low": -0.171995,
+            "high": -0.120962,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.0,
+          "observed": 0,
+          "tasks_total": 181,
+          "expired": 181,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 0.0115,
+            "p95": 0.022,
+            "samples": 15
+          }
+        },
+        "held-out": {
+          "episodes": 15,
+          "coverage": {
+            "mean": 0.0,
+            "low": 0.0,
+            "high": 0.0,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.146045,
+            "low": -0.169025,
+            "high": -0.119174,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.0,
+          "observed": 0,
+          "tasks_total": 181,
+          "expired": 181,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 0.0115,
+            "p95": 0.022,
+            "samples": 15
+          }
+        },
+        "ood": {
+          "episodes": 15,
+          "coverage": {
+            "mean": 0.0,
+            "low": 0.0,
+            "high": 0.0,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.146045,
+            "low": -0.170414,
+            "high": -0.119167,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.0,
+          "observed": 0,
+          "tasks_total": 181,
+          "expired": 181,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 0.0115,
+            "p95": 0.022,
+            "samples": 15
+          }
+        },
+        "parameter-compatible": {
+          "episodes": 15,
+          "coverage": {
+            "mean": 0.0,
+            "low": 0.0,
+            "high": 0.0,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.146045,
+            "low": -0.173941,
+            "high": -0.121539,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.0,
+          "observed": 0,
+          "tasks_total": 181,
+          "expired": 181,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 0.0115,
+            "p95": 0.022,
+            "samples": 15
+          }
+        }
+      },
+      "aggregate": {
+        "episodes": 15,
+        "coverage": {
+          "mean": 0.0,
+          "low": 0.0,
+          "high": 0.0,
+          "episodes": 15,
+          "resamples": 500
+        },
+        "reward": {
+          "mean": -0.146045,
+          "low": -0.173718,
+          "high": -0.123264,
+          "episodes": 15,
+          "resamples": 500
+        },
+        "coverage_by_tasks": 0.0,
+        "observed": 0,
+        "tasks_total": 181,
+        "expired": 181,
+        "conflicts": 0,
+        "invalid_actions": 0,
+        "latency_ms": {
+          "mean": 0.0115,
+          "p95": 0.022,
+          "samples": 15
+        }
+      },
+      "shield": null
+    },
+    "mlp": {
+      "policy": {
+        "key": "learned-mlp",
+        "kind": "learned",
+        "deployable": true,
+        "version": "learned-policy-1",
+        "checkpoint": "runs/baseline-mlp/checkpoint-best.pt",
+        "model": {
+          "model": "mlp",
+          "hidden": 32,
+          "layers": 2
+        },
+        "feature_schema": {
+          "satellite": [
+            "altitude_km_norm",
+            "speed_km_s_norm",
+            "available",
+            "busy",
+            "energy_fraction",
+            "storage_fraction",
+            "compute_duty",
+            "footprint_km_norm",
+            "visible_target_norm",
+            "visible_task_norm",
+            "time_to_window_norm",
+            "contact_degree_norm",
+            "claims_seen_norm",
+            "max_urgency_norm"
+          ],
+          "task": [
+            "active",
+            "urgency_norm",
+            "deadline_norm",
+            "age_norm",
+            "min_confidence",
+            "attempts_norm",
+            "is_assigned",
+            "is_in_progress",
+            "is_open",
+            "target_radius_km_norm",
+            "is_change_detection"
+          ],
+          "edge": [
+            "peak_quality",
+            "time_to_open_norm",
+            "duration_norm",
+            "resolution_norm"
+          ],
+          "global": [
+            "time_fraction",
+            "open_task_fraction",
+            "fleet_available_fraction",
+            "contact_density",
+            "fault_intensity",
+            "deadline_pressure"
+          ]
+        }
+      },
+      "episodes": [
+        {
+          "episode_id": "test-00005",
+          "family": "partitioned",
+          "condition_class": "boundary",
+          "fleet_size": 24,
+          "task_count": 13,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.461538,
+          "observed": 6,
+          "tasks_total": 13,
+          "expired": 7,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.04217,
+          "mean_latency_s": 321.301,
+          "latency_ms": 3.2364,
+          "latency_p95_ms": 6.1734,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:boundary",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00006",
+          "family": "partitioned",
+          "condition_class": "boundary",
+          "fleet_size": 17,
+          "task_count": 11,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.636364,
+          "observed": 7,
+          "tasks_total": 11,
+          "expired": 6,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.034899,
+          "mean_latency_s": 266.625,
+          "latency_ms": 2.6184,
+          "latency_p95_ms": 5.1084,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:boundary",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00008",
+          "family": "partitioned",
+          "condition_class": "noisy",
+          "fleet_size": 19,
+          "task_count": 14,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.307692,
+          "observed": 4,
+          "tasks_total": 13,
+          "expired": 9,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.113894,
+          "mean_latency_s": 366.17,
+          "latency_ms": 2.5913,
+          "latency_p95_ms": 4.6881,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:noisy",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00015",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 23,
+          "task_count": 12,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.833333,
+          "observed": 10,
+          "tasks_total": 12,
+          "expired": 6,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.028982,
+          "mean_latency_s": 399.337,
+          "latency_ms": 3.0031,
+          "latency_p95_ms": 5.6916,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00020",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 23,
+          "task_count": 11,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.818182,
+          "observed": 9,
+          "tasks_total": 11,
+          "expired": 2,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.029106,
+          "mean_latency_s": 467.191,
+          "latency_ms": 3.0446,
+          "latency_p95_ms": 6.0721,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00023",
+          "family": "partitioned",
+          "condition_class": "boundary",
+          "fleet_size": 24,
+          "task_count": 14,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.642857,
+          "observed": 9,
+          "tasks_total": 14,
+          "expired": 9,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.125979,
+          "mean_latency_s": 300.0,
+          "latency_ms": 2.7413,
+          "latency_p95_ms": 4.1667,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:boundary",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00033",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 24,
+          "task_count": 13,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.538462,
+          "observed": 7,
+          "tasks_total": 13,
+          "expired": 7,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.060087,
+          "mean_latency_s": 331.932,
+          "latency_ms": 3.1314,
+          "latency_p95_ms": 6.3491,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00035",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 20,
+          "task_count": 14,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.785714,
+          "observed": 11,
+          "tasks_total": 14,
+          "expired": 14,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.09974,
+          "mean_latency_s": 261.818182,
+          "latency_ms": 3.0593,
+          "latency_p95_ms": 5.825,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00042",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 19,
+          "task_count": 10,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.6,
+          "observed": 6,
+          "tasks_total": 10,
+          "expired": 6,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.078924,
+          "mean_latency_s": 552.885,
+          "latency_ms": 3.165,
+          "latency_p95_ms": 6.5659,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-146000",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 18,
+          "task_count": 12,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.916667,
+          "observed": 11,
+          "tasks_total": 12,
+          "expired": 4,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.021039,
+          "mean_latency_s": 240.0,
+          "latency_ms": 4.0526,
+          "latency_p95_ms": 6.5181,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-146001",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 17,
+          "task_count": 11,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.727273,
+          "observed": 8,
+          "tasks_total": 11,
+          "expired": 6,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.045347,
+          "mean_latency_s": 250.718,
+          "latency_ms": 2.7723,
+          "latency_p95_ms": 4.9896,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-146002",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 20,
+          "task_count": 9,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.666667,
+          "observed": 6,
+          "tasks_total": 9,
+          "expired": 3,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.03935,
+          "mean_latency_s": 742.933,
+          "latency_ms": 2.8907,
+          "latency_p95_ms": 5.4026,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-146003",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 21,
+          "task_count": 12,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.25,
+          "observed": 3,
+          "tasks_total": 12,
+          "expired": 10,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.152374,
+          "mean_latency_s": 382.941,
+          "latency_ms": 3.0527,
+          "latency_p95_ms": 6.071,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-146005",
+          "family": "partitioned",
+          "condition_class": "boundary",
+          "fleet_size": 24,
+          "task_count": 13,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.846154,
+          "observed": 11,
+          "tasks_total": 13,
+          "expired": 5,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.015568,
+          "mean_latency_s": 264.545455,
+          "latency_ms": 4.0379,
+          "latency_p95_ms": 11.7774,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:boundary",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-146006",
+          "family": "partitioned",
+          "condition_class": "boundary",
+          "fleet_size": 24,
+          "task_count": 13,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.461538,
+          "observed": 6,
+          "tasks_total": 13,
+          "expired": 7,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.081356,
+          "mean_latency_s": 367.005,
+          "latency_ms": 3.486,
+          "latency_p95_ms": 7.392,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:boundary",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        }
+      ],
+      "slices": {
+        "all": {
+          "episodes": 15,
+          "coverage": {
+            "mean": 0.632829,
+            "low": 0.533873,
+            "high": 0.727085,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.064588,
+            "low": -0.086866,
+            "high": -0.046765,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.629834,
+          "observed": 114,
+          "tasks_total": 181,
+          "expired": 101,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 3.1255,
+            "p95": 4.0379,
+            "samples": 15
+          }
+        },
+        "condition:boundary": {
+          "episodes": 5,
+          "coverage": {
+            "mean": 0.60969,
+            "low": 0.496503,
+            "high": 0.728571,
+            "episodes": 5,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.059994,
+            "low": -0.094972,
+            "high": -0.030075,
+            "episodes": 5,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.609375,
+          "observed": 39,
+          "tasks_total": 64,
+          "expired": 34,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 3.224,
+            "p95": 3.486,
+            "samples": 5
+          }
+        },
+        "condition:noisy": {
+          "episodes": 1,
+          "coverage": {
+            "mean": 0.307692,
+            "low": null,
+            "high": null,
+            "episodes": 1
+          },
+          "reward": {
+            "mean": -0.113894,
+            "low": null,
+            "high": null,
+            "episodes": 1
+          },
+          "coverage_by_tasks": 0.307692,
+          "observed": 4,
+          "tasks_total": 13,
+          "expired": 9,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 2.5913,
+            "p95": 2.5913,
+            "samples": 1
+          }
+        },
+        "condition:nominal": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.681811,
+            "low": 0.548174,
+            "high": 0.783357,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.061661,
+            "low": -0.090905,
+            "high": -0.038492,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.682692,
+          "observed": 71,
+          "tasks_total": 104,
+          "expired": 58,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 3.1302,
+            "p95": 3.165,
+            "samples": 9
+          }
+        },
+        "family:partitioned": {
+          "episodes": 15,
+          "coverage": {
+            "mean": 0.632829,
+            "low": 0.529407,
+            "high": 0.718942,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.064588,
+            "low": -0.086717,
+            "high": -0.046584,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.629834,
+          "observed": 114,
+          "tasks_total": 181,
+          "expired": 101,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 3.1255,
+            "p95": 4.0379,
+            "samples": 15
+          }
+        },
+        "fleet:large": {
+          "episodes": 15,
+          "coverage": {
+            "mean": 0.632829,
+            "low": 0.531526,
+            "high": 0.723689,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.064588,
+            "low": -0.08706,
+            "high": -0.044281,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.629834,
+          "observed": 114,
+          "tasks_total": 181,
+          "expired": 101,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 3.1255,
+            "p95": 4.0379,
+            "samples": 15
+          }
+        },
+        "fleet:unseen": {
+          "episodes": 15,
+          "coverage": {
+            "mean": 0.632829,
+            "low": 0.535454,
+            "high": 0.723561,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.064588,
+            "low": -0.086643,
+            "high": -0.045609,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.629834,
+          "observed": 114,
+          "tasks_total": 181,
+          "expired": 101,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 3.1255,
+            "p95": 4.0379,
+            "samples": 15
+          }
+        },
+        "held-out": {
+          "episodes": 15,
+          "coverage": {
+            "mean": 0.632829,
+            "low": 0.522894,
+            "high": 0.729518,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.064588,
+            "low": -0.085569,
+            "high": -0.04578,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.629834,
+          "observed": 114,
+          "tasks_total": 181,
+          "expired": 101,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 3.1255,
+            "p95": 4.0379,
+            "samples": 15
+          }
+        },
+        "ood": {
+          "episodes": 15,
+          "coverage": {
+            "mean": 0.632829,
+            "low": 0.532097,
+            "high": 0.715135,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.064588,
+            "low": -0.085334,
+            "high": -0.045668,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.629834,
+          "observed": 114,
+          "tasks_total": 181,
+          "expired": 101,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 3.1255,
+            "p95": 4.0379,
+            "samples": 15
+          }
+        },
+        "parameter-compatible": {
+          "episodes": 15,
+          "coverage": {
+            "mean": 0.632829,
+            "low": 0.5384,
+            "high": 0.727064,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.064588,
+            "low": -0.084567,
+            "high": -0.045819,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.629834,
+          "observed": 114,
+          "tasks_total": 181,
+          "expired": 101,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 3.1255,
+            "p95": 4.0379,
+            "samples": 15
+          }
+        }
+      },
+      "aggregate": {
+        "episodes": 15,
+        "coverage": {
+          "mean": 0.632829,
+          "low": 0.52495,
+          "high": 0.724814,
+          "episodes": 15,
+          "resamples": 500
+        },
+        "reward": {
+          "mean": -0.064588,
+          "low": -0.084669,
+          "high": -0.046109,
+          "episodes": 15,
+          "resamples": 500
+        },
+        "coverage_by_tasks": 0.629834,
+        "observed": 114,
+        "tasks_total": 181,
+        "expired": 101,
+        "conflicts": 0,
+        "invalid_actions": 0,
+        "latency_ms": {
+          "mean": 3.1255,
+          "p95": 4.0379,
+          "samples": 15
+        }
+      },
+      "shield": null
+    },
+    "deepsets": {
+      "policy": {
+        "key": "learned-deepsets",
+        "kind": "learned",
+        "deployable": true,
+        "version": "learned-policy-1",
+        "checkpoint": "runs/baseline-deepsets/checkpoint-best.pt",
+        "model": {
+          "model": "deepsets",
+          "hidden": 32,
+          "layers": 2
+        },
+        "feature_schema": {
+          "satellite": [
+            "altitude_km_norm",
+            "speed_km_s_norm",
+            "available",
+            "busy",
+            "energy_fraction",
+            "storage_fraction",
+            "compute_duty",
+            "footprint_km_norm",
+            "visible_target_norm",
+            "visible_task_norm",
+            "time_to_window_norm",
+            "contact_degree_norm",
+            "claims_seen_norm",
+            "max_urgency_norm"
+          ],
+          "task": [
+            "active",
+            "urgency_norm",
+            "deadline_norm",
+            "age_norm",
+            "min_confidence",
+            "attempts_norm",
+            "is_assigned",
+            "is_in_progress",
+            "is_open",
+            "target_radius_km_norm",
+            "is_change_detection"
+          ],
+          "edge": [
+            "peak_quality",
+            "time_to_open_norm",
+            "duration_norm",
+            "resolution_norm"
+          ],
+          "global": [
+            "time_fraction",
+            "open_task_fraction",
+            "fleet_available_fraction",
+            "contact_density",
+            "fault_intensity",
+            "deadline_pressure"
+          ]
+        }
+      },
+      "episodes": [
+        {
+          "episode_id": "test-00005",
+          "family": "partitioned",
+          "condition_class": "boundary",
+          "fleet_size": 24,
+          "task_count": 13,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.461538,
+          "observed": 6,
+          "tasks_total": 13,
+          "expired": 7,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.04217,
+          "mean_latency_s": 321.301,
+          "latency_ms": 4.8929,
+          "latency_p95_ms": 10.628,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:boundary",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00006",
+          "family": "partitioned",
+          "condition_class": "boundary",
+          "fleet_size": 17,
+          "task_count": 11,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.636364,
+          "observed": 7,
+          "tasks_total": 11,
+          "expired": 6,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.034899,
+          "mean_latency_s": 266.625,
+          "latency_ms": 5.351,
+          "latency_p95_ms": 11.4423,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:boundary",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00008",
+          "family": "partitioned",
+          "condition_class": "noisy",
+          "fleet_size": 19,
+          "task_count": 14,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.307692,
+          "observed": 4,
+          "tasks_total": 13,
+          "expired": 9,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.113894,
+          "mean_latency_s": 366.17,
+          "latency_ms": 6.8101,
+          "latency_p95_ms": 13.8563,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:noisy",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00015",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 23,
+          "task_count": 12,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.833333,
+          "observed": 10,
+          "tasks_total": 12,
+          "expired": 6,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.028982,
+          "mean_latency_s": 399.337,
+          "latency_ms": 5.5582,
+          "latency_p95_ms": 12.3223,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00020",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 23,
+          "task_count": 11,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.818182,
+          "observed": 9,
+          "tasks_total": 11,
+          "expired": 2,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.029106,
+          "mean_latency_s": 467.191,
+          "latency_ms": 5.1989,
+          "latency_p95_ms": 10.986,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00023",
+          "family": "partitioned",
+          "condition_class": "boundary",
+          "fleet_size": 24,
+          "task_count": 14,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.642857,
+          "observed": 9,
+          "tasks_total": 14,
+          "expired": 9,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.125979,
+          "mean_latency_s": 300.0,
+          "latency_ms": 6.9283,
+          "latency_p95_ms": 13.3072,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:boundary",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00033",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 24,
+          "task_count": 13,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.538462,
+          "observed": 7,
+          "tasks_total": 13,
+          "expired": 7,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.060087,
+          "mean_latency_s": 331.932,
+          "latency_ms": 4.7421,
+          "latency_p95_ms": 10.7601,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00035",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 20,
+          "task_count": 14,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.785714,
+          "observed": 11,
+          "tasks_total": 14,
+          "expired": 14,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.09974,
+          "mean_latency_s": 261.818182,
+          "latency_ms": 6.5159,
+          "latency_p95_ms": 12.8455,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00042",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 19,
+          "task_count": 10,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.6,
+          "observed": 6,
+          "tasks_total": 10,
+          "expired": 6,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.078924,
+          "mean_latency_s": 552.885,
+          "latency_ms": 4.9431,
+          "latency_p95_ms": 10.2973,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-146000",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 18,
+          "task_count": 12,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.916667,
+          "observed": 11,
+          "tasks_total": 12,
+          "expired": 4,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.021039,
+          "mean_latency_s": 240.0,
+          "latency_ms": 5.9938,
+          "latency_p95_ms": 12.7208,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-146001",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 17,
+          "task_count": 11,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.727273,
+          "observed": 8,
+          "tasks_total": 11,
+          "expired": 6,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.045347,
+          "mean_latency_s": 250.718,
+          "latency_ms": 5.911,
+          "latency_p95_ms": 12.2014,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-146002",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 20,
+          "task_count": 9,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.666667,
+          "observed": 6,
+          "tasks_total": 9,
+          "expired": 3,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.03935,
+          "mean_latency_s": 742.933,
+          "latency_ms": 6.0245,
+          "latency_p95_ms": 11.9048,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-146003",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 21,
+          "task_count": 12,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.25,
+          "observed": 3,
+          "tasks_total": 12,
+          "expired": 10,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.152374,
+          "mean_latency_s": 382.941,
+          "latency_ms": 4.8527,
+          "latency_p95_ms": 10.1274,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-146005",
+          "family": "partitioned",
+          "condition_class": "boundary",
+          "fleet_size": 24,
+          "task_count": 13,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.846154,
+          "observed": 11,
+          "tasks_total": 13,
+          "expired": 5,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.015568,
+          "mean_latency_s": 264.545455,
+          "latency_ms": 5.4827,
+          "latency_p95_ms": 10.6206,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:boundary",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-146006",
+          "family": "partitioned",
+          "condition_class": "boundary",
+          "fleet_size": 24,
+          "task_count": 13,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.461538,
+          "observed": 6,
+          "tasks_total": 13,
+          "expired": 7,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.081356,
+          "mean_latency_s": 367.005,
+          "latency_ms": 5.933,
+          "latency_p95_ms": 13.2779,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:boundary",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        }
+      ],
+      "slices": {
+        "all": {
+          "episodes": 15,
+          "coverage": {
+            "mean": 0.632829,
+            "low": 0.537557,
+            "high": 0.722627,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.064588,
+            "low": -0.087381,
+            "high": -0.045818,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.629834,
+          "observed": 114,
+          "tasks_total": 181,
+          "expired": 101,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 5.6759,
+            "p95": 6.8101,
+            "samples": 15
+          }
+        },
+        "condition:boundary": {
+          "episodes": 5,
+          "coverage": {
+            "mean": 0.60969,
+            "low": 0.496503,
+            "high": 0.728571,
+            "episodes": 5,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.059994,
+            "low": -0.098838,
+            "high": -0.027167,
+            "episodes": 5,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.609375,
+          "observed": 39,
+          "tasks_total": 64,
+          "expired": 34,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 5.7176,
+            "p95": 5.933,
+            "samples": 5
+          }
+        },
+        "condition:noisy": {
+          "episodes": 1,
+          "coverage": {
+            "mean": 0.307692,
+            "low": null,
+            "high": null,
+            "episodes": 1
+          },
+          "reward": {
+            "mean": -0.113894,
+            "low": null,
+            "high": null,
+            "episodes": 1
+          },
+          "coverage_by_tasks": 0.307692,
+          "observed": 4,
+          "tasks_total": 13,
+          "expired": 9,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 6.8101,
+            "p95": 6.8101,
+            "samples": 1
+          }
+        },
+        "condition:nominal": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.681811,
+            "low": 0.548174,
+            "high": 0.797564,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.061661,
+            "low": -0.089263,
+            "high": -0.039653,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.682692,
+          "observed": 71,
+          "tasks_total": 104,
+          "expired": 58,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 5.5267,
+            "p95": 6.0245,
+            "samples": 9
+          }
+        },
+        "family:partitioned": {
+          "episodes": 15,
+          "coverage": {
+            "mean": 0.632829,
+            "low": 0.528388,
+            "high": 0.728885,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.064588,
+            "low": -0.087614,
+            "high": -0.044983,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.629834,
+          "observed": 114,
+          "tasks_total": 181,
+          "expired": 101,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 5.6759,
+            "p95": 6.8101,
+            "samples": 15
+          }
+        },
+        "fleet:large": {
+          "episodes": 15,
+          "coverage": {
+            "mean": 0.632829,
+            "low": 0.529188,
+            "high": 0.727645,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.064588,
+            "low": -0.085657,
+            "high": -0.04488,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.629834,
+          "observed": 114,
+          "tasks_total": 181,
+          "expired": 101,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 5.6759,
+            "p95": 6.8101,
+            "samples": 15
+          }
+        },
+        "fleet:unseen": {
+          "episodes": 15,
+          "coverage": {
+            "mean": 0.632829,
+            "low": 0.534837,
+            "high": 0.731252,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.064588,
+            "low": -0.085863,
+            "high": -0.0446,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.629834,
+          "observed": 114,
+          "tasks_total": 181,
+          "expired": 101,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 5.6759,
+            "p95": 6.8101,
+            "samples": 15
+          }
+        },
+        "held-out": {
+          "episodes": 15,
+          "coverage": {
+            "mean": 0.632829,
+            "low": 0.533901,
+            "high": 0.723671,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.064588,
+            "low": -0.087951,
+            "high": -0.045621,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.629834,
+          "observed": 114,
+          "tasks_total": 181,
+          "expired": 101,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 5.6759,
+            "p95": 6.8101,
+            "samples": 15
+          }
+        },
+        "ood": {
+          "episodes": 15,
+          "coverage": {
+            "mean": 0.632829,
+            "low": 0.5281,
+            "high": 0.726873,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.064588,
+            "low": -0.083545,
+            "high": -0.043674,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.629834,
+          "observed": 114,
+          "tasks_total": 181,
+          "expired": 101,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 5.6759,
+            "p95": 6.8101,
+            "samples": 15
+          }
+        },
+        "parameter-compatible": {
+          "episodes": 15,
+          "coverage": {
+            "mean": 0.632829,
+            "low": 0.544296,
+            "high": 0.721363,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.064588,
+            "low": -0.085356,
+            "high": -0.04699,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.629834,
+          "observed": 114,
+          "tasks_total": 181,
+          "expired": 101,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 5.6759,
+            "p95": 6.8101,
+            "samples": 15
+          }
+        }
+      },
+      "aggregate": {
+        "episodes": 15,
+        "coverage": {
+          "mean": 0.632829,
+          "low": 0.523515,
+          "high": 0.722428,
+          "episodes": 15,
+          "resamples": 500
+        },
+        "reward": {
+          "mean": -0.064588,
+          "low": -0.085091,
+          "high": -0.046561,
+          "episodes": 15,
+          "resamples": 500
+        },
+        "coverage_by_tasks": 0.629834,
+        "observed": 114,
+        "tasks_total": 181,
+        "expired": 101,
+        "conflicts": 0,
+        "invalid_actions": 0,
+        "latency_ms": {
+          "mean": 5.6759,
+          "p95": 6.8101,
+          "samples": 15
+        }
+      },
+      "shield": null
+    },
+    "learned": {
+      "policy": {
+        "key": "learned-gnn_gru",
+        "kind": "learned",
+        "deployable": true,
+        "version": "learned-policy-1",
+        "checkpoint": "runs/curriculum-demo/seed-0/03-full/checkpoint-best.pt",
+        "model": {
+          "model": "gnn_gru",
+          "hidden": 32,
+          "layers": 2
+        },
+        "feature_schema": {
+          "satellite": [
+            "altitude_km_norm",
+            "speed_km_s_norm",
+            "available",
+            "busy",
+            "energy_fraction",
+            "storage_fraction",
+            "compute_duty",
+            "footprint_km_norm",
+            "visible_target_norm",
+            "visible_task_norm",
+            "time_to_window_norm",
+            "contact_degree_norm",
+            "claims_seen_norm",
+            "max_urgency_norm"
+          ],
+          "task": [
+            "active",
+            "urgency_norm",
+            "deadline_norm",
+            "age_norm",
+            "min_confidence",
+            "attempts_norm",
+            "is_assigned",
+            "is_in_progress",
+            "is_open",
+            "target_radius_km_norm",
+            "is_change_detection"
+          ],
+          "edge": [
+            "peak_quality",
+            "time_to_open_norm",
+            "duration_norm",
+            "resolution_norm"
+          ],
+          "global": [
+            "time_fraction",
+            "open_task_fraction",
+            "fleet_available_fraction",
+            "contact_density",
+            "fault_intensity",
+            "deadline_pressure"
+          ]
+        }
+      },
+      "episodes": [
+        {
+          "episode_id": "test-00005",
+          "family": "partitioned",
+          "condition_class": "boundary",
+          "fleet_size": 24,
+          "task_count": 13,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.461538,
+          "observed": 6,
+          "tasks_total": 13,
+          "expired": 7,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.04217,
+          "mean_latency_s": 321.301,
+          "latency_ms": 4.8075,
+          "latency_p95_ms": 10.1295,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:boundary",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00006",
+          "family": "partitioned",
+          "condition_class": "boundary",
+          "fleet_size": 17,
+          "task_count": 11,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.636364,
+          "observed": 7,
+          "tasks_total": 11,
+          "expired": 6,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.034899,
+          "mean_latency_s": 266.625,
+          "latency_ms": 5.3318,
+          "latency_p95_ms": 11.0989,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:boundary",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00008",
+          "family": "partitioned",
+          "condition_class": "noisy",
+          "fleet_size": 19,
+          "task_count": 14,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.307692,
+          "observed": 4,
+          "tasks_total": 13,
+          "expired": 9,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.113894,
+          "mean_latency_s": 366.17,
+          "latency_ms": 6.966,
+          "latency_p95_ms": 15.3431,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:noisy",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00015",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 23,
+          "task_count": 12,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.833333,
+          "observed": 10,
+          "tasks_total": 12,
+          "expired": 6,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.028982,
+          "mean_latency_s": 399.337,
+          "latency_ms": 6.1413,
+          "latency_p95_ms": 12.4342,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00020",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 23,
+          "task_count": 11,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.818182,
+          "observed": 9,
+          "tasks_total": 11,
+          "expired": 2,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.029106,
+          "mean_latency_s": 467.191,
+          "latency_ms": 4.6042,
+          "latency_p95_ms": 10.107,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00023",
+          "family": "partitioned",
+          "condition_class": "boundary",
+          "fleet_size": 24,
+          "task_count": 14,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.642857,
+          "observed": 9,
+          "tasks_total": 14,
+          "expired": 9,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.125979,
+          "mean_latency_s": 300.0,
+          "latency_ms": 5.0149,
+          "latency_p95_ms": 10.1716,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:boundary",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00033",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 24,
+          "task_count": 13,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.538462,
+          "observed": 7,
+          "tasks_total": 13,
+          "expired": 7,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.060087,
+          "mean_latency_s": 331.932,
+          "latency_ms": 4.9709,
+          "latency_p95_ms": 9.1308,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00035",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 20,
+          "task_count": 14,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.857143,
+          "observed": 12,
+          "tasks_total": 14,
+          "expired": 13,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.085241,
+          "mean_latency_s": 260.0,
+          "latency_ms": 4.6147,
+          "latency_p95_ms": 9.1898,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-00042",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 19,
+          "task_count": 10,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.6,
+          "observed": 6,
+          "tasks_total": 10,
+          "expired": 6,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.078108,
+          "mean_latency_s": 492.885,
+          "latency_ms": 4.3743,
+          "latency_p95_ms": 8.6282,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-146000",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 18,
+          "task_count": 12,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.916667,
+          "observed": 11,
+          "tasks_total": 12,
+          "expired": 4,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.021039,
+          "mean_latency_s": 240.0,
+          "latency_ms": 5.2574,
+          "latency_p95_ms": 10.2582,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-146001",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 17,
+          "task_count": 11,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.727273,
+          "observed": 8,
+          "tasks_total": 11,
+          "expired": 6,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.045347,
+          "mean_latency_s": 250.718,
+          "latency_ms": 5.7473,
+          "latency_p95_ms": 13.081,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-146002",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 20,
+          "task_count": 9,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.666667,
+          "observed": 6,
+          "tasks_total": 9,
+          "expired": 3,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.03935,
+          "mean_latency_s": 742.933,
+          "latency_ms": 6.0665,
+          "latency_p95_ms": 12.4087,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-146003",
+          "family": "partitioned",
+          "condition_class": "nominal",
+          "fleet_size": 21,
+          "task_count": 12,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.25,
+          "observed": 3,
+          "tasks_total": 12,
+          "expired": 10,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.152374,
+          "mean_latency_s": 382.941,
+          "latency_ms": 4.6465,
+          "latency_p95_ms": 9.7047,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:nominal",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-146005",
+          "family": "partitioned",
+          "condition_class": "boundary",
+          "fleet_size": 24,
+          "task_count": 13,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.846154,
+          "observed": 11,
+          "tasks_total": 13,
+          "expired": 5,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.018746,
+          "mean_latency_s": 313.636364,
+          "latency_ms": 5.2043,
+          "latency_p95_ms": 9.5758,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:boundary",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        },
+        {
+          "episode_id": "test-146006",
+          "family": "partitioned",
+          "condition_class": "boundary",
+          "fleet_size": 24,
+          "task_count": 13,
+          "ood": true,
+          "unseen_fleet": true,
+          "coverage": 0.461538,
+          "observed": 6,
+          "tasks_total": 13,
+          "expired": 7,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "mean_reward": -0.081356,
+          "mean_latency_s": 367.005,
+          "latency_ms": 4.5766,
+          "latency_p95_ms": 8.3514,
+          "slices": [
+            "all",
+            "family:partitioned",
+            "condition:boundary",
+            "fleet:large",
+            "fleet:unseen",
+            "ood",
+            "parameter-compatible",
+            "held-out"
+          ]
+        }
+      ],
+      "slices": {
+        "all": {
+          "episodes": 15,
+          "coverage": {
+            "mean": 0.637591,
+            "low": 0.527436,
+            "high": 0.727797,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.063779,
+            "low": -0.083153,
+            "high": -0.043975,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.635359,
+          "observed": 115,
+          "tasks_total": 181,
+          "expired": 100,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 5.2216,
+            "p95": 6.1413,
+            "samples": 15
+          }
+        },
+        "condition:boundary": {
+          "episodes": 5,
+          "coverage": {
+            "mean": 0.60969,
+            "low": 0.496503,
+            "high": 0.727273,
+            "episodes": 5,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.06063,
+            "low": -0.095608,
+            "high": -0.031346,
+            "episodes": 5,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.609375,
+          "observed": 39,
+          "tasks_total": 64,
+          "expired": 34,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 4.987,
+            "p95": 5.2043,
+            "samples": 5
+          }
+        },
+        "condition:noisy": {
+          "episodes": 1,
+          "coverage": {
+            "mean": 0.307692,
+            "low": null,
+            "high": null,
+            "episodes": 1
+          },
+          "reward": {
+            "mean": -0.113894,
+            "low": null,
+            "high": null,
+            "episodes": 1
+          },
+          "coverage_by_tasks": 0.307692,
+          "observed": 4,
+          "tasks_total": 13,
+          "expired": 9,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 6.966,
+            "p95": 6.966,
+            "samples": 1
+          }
+        },
+        "condition:nominal": {
+          "episodes": 9,
+          "coverage": {
+            "mean": 0.689747,
+            "low": 0.562354,
+            "high": 0.806205,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.059959,
+            "low": -0.087866,
+            "high": -0.038129,
+            "episodes": 9,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.692308,
+          "observed": 72,
+          "tasks_total": 104,
+          "expired": 57,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 5.1581,
+            "p95": 6.0665,
+            "samples": 9
+          }
+        },
+        "family:partitioned": {
+          "episodes": 15,
+          "coverage": {
+            "mean": 0.637591,
+            "low": 0.53127,
+            "high": 0.736588,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.063779,
+            "low": -0.083792,
+            "high": -0.044197,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.635359,
+          "observed": 115,
+          "tasks_total": 181,
+          "expired": 100,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 5.2216,
+            "p95": 6.1413,
+            "samples": 15
+          }
+        },
+        "fleet:large": {
+          "episodes": 15,
+          "coverage": {
+            "mean": 0.637591,
+            "low": 0.523999,
+            "high": 0.730127,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.063779,
+            "low": -0.083854,
+            "high": -0.04685,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.635359,
+          "observed": 115,
+          "tasks_total": 181,
+          "expired": 100,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 5.2216,
+            "p95": 6.1413,
+            "samples": 15
+          }
+        },
+        "fleet:unseen": {
+          "episodes": 15,
+          "coverage": {
+            "mean": 0.637591,
+            "low": 0.533069,
+            "high": 0.726052,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.063779,
+            "low": -0.086377,
+            "high": -0.046516,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.635359,
+          "observed": 115,
+          "tasks_total": 181,
+          "expired": 100,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 5.2216,
+            "p95": 6.1413,
+            "samples": 15
+          }
+        },
+        "held-out": {
+          "episodes": 15,
+          "coverage": {
+            "mean": 0.637591,
+            "low": 0.53295,
+            "high": 0.723994,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.063779,
+            "low": -0.08451,
+            "high": -0.046465,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.635359,
+          "observed": 115,
+          "tasks_total": 181,
+          "expired": 100,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 5.2216,
+            "p95": 6.1413,
+            "samples": 15
+          }
+        },
+        "ood": {
+          "episodes": 15,
+          "coverage": {
+            "mean": 0.637591,
+            "low": 0.53999,
+            "high": 0.728854,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.063779,
+            "low": -0.088305,
+            "high": -0.045849,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.635359,
+          "observed": 115,
+          "tasks_total": 181,
+          "expired": 100,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 5.2216,
+            "p95": 6.1413,
+            "samples": 15
+          }
+        },
+        "parameter-compatible": {
+          "episodes": 15,
+          "coverage": {
+            "mean": 0.637591,
+            "low": 0.527141,
+            "high": 0.72663,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "reward": {
+            "mean": -0.063779,
+            "low": -0.084944,
+            "high": -0.045647,
+            "episodes": 15,
+            "resamples": 500
+          },
+          "coverage_by_tasks": 0.635359,
+          "observed": 115,
+          "tasks_total": 181,
+          "expired": 100,
+          "conflicts": 0,
+          "invalid_actions": 0,
+          "latency_ms": {
+            "mean": 5.2216,
+            "p95": 6.1413,
+            "samples": 15
+          }
+        }
+      },
+      "aggregate": {
+        "episodes": 15,
+        "coverage": {
+          "mean": 0.637591,
+          "low": 0.538343,
+          "high": 0.727723,
+          "episodes": 15,
+          "resamples": 500
+        },
+        "reward": {
+          "mean": -0.063779,
+          "low": -0.085599,
+          "high": -0.045475,
+          "episodes": 15,
+          "resamples": 500
+        },
+        "coverage_by_tasks": 0.635359,
+        "observed": 115,
+        "tasks_total": 181,
+        "expired": 100,
+        "conflicts": 0,
+        "invalid_actions": 0,
+        "latency_ms": {
+          "mean": 5.2216,
+          "p95": 6.1413,
+          "samples": 15
+        }
+      },
+      "shield": null
+    }
+  },
+  "selection_note": "all policies use the same episodes; test slices are never used for checkpoint selection, and OOD slices are labelled from the training envelope"
+}
